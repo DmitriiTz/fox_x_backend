@@ -1,0 +1,344 @@
+@if(auth()->check())
+    <div class="modal modal--conclusion" id="outputModal">
+        <input type="hidden" name="balance" value="{{ getBalance(auth()->user()) }}">
+        <div class="modal__top">
+            <h6 class="modal__title">Вывод средств</h6>
+            <a class="modal__close" data-izimodal-close><i class="ic-close"></i></a>
+        </div>
+        <div class="modal__body">
+            <div class="conclusion__balance">
+                <p class="conclusion__balance-text">Текущий баланс:</p>
+                <p class="conclusion__balance-value">{{ getBalance(auth()->user()) }} <span>coins</span></p>
+            </div>
+            <div class="output-box">
+                <div class="output-box__top">
+                    <p class="output-box__text">Сумма</p>
+                    <input type="number" class="output-box__field">
+                    <p class="output-box__hint">
+                        Максимальная сумма за раз: 15000р <br>
+                        Минимальная сумма: 200р
+                    </p>
+                </div>
+                <div class="output-box__bottom">
+                    <p class="output-box__text">Реквизиты</p>
+                    <p class="output-box__requisites">+799379992</p>
+                </div>
+                <div class="warning__balance hide">
+                    <p class="warning__balance-text">* Неккоректные данные</p>
+                </div>
+            </div>
+
+            <div class="conclusion__where">
+                <p class="conclusion__where-title">КУДА ВЫВЕСТИ</p>
+                <ul class="conclusion__where-list">
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" checked="checked" value="1" name="outputType">
+                            <span class="output-radio__box">
+                                    <i class="ic-qiwi"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="outputType" value="2">
+                            <span class="output-radio__box">
+                                    <i class="ic-sber"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="outputType" value="3">
+                            <span class="output-radio__box">
+                                    <i class="ic-beeline"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="outputType" value="4">
+                            <span class="output-radio__box">
+                                    <i class="ic-mtc"></i>
+                                </span>
+                        </label>
+                    </li>
+                </ul>
+                <div id="fieldRequisites" style="display: block;" class="output-requisites">
+                    <p class="output-requisites__text">Реквизиты:</p>
+                    <input type="text" name="requisites" class="output-requisites__input" placeholder="Введите номер">
+                </div>
+            </div>
+            <div class="modal__buttons">
+                <a href="javascript:void(0);" onclick="Payment.withdrawalOfFunds(this);" class="button button--border button--wide">Вывод средств</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal conclusion" id="inputModal">
+        <div class="modal__top">
+            <h6 class="modal__title">Пополнение баланса</h6>
+            <a class="modal__close" data-izimodal-close><i class="ic-close"></i></a>
+        </div>
+        <div class="modal__body">
+            <div class="conclusion__balance">
+                <p class="conclusion__balance-text">Текущий баланс:</p>
+                <p class="conclusion__balance-value">{{ getBalance(auth()->user()) }} <span>coins</span></p>
+            </div>
+            <div class="output-box">
+                <div class="output-box__top">
+                    <p class="output-box__text output-box__text--two">Сумма <br>пополнения</p>
+                    <input type="number" class="output-box__field">
+                    <p class="output-box__hint">
+                        Максимальная сумма платежа: 15 000Р <br>
+                        Минимальная сумма: 50Р
+                    </p>
+                </div>
+            </div>
+            <div class="conclusion__where">
+                <p class="conclusion__where-title">Способы оплаты</p>
+                <ul class="conclusion__where-list">
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" checked="checked" name="inputType" value="1" onclick="show1();">
+                            <span class="output-radio__box">
+                                    <i class="ic-qiwi"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="inputType" value="2" onclick="show2();">
+                            <span class="output-radio__box">
+                                    <i class="ic-sber"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="inputType" value="3" onclick="show1();">
+                            <span class="output-radio__box">
+                                    <i class="ic-beeline"></i>
+                                </span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="output-radio">
+                            <input type="radio" name="inputType" value="4" onclick="show1();">
+                            <span class="output-radio__box">
+                                    <i class="ic-mtc"></i>
+                                </span>
+                        </label>
+                    </li>
+                </ul>
+                <div id="outputRequisites" class="output-requisites">
+                    <p class="output-requisites__text">Реквизиты:</p>
+                    <input type="text" name="requisites" class="output-requisites__input" placeholder="Введите номер">
+                </div>
+            </div>
+            <div class="modal__buttons">
+                <a href="javascript:void(0);" onclick="Payment.toUpAccount();" class="button">Пополнить</a>
+            </div>
+        </div>
+    </div>
+
+@endif
+
+<div class="modal modal--help" id="helpModal">
+    <div class="modal__top">
+        <h6 class="modal__title">Правила игры Classic</h6>
+        <a class="modal__close" data-izimodal-close><i class="ic-close"></i></a>
+    </div>
+    <div class="modal__body">
+        <div class="modal-help nano">
+            <div class="nano-content">
+                <ol>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal--help" id="chatRules">
+    <div class="modal__top">
+        <h6 class="modal__title">Правила чата</h6>
+        <a class="modal__close" data-izimodal-close><i class="ic-close"></i></a>
+    </div>
+    <div class="modal__body">
+        <div class="modal-chat nano">
+            <div class="nano-content">
+                <ol>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                    <li>Rules</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal--help" id="referralInfo">
+</div>
+
+
+<style>
+    #auth span, #authLogin span, #authRegistration span, #authLogin a, #authRegistration a {
+        display: block;
+        text-align: center;
+        padding-top: 20px;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    #authLogin a, #authRegistration a {
+        cursor: pointer;
+        padding-bottom: 15px;
+    }
+
+    #auth, #authRegistration {
+        padding: 20px;
+    }
+
+    #authLogin input[type="text"], #authLogin input[type="password"], #authRegistration input[type="text"], #authRegistration input[type="password"] {
+        width:200px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        border:1px solid #ccc;
+        outline: none;
+        height: 35px;
+        display: inline-block;
+        outline: none;
+        padding-left: 5px;
+    }
+
+    #authLogin li, #authRegistration li {
+        list-style: none;
+        display: inline-block;
+        vertical-align: top;
+        width:200px;
+    }
+
+
+    #authRegistration {
+        padding-bottom: 40px;
+        height: 450px !important;
+    }
+
+    #authRegistration input[type="submit"], #authLogin input[type="submit"] {
+        max-width: 100px;
+        margin-left: 10px;
+        margin-bottom: 0;
+        text-align: center;
+        color: #fff;
+        font-family: MyriadPro-Bold;
+        font-size: 13px;
+        line-height: 49px;
+        height: 49px;
+        padding: 0 15px;
+        letter-spacing: .33px;
+        -webkit-box-shadow: 0 4px 18px rgba(235,180,47,.15);
+        box-shadow: 0 4px 18px rgba(235,180,47,.15);
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        background-color: #ffb83a;
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        -webkit-transition: .3s;
+        transition: .3s;
+        border:none;
+        margin:0 auto;
+        display: block;
+        margin-top: 10px;
+    }
+
+    #authLogin form, #authRegistration form {
+        text-align: center;
+    }
+
+    .error-message {
+        color:red;
+        font-size: 13px;
+        display: block;
+        padding-bottom: 10px;
+
+    }
+
+    #auth ul {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    #auth ul li {
+        display: inline-block;
+    }
+</style>
+<div class="modal modal--bet" id="auth">
+    <span>Авторизация</span>
+    <ul>
+        <li>
+            <a href="/oauth/vkontakte">
+                <img src="{{ asset('img/icons-vk-96.png') }}" alt="">
+            </a>
+        </li>
+        <li><a href="/oauth/facebook"><img src="{{ asset('img/icons-facebook-96.png') }}" alt=""></a></li>
+        <li>
+            <a data-izimodal-open="#authLogin" data-izimodal-transitionin="fadeInDown"><img src="{{ asset('img/icons-email-96.png') }}" alt=""></a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="modal modal--help" id="authRegistration">
+    @include('account.blocks.registration')
+</div>
+
+<div class="modal modal--help" id="authLogin">
+    @include('account.blocks.auth')
+</div>
+
+
+
+

@@ -1,0 +1,65 @@
+.crash-game, .crash-actions {
+    background: #e9eaed;
+    padding: 15px 12px 20px 10px;
+    margin-bottom: 20px;
+    .output-coeff {
+        margin-top: 16px;
+        min-width: 350px;
+    }
+    .text-success {
+        color: green;
+    }
+    .text-danger {
+        color: brown;
+    }
+    [name=profit] {
+        height: 38px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+    .btn-crash-coef {
+        margin-right: 10px;
+    }
+    .hidden {
+        display: none;
+    }
+    .left {
+        width: 37%;
+        display: inline-block;
+        .total {
+            font-family: Roboto-Bold;
+            font-size: 32px;
+            letter-spacing: .1em;
+            color: #666;
+            margin: 0 0 10px;
+        }
+    }
+    .right {
+        width: 56%;
+        display: inline-block;
+        table {
+            thead {
+                th {
+                    color: #333;
+                    border-bottom: 3px solid #666;
+                    text-align: center;
+                }
+            }
+            tbody {
+                color: #000;
+                tr {
+                    td {
+                        border-bottom: 1px solid #ccc;
+                        text-align: center;
+                        padding: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.nav__item {
+    margin-bottom: 10px;
+}

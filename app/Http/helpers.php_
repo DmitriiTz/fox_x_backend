@@ -1,0 +1,54 @@
+<?php
+
+function checkSessionTheme() {
+    if(session('theme') && session('theme') == 'dark') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function getLevel($user) {
+    return floor($user->experience / 1000) ? floor($user->experience / 1000) : 1;
+}
+
+function getExperience($user) {
+    return $user->experience ? $user->experience : 0;
+}
+
+function getBalance($user, $onlyChat = false) {
+
+    $allSum = \App\Payment::where('account_id', $user->id);
+
+    if($onlyChat) {
+        $allSum->where('payment_type_id', 1);
+    }
+
+    $allSum = $allSum->sum('price') * 10;
+    return $allSum;
+}
+
+function getOutputSum($user) {
+    return \App\Payment::where('account_id', $user->id)->where('payment_type_id', 2)->sum('price');
+}
+
+function getInputSum($user) {
+    return \App\Payment::where('account_id', $user->id)->where('payment_type_id', 1)->sum('price');
+}
+
+function getReferralSum($user) {
+    return \App\Payment::where('account_id', $user->id)->where('payment_type_id', 3)->sum('price');
+}
+
+function commission($game) {
+
+    $commission = new \App\Commission;
+    $commission->game_id = $game->id;
+    $commission->price = ($game->participants()->sum('cash') / 10) * 10 / 100;
+
+    $commission->save();
+
+    return $commission->price;
+
+}

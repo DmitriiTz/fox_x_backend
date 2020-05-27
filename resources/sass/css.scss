@@ -1,0 +1,35 @@
+@import "~toastr/toastr.scss";
+
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+button[disabled=disabled] {
+    background-color: #16181c !important;
+    color: #2f313a !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 2px solid #292a31 !important;
+    line-height: 45px !important;
+    cursor: default !important;
+    background-image: none !important;
+    &:hover {
+        background-color: #16181c !important;
+        color: #2f313a !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 2px solid #292a31 !important;
+        line-height: 45px !important;
+        background-image: none !important;
+    }
+}
+
+#bet_form {
+    input {
+        border: 2px solid transparent;
+        &.error {
+            border: 2px solid brown;
+        }
+    }
+}
