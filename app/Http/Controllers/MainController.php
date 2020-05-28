@@ -14,7 +14,6 @@ class MainController extends Controller
 {
     public function home(Request $request)
     {
-
         $pageName = 'Jackpot';
         $timer = now();
         $time = now();
@@ -128,20 +127,20 @@ class MainController extends Controller
                 'color' => '---'
             ];
         }
-		
 
-       $tempGame = HistoryGame::with([
+
+        $tempGame = HistoryGame::with([
             'participants' => function ($query) {
                 $query->with('account');
             }
         ])
-			->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameTypeId)
             ->where('status_id', '!=', 4)
             ->where('winner_ticket', '!=', null)
             ->first();
-		
+
         if (isset($tempGame)) {
             $bank = $tempGame->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $tempGame->id)->where('account_id',
@@ -171,15 +170,12 @@ class MainController extends Controller
                 'color' => '---'
             ];
         }
-		
-		
-		
+
 
         $max_cash_number = Participant::max('max_cash_number');
         $biggestBank = Participant::where('max_cash_number', '=', $max_cash_number)->first();
 
-		
-		
+
         $tempGame = HistoryGame::with([
             'participants' => function ($query) {
                 $query->with('account');
@@ -191,7 +187,7 @@ class MainController extends Controller
             ->where('status_id', '!=', 4)
             ->where('winner_ticket', '!=', null)
             ->first();
-			
+
         if (isset($tempGame)) {
             $bank = $tempGame->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $tempGame->id)->where('account_id',
@@ -222,17 +218,50 @@ class MainController extends Controller
             ];
         }
 
-
         if ($request->isMethod('post')) {
-            $view = view('blocks.change-game-wrap-jackpot',
-                compact('game', 'games', 'gameTypeId', 'result', 'timer', 'time', 'gameType', 'typeRequest', 'luckyOfTheDay', 'biggestBank',
-                    'lastWinner'))->render();
-            return $view;
+//            $view = view('blocks.change-game-wrap-jackpot',
+//                compact('game', 'games', 'gameTypeId', 'result', 'timer', 'time', 'gameType', 'typeRequest', 'luckyOfTheDay', 'biggestBank',
+//                    'lastWinner'))->render();
+//            return $view;
+
+            $data = [
+                $game,
+                $games,
+                $gameTypeId,
+                $result,
+                $timer,
+                $time,
+                $gameType,
+                $typeRequest,
+                $luckyOfTheDay,
+                $biggestBank,
+                $lastWinner,
+            ];
+
+            return response()->json($data);
         }
 
-        return view('jackpot',
-            compact('game', 'games', 'gameTypeId', 'result', 'timer', 'time', 'gameType', 'typeRequest', 'pageName', 'luckyOfTheDay',
-                'biggestBank', 'lastWinner'));
+//        return view('jackpot',
+//            compact('game', 'games', 'gameTypeId', 'result', 'timer', 'time', 'gameType', 'typeRequest', 'pageName', 'luckyOfTheDay',
+//                'biggestBank', 'lastWinner'));
+
+        $data = [
+            $game,
+            $games,
+            $gameTypeId,
+            $result,
+            $timer,
+            $time,
+            $gameType,
+            $typeRequest,
+            $pageName,
+            $luckyOfTheDay,
+            $biggestBank,
+            $lastWinner,
+        ];
+
+        return response()->json($data);
+
     }
 
     public function coinflip()
@@ -289,8 +318,22 @@ class MainController extends Controller
             Carbon::now())->count();
 
 
-        return view('coin-flip',
-            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
+//        return view('coin-flip',
+//            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
+
+        $data = [
+            $games,
+            $activeGames,
+            $animationGames,
+            $bank,
+            $gamesToday,
+            $userGames,
+            $bankUser,
+            $pageName,
+            $userGamesNow,
+        ];
+
+        return response()->json($data);
     }
 
     public function kingOfTheHill()
@@ -347,14 +390,32 @@ class MainController extends Controller
         }
 
 
-        return view('king-of-the-hill', compact('games', 'gameClassic', 'gameSenyor', 'timer', 'pageName', 'lastGame'));
+//        return view('king-of-the-hill', compact('games', 'gameClassic', 'gameSenyor', 'timer', 'pageName', 'lastGame'));
+
+        $data = [
+            $games,
+            $gameClassic,
+            $gameSenyor,
+            $timer,
+            $pageName,
+            $lastGame,
+        ];
+
+        return response()->json($data);
     }
 
-    public function crash(){
+    public function crash()
+    {
 
         $pageName = 'Crash';
 
-        return view('crash', compact('pageName'));
+//        return view('crash', compact('pageName'));
+
+        $data = [
+            $pageName,
+        ];
+
+        return response()->json($data);
     }
 
 }
