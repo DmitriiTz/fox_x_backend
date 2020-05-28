@@ -16,10 +16,13 @@ class AuthController extends Controller
         $input = $request->validated();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] = $user->createToken(config('app.name'));
-        $success['name'] = $user->name;
 
-        return $success;
+        return response()->json([
+            'data' => [
+                'token' => $user->createToken(config('app.name')),
+                'name' => $user->name,
+            ]
+        ]);
     }
 
     public function login(Request $request)
@@ -41,9 +44,11 @@ class AuthController extends Controller
         $token->token->save();
 
         return response()->json([
-            'token_type' => 'Bearer',
-            'token' => $token->accessToken,
-            'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
+            'data' => [
+                'token_type' => 'Bearer',
+                'token' => $token->accessToken,
+                'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
+            ]
         ], 200);
     }
 

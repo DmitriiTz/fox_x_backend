@@ -1,6 +1,76 @@
 # README
 
+# Поднимаем сервер на локалке
+
+Клонирование репозитория два способа:
+* Скачать репозиторий в новую папку в текущей директории <br>
+`git clone https://github.com/DmitriiTz/fox_x_backend.git `
+
+* Если папку для проекта существует в ней выполняем команду <br>
+`git clone https://github.com/DmitriiTz/fox_x_backend.git .`
+
+Создание домена для проекта. Есть два способа:
+* Установить Homestead с vagrant и использовать виртуальную машину для эмуляции ubuntu сервера на windows
+* Установить OS Panel и добавить в папку domains этот проект и в настройках создать домен на путь app/public
+
+Установка зависимостей и прочего:
+* Создаём базу в mysql и импортируем туда дамп базы из файла `fox.mysql.sql` он лежит в корне проекта
+* Дальше нужно настроить `.env` файл на подлключение к базе данных mysql. У OS Panel будут такие параметры:
+```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE= имя созданной базы
+    DB_USERNAME=root
+    DB_PASSWORD=
+```
+* Устанавливаем зависимости <br>
+`composer i`
+* На всякий случай установить laravel/passport если не установился предыдущей командой <br>
+`composer require laravel/passport "7.5.1"`
+* Генерируем ключи для api <br>
+ `php artisan passport:install`
+ 
+ Проект установлен и должен работать.
 ## Require
+
+#### AuthController
+
+ - POST /login
+```
+Info:
+    Method - login
+
+Response:
+    'data' => [
+        'token_type' => 'Bearer',
+        'token' => $token->accessToken,
+        'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
+    ]
+```
+
+ - POST /register
+```
+Info:
+    Method - register
+
+Response:
+    'data' => [
+        'token' => $user->createToken(config('app.name')),
+        'name' => $user->name,
+    ]
+```
+
+ - POST /logout
+```
+Info:
+    Method - logout
+
+Response:
+    'data' => [
+        'message' => 'You are successfully logged out',   
+    ]
+```
 
 #### MainController
 
