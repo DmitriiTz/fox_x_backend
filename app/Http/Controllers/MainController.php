@@ -60,7 +60,7 @@ class MainController extends Controller
                 'image' => $game->winner->image,
                 'name' => $game->winner->name . ' ' . $game->winner->last_name,
                 'bank' => $bank,
-                'winners' => view('blocks.choose-winner-slider', ['game' => $historyGame])->render(),
+                'game' => $historyGame,
                 'color' => $color
             ];
 
@@ -225,17 +225,18 @@ class MainController extends Controller
 //            return $view;
 
             $data = [
-                $game,
-                $games,
-                $gameTypeId,
-                $result,
-                $timer,
-                $time,
-                $gameType,
-                $typeRequest,
-                $luckyOfTheDay,
-                $biggestBank,
-                $lastWinner,
+                'data' => [
+                    'game' => $game,
+                    'games' => $games,
+                    'gameTypeId' => $gameTypeId,
+                    'result' => $result,
+                    'timer' => $timer,
+                    'time' => $time,
+                    'gameType' => $gameType,
+                    'typeRequest' => $typeRequest,
+                    'luckyOfTheDay' => $luckyOfTheDay,
+                    'biggestBank' => $biggestBank,
+                ]
             ];
 
             return response()->json($data);
@@ -246,18 +247,20 @@ class MainController extends Controller
 //                'biggestBank', 'lastWinner'));
 
         $data = [
-            $game,
-            $games,
-            $gameTypeId,
-            $result,
-            $timer,
-            $time,
-            $gameType,
-            $typeRequest,
-            $pageName,
-            $luckyOfTheDay,
-            $biggestBank,
-            $lastWinner,
+            'data' => [
+                'game' => $game,
+                'games' => $games,
+                'gameTypeId' => $gameTypeId,
+                'result' => $result,
+                'timer' => $timer,
+                'time' => $time,
+                'gameType' => $gameType,
+                'typeRequest' => $typeRequest,
+                'pageName' => $pageName,
+                'luckyOfTheDay' => $luckyOfTheDay,
+                'biggestBank' => $biggestBank,
+                'lastWinner' => $lastWinner,
+            ]
         ];
 
         return response()->json($data);
@@ -322,15 +325,17 @@ class MainController extends Controller
 //            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
 
         $data = [
-            $games,
-            $activeGames,
-            $animationGames,
-            $bank,
-            $gamesToday,
-            $userGames,
-            $bankUser,
-            $pageName,
-            $userGamesNow,
+            'data' => [
+                'games' => $games,
+                'activeGames' => $activeGames,
+                'animationGames' => $animationGames,
+                'bank' => $bank,
+                'gamesToday' => $gamesToday,
+                'userGames' => $userGames,
+                'bankUser' => $bankUser,
+                'pageName' => $pageName,
+                'userGamesNow' => $userGamesNow,
+            ]
         ];
 
         return response()->json($data);
@@ -393,12 +398,14 @@ class MainController extends Controller
 //        return view('king-of-the-hill', compact('games', 'gameClassic', 'gameSenyor', 'timer', 'pageName', 'lastGame'));
 
         $data = [
-            $games,
-            $gameClassic,
-            $gameSenyor,
-            $timer,
-            $pageName,
-            $lastGame,
+            'data' => [
+                'games' => $games,
+                'gameClassic' => $gameClassic,
+                'gameSenyor' => $gameSenyor,
+                'timer' => $timer,
+                'pageName' => $pageName,
+                'lastGame' => $lastGame,
+            ]
         ];
 
         return response()->json($data);

@@ -27,8 +27,16 @@ class ProfileController extends Controller
         $listReferrals = User::where('referral_account_id', $user->id)->paginate(10);
 
         if($request->page) {
-            $view = view('blocks.wrap-ref-list', compact('listReferrals'))->render();
-            return $view;
+//            $view = view('blocks.wrap-ref-list', compact('listReferrals'))->render();
+//            return $view;
+
+            $data = [
+                'data' => [
+                    'listReferrals' => $listReferrals,
+                ]
+            ];
+
+            return response()->json($data);
         }
 
         $listGames = Payment::where('account_id', $user->id)
@@ -51,7 +59,18 @@ class ProfileController extends Controller
 
         $isDailyBonus = Payment::where('payment_type_id', 5)->orderby('created_at', 'desc')->first();
 
-        return view('account.profile', compact('getHistoryBalance', 'listReferrals', 'listGames', 'pageName'));
+//        return view('account.profile', compact('getHistoryBalance', 'listReferrals', 'listGames', 'pageName'));
+
+        $data = [
+            'data' => [
+                'getHistoryBalance' => $getHistoryBalance,
+                'listReferrals' => $listReferrals,
+                'listGames' => $listGames,
+                'pageName' => $pageName,
+            ]
+        ];
+
+        return response()->json($data);
     }
 
 
@@ -67,8 +86,18 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), $this->rulesRegistration);
 
         if($validator->fails()) {
-            $view = view('account.blocks.registration', ['errors' => $validator->errors(), 'request' => $request])->render();
-            return ['error' => 1, 'view' => $view];
+//            $view = view('account.blocks.registration', ['errors' => $validator->errors(), 'request' => $request])->render();
+//            return ['error' => 1, 'view' => $view];
+
+            $data = [
+                'data' => [
+                    'errors' => $validator->errors(),
+                    'request' => $request,
+                ],
+                'error' => 1
+            ];
+
+            return response()->json($data);
         }
 
         $user = auth()->user();
@@ -101,7 +130,17 @@ class ProfileController extends Controller
             ->first();
 
 
-        return view('account.daily-bonus', compact('arr', 'isDailyBonus', 'pageName'));
+//        return view('account.daily-bonus', compact('arr', 'isDailyBonus', 'pageName'));
+
+        $data = [
+            'data' => [
+                'arr' => $arr,
+                'isDailyBonus' => $isDailyBonus,
+                'pageName' => $pageName
+            ]
+        ];
+
+        return response()->json($data);
 
     }
 
