@@ -18,3 +18,6 @@ yarn-error.log
 /winners
 /*.htaccess
 /nbproject
+.env
+.env.backup
+.phpunit.result.cache
