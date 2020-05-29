@@ -20,3 +20,6 @@ yarn-error.log
 .env
 .env.backup
 .phpunit.result.cache
+laravel-echo-server.json
+laravel-echo-server.json_
+laravel-echo-server-pm2.json
