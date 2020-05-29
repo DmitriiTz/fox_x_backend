@@ -79,7 +79,7 @@ Response:
 
 #### MainController
 
- - GET|POST /home
+ - GET|POST /
 ```
 Info:
     Method - home
