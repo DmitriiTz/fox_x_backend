@@ -128,7 +128,6 @@ class MainController extends Controller
             ];
         }
 
-
         $tempGame = HistoryGame::with([
             'participants' => function ($query) {
                 $query->with('account');
@@ -225,7 +224,6 @@ class MainController extends Controller
 //            return $view;
 
             $data = [
-                'data' => [
                     'game' => $game,
                     'games' => $games,
                     'gameTypeId' => $gameTypeId,
@@ -236,7 +234,6 @@ class MainController extends Controller
                     'typeRequest' => $typeRequest,
                     'luckyOfTheDay' => $luckyOfTheDay,
                     'biggestBank' => $biggestBank,
-                ]
             ];
 
             return response()->json($data);
@@ -247,7 +244,6 @@ class MainController extends Controller
 //                'biggestBank', 'lastWinner'));
 
         $data = [
-            'data' => [
                 'game' => $game,
                 'games' => $games,
                 'gameTypeId' => $gameTypeId,
@@ -260,7 +256,6 @@ class MainController extends Controller
                 'luckyOfTheDay' => $luckyOfTheDay,
                 'biggestBank' => $biggestBank,
                 'lastWinner' => $lastWinner,
-            ]
         ];
 
         return response()->json($data);
@@ -325,7 +320,6 @@ class MainController extends Controller
 //            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
 
         $data = [
-            'data' => [
                 'games' => $games,
                 'activeGames' => $activeGames,
                 'animationGames' => $animationGames,
@@ -335,7 +329,6 @@ class MainController extends Controller
                 'bankUser' => $bankUser,
                 'pageName' => $pageName,
                 'userGamesNow' => $userGamesNow,
-            ]
         ];
 
         return response()->json($data);
@@ -398,14 +391,12 @@ class MainController extends Controller
 //        return view('king-of-the-hill', compact('games', 'gameClassic', 'gameSenyor', 'timer', 'pageName', 'lastGame'));
 
         $data = [
-            'data' => [
                 'games' => $games,
                 'gameClassic' => $gameClassic,
                 'gameSenyor' => $gameSenyor,
                 'timer' => $timer,
                 'pageName' => $pageName,
                 'lastGame' => $lastGame,
-            ]
         ];
 
         return response()->json($data);

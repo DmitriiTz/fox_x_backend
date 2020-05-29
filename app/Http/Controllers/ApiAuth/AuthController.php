@@ -18,10 +18,8 @@ class AuthController extends Controller
         $user = User::create($input);
 
         return response()->json([
-            'data' => [
                 'token' => $user->createToken(config('app.name')),
                 'name' => $user->name,
-            ]
         ]);
     }
 
@@ -44,11 +42,9 @@ class AuthController extends Controller
         $token->token->save();
 
         return response()->json([
-            'data' => [
                 'token_type' => 'Bearer',
                 'token' => $token->accessToken,
                 'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
-            ]
         ], 200);
     }
 
