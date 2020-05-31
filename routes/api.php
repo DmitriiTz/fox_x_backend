@@ -107,7 +107,6 @@ Route::post('/payment-callback0707', [
 
 Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['checkUser']], function() {
 
-
     Route::post('/set-participants-king', [
         'uses' => 'KingOfTheHillController@setParticipant'
     ]);
