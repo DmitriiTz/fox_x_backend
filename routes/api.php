@@ -24,10 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'namespace' => 'ApiAuth'
 ], function () {
-    Route::post('register', 'AuthController@register')->name('register');
-    Route::post('login', 'AuthController@login')->name('login');
-    Route::post('logout', 'AuthController@logout')->name('logout')->middleware('auth:api');
-    Route::get('check-auth', 'AuthController@checkAuth')->name('check_user')->middleware('auth:api');
+    Route::post('register', 'AuthController@register')->name('user.register');
+    Route::post('login', 'AuthController@login')->name('user.login');
+    Route::post('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
+    Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
 Route::post('message', function (Request $request){
