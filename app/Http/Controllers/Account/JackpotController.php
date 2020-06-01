@@ -15,11 +15,10 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class JackpotController extends Controller
 {
-
-
     public function WinnerTimer($gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners)
     {
         for ($i = 14, $j = 0; $i >= 0, $j <= 14; $i--, $j++) {
@@ -33,7 +32,6 @@ class JackpotController extends Controller
 
     public function setParticipant(Request $request)
     {
-
         if (($request->cash > 300 || (int)$request->cash <= 0) && $request->gameTypeId == 2) {
             return ['error' => 1, 'message' => $request->cash > 300 ? 'Максимальная ставка 300 COINS' : 'Минимальная ставка 1 COIN'];
         }
@@ -68,7 +66,6 @@ class JackpotController extends Controller
             if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
                 return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
             }
-
 
             if (!$game) {
 
