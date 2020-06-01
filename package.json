@@ -30,6 +30,7 @@
     "laravel-echo": "^1.8.0",
     "laravel-echo-server": "^1.6.2",
     "socket.io-client": "^2.3.0",
+    "toastr": "^2.1.4",
     "webpack": "^4.40.2"
   }
 }
