@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class ProfileController extends Controller
@@ -32,6 +33,7 @@ class ProfileController extends Controller
 //            return $view;
 
             $data = [
+                'user' => $user,
                 'listReferrals' => $listReferrals,
             ];
 
@@ -61,6 +63,7 @@ class ProfileController extends Controller
 //        return view('account.profile', compact('getHistoryBalance', 'listReferrals', 'listGames', 'pageName'));
 
         $data = [
+            'user' => $user,
             'getHistoryBalance' => $getHistoryBalance,
             'listReferrals' => $listReferrals,
             'listGames' => $listGames,
@@ -106,8 +109,12 @@ class ProfileController extends Controller
         $user->link_facebook = $data['facebook'];
         $user->save();
 
+        $data = [
+            'user' => $user,
+            'error' => 0,
+        ];
 
-        return ['error' => 0];
+        return response()->json($data);
     }
 
     public function dailyBonus()
