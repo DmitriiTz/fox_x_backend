@@ -15,6 +15,6 @@
 //    return (int) $user->id === (int) $id;
 //});
 
-Broadcast::channel('online-users', function ($user) {
-    return $user;
-});
+//Broadcast::channel('online-users', function ($user) {
+//    return $user;
+//});

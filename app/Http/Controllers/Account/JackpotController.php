@@ -19,11 +19,44 @@ use Illuminate\Support\Facades\Auth;
 
 class JackpotController extends Controller
 {
-    public function WinnerTimer($gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners)
+    public function WinnerTimer(
+        $gameId,
+        $hash,
+        $winnerTicket,
+        $linkHash,
+        $timer,
+        $percent,
+        $image,
+        $name,
+        $bank,
+        $winnerId,
+        $viewHistoryWinner,
+        $accountId,
+        $balanceUser,
+        $winners)
     {
         for ($i = 14, $j = 0; $i >= 0, $j <= 14; $i--, $j++) {
 
-            $job = (new EndGameTimer($i, $j, $gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners))->onConnection(env('QUEUE_CONNECTION_2', 'redis'))->delay($j);
+            $job = (
+            new EndGameTimer(
+                $i,
+                $j,
+                $gameId,
+                $hash,
+                $winnerTicket,
+                $linkHash,
+                $timer,
+                $percent,
+                $image,
+                $name,
+                $bank,
+                $winnerId,
+                $viewHistoryWinner,
+                $accountId,
+                $balanceUser,
+                $winners
+            )
+            )->onConnection(env('QUEUE_CONNECTION_2', 'redis'))->delay($j);
             $this->dispatch($job);
         }
         return true;

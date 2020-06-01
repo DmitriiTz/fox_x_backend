@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\JoinCrash;
+use App\Events\UserEvent;
 use App\Jobs\CreateCrash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::group([
     Route::post('login', 'AuthController@login')->name('login');
     Route::post('logout', 'AuthController@logout')->name('logout')->middleware('auth:api');
     Route::get('check-auth', 'AuthController@checkAuth')->name('check_user')->middleware('auth:api');
+});
+
+Route::post('message', function (Request $request){
+    UserEvent::dispatch($request->input('text'));
 });
 
 Route::post('/check-auth-user', [
