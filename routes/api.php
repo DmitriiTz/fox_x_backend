@@ -31,7 +31,7 @@ Route::group([
 });
 
 Route::post('message', function (Request $request){
-    UserEvent::dispatch($request->input('text'));
+    event(new UserEvent($request->input('text'))); // Это для примера. Отправка сообщения всем активным пользователям канала
 });
 
 //Route::post('/check-auth-user', ['uses' => 'AuthController@checkAuthUser']);
