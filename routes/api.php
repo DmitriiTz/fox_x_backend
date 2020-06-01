@@ -30,10 +30,6 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
-Route::post('message', function (Request $request){
-    event(new UserEvent($request->input('text'))); // Это для примера. Отправка сообщения всем активным пользователям канала
-});
-
 //Route::post('/check-auth-user', ['uses' => 'AuthController@checkAuthUser']);
 //Route::get('/referral-link/{userId}', ['as' => 'referral-link','uses' => 'AuthController@referralLink']);
 //Route::post('/registration', ['uses' => 'AuthController@registration']);
