@@ -15,7 +15,6 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        dd(auth()->user());
         if(!auth()->check() || auth()->user()->id == 4) {
             return redirect()->route('home');
         }
