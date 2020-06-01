@@ -63,8 +63,8 @@ class ProfileController extends Controller
 //        return view('account.profile', compact('getHistoryBalance', 'listReferrals', 'listGames', 'pageName'));
 
         $data = [
-            'user' => $user + getBalance($user),
-            //'getHistoryBalance' => $getHistoryBalance,
+            'user' => $user,
+            'getHistoryBalance' => $getHistoryBalance,
             'listReferrals' => $listReferrals,
             'listGames' => $listGames,
             'pageName' => $pageName,
