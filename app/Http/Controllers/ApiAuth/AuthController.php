@@ -61,7 +61,7 @@ class AuthController extends Controller
     {
         if (Auth()->check()) {
             $data = [
-                'user' => \auth()->user()
+                'user' => Auth()->user()
             ];
 
             return response()->json($data);
