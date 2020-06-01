@@ -34,24 +34,24 @@ Route::post('message', function (Request $request){
     UserEvent::dispatch($request->input('text'));
 });
 
-Route::post('/check-auth-user', [
-    'uses' => 'AuthController@checkAuthUser'
-]);
-
-
-Route::get('/referral-link/{userId}', [
-    'as' => 'referral-link',
-    'uses' => 'AuthController@referralLink'
-]);
-
-
-Route::post('/registration', [
-    'uses' => 'AuthController@registration'
-]);
-
-Route::post('auth-user', [
-    'uses' => 'AuthController@authUser'
-]);
+//Route::post('/check-auth-user', [
+//    'uses' => 'AuthController@checkAuthUser'
+//]);
+//
+//
+//Route::get('/referral-link/{userId}', [
+//    'as' => 'referral-link',
+//    'uses' => 'AuthController@referralLink'
+//]);
+//
+//
+//Route::post('/registration', [
+//    'uses' => 'AuthController@registration'
+//]);
+//
+//Route::post('auth-user', [
+//    'uses' => 'AuthController@authUser'
+//]);
 
 
 //Маршруты игры Crash
