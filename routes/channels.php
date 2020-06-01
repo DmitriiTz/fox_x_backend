@@ -18,3 +18,7 @@
 //Broadcast::channel('online-users', function ($user) {
 //    return $user;
 //});
+
+Broadcast::channel('chat', function ($user) {
+    return $user;
+});
