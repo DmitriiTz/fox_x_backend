@@ -34,25 +34,13 @@ Route::post('message', function (Request $request){
     UserEvent::dispatch($request->input('text'));
 });
 
-//Route::post('/check-auth-user', [
-//    'uses' => 'AuthController@checkAuthUser'
-//]);
-//
-//
-//Route::get('/referral-link/{userId}', [
-//    'as' => 'referral-link',
-//    'uses' => 'AuthController@referralLink'
-//]);
-//
-//
-//Route::post('/registration', [
-//    'uses' => 'AuthController@registration'
-//]);
-//
-//Route::post('auth-user', [
-//    'uses' => 'AuthController@authUser'
-//]);
-
+//Route::post('/check-auth-user', ['uses' => 'AuthController@checkAuthUser']);
+//Route::get('/referral-link/{userId}', ['as' => 'referral-link','uses' => 'AuthController@referralLink']);
+//Route::post('/registration', ['uses' => 'AuthController@registration']);
+//Route::post('auth-user', ['uses' => 'AuthController@authUser']);
+//Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+//Route::match(['get', 'post'], '/oauth/{driver}', 'AuthController@redirectToProvider');
+//Route::match(['get', 'post'], '/oauth/{driver}/callback', 'AuthController@handleProviderCallback');
 
 //Маршруты игры Crash
 Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
@@ -80,8 +68,6 @@ Route::get('/crash/test', function(){
 ]);*/
 
 
-Route::match(['get', 'post'], '/oauth/{driver}', 'AuthController@redirectToProvider');
-Route::match(['get', 'post'], '/oauth/{driver}/callback', 'AuthController@handleProviderCallback');
 
 Route::match(['get', 'post'], '/', [
     'as' => 'home',
@@ -301,7 +287,4 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
 });
 
-Route::get('/logout', [
-    'as' => 'logout',
-    'uses' => 'AuthController@logout'
-]);
+
