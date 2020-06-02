@@ -2,20 +2,22 @@
 
 # Поднимаем сервер на локалке
 
-Клонирование репозитория два способа:
+###Клонирование репозитория
+Есть два способа:
 * Скачать репозиторий в новую папку в текущей директории <br>
 `git clone https://github.com/DmitriiTz/fox_x_backend.git `
 
 * Если папку для проекта существует в ней выполняем команду <br>
 `git clone https://github.com/DmitriiTz/fox_x_backend.git .`
 
-Создание домена для проекта. Есть два способа:
+###Создание домена
+Есть два способа:
 * Установить Homestead с vagrant и использовать виртуальную машину для эмуляции ubuntu сервера на windows
 * Установить OS Panel и добавить в папку domains этот проект и в настройках создать домен на путь app/public
 
 Проще запустить через OS Panel
 
-Установка зависимостей и прочего:
+###Начальная настройка проекта
 * Создаём базу в mysql и импортируем туда дамп базы из файла `fox.mysql.sql` он лежит в корне проекта
 * Дальше нужно настроить `.env` файл на подлключение к базе данных mysql. У OS Panel будут такие параметры:
 ```
@@ -33,9 +35,38 @@
 `composer i`
 * На всякий случай установить laravel/passport если не установился предыдущей командой <br>
 `composer require laravel/passport "7.5.1"`
+именно такой версии, так как изначально laravel в этом проекте старой версии 5.7
+* Проверяем что в папке /database/migration нет никаких миграций и мигрируем стандартные таблицы для laravel/passport <br>
+`php artisan migrate`
+* Для модели `User` нужно добавить трейт (внутри класса в поле use) - `use HasApiTokens`
+* В `App/Providers/AuthServiceProvider` после `$this->registerPolicies();` добавить `Passport::routes();`
+* В `config/auth.php` поменять драйвер для `guard -> api` на такое значение
+```$xslt
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+    ],
+```
 * Генерируем ключи для api <br>
  `php artisan passport:install`
  
+###Настройка Redis
+Для websocket и для очередей нам понадобится redis.
+* Устанавливаем пакет для связи laravel с redis<br>
+`composer require predis/predis`
+* Добавим/обновим переменные в файле .env.
+```
+    BROADCAST_DRIVER=redis
+    
+    REDIS_HOST=127.0.0.1
+    REDIS_PASSWORD=null
+    REDIS_PORT=6379
+```
+#Настройка NPM
+Для работы websocket в этом проекте используется обёртка laravel-echo-server.
+
+Сначала нужно 
+
  Проект установлен и должен работать.
 ## Require
 
