@@ -70,6 +70,9 @@
 ## Настройка NPM
 * Возможно ошибка связанная с cross-env при установки зависимостей. Исправить это можно командой <br>
 `sudo npm install --global cross-env`
+* Ещё могут быть ошибки из за недостатка пакета <br>
+`npm install  —save toastr`
+
 ### Laravel Echo Server
 Для работы websocket в этом проекте используется обёртка laravel-echo-server.
 * Сначала нужно его установить <br>
