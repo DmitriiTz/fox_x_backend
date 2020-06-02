@@ -17,7 +17,7 @@
 
 Проще запустить через OS Panel
 
-###Начальная настройка проекта
+##Начальная настройка проекта
 * Создаём базу в mysql и импортируем туда дамп базы из файла `fox.mysql.sql` он лежит в корне проекта
 * Дальше нужно настроить `.env` файл на подлключение к базе данных mysql. У OS Panel будут такие параметры:
 ```
@@ -33,9 +33,12 @@
 
 * Устанавливаем зависимости <br>
 `composer i`
+###Настройка Passport
 * На всякий случай установить laravel/passport если не установился предыдущей командой <br>
 `composer require laravel/passport "7.5.1"`
 именно такой версии, так как изначально laravel в этом проекте старой версии 5.7
+
+Все следующие команды кроме последней актуальны для нового проекта, в этом уже должно всё быть изменено, но если не работает - проверь.
 * Проверяем что в папке /database/migration нет никаких миграций и мигрируем стандартные таблицы для laravel/passport <br>
 `php artisan migrate`
 * Для модели `User` нужно добавить трейт (внутри класса в поле use) - `use HasApiTokens`
@@ -47,7 +50,8 @@
         'provider' => 'users',
     ],
 ```
-* Генерируем ключи для api <br>
+
+* Генерируем ключи для api (Обязательная команда)<br>
  `php artisan passport:install`
  
 ###Настройка Redis
@@ -62,10 +66,47 @@
     REDIS_PASSWORD=null
     REDIS_PORT=6379
 ```
-#Настройка NPM
-Для работы websocket в этом проекте используется обёртка laravel-echo-server.
+* Подключим сервис-провайдер BroadcastServiceProvider. Для этого найдем и раскомментируем в config/app.php строку <br>
+`App\Providers\BroadcastServiceProvider::class,`
 
-Сначала нужно 
+##Настройка NPM
+* Возможно ошибка связанная с cross-env при установки зависимостей. Исправить это можно командой <br>
+`sudo npm install --global cross-env`
+### Laravel Echo Server
+Для работы websocket в этом проекте используется обёртка laravel-echo-server.
+* Сначала нужно его установить <br>
+`npm i -g laravel-echo-server` Сам пока не знаю обязательно ли устанавливать глобально его. Но везде так говорят. 
+
+* Если нет доступа установить глобально делаем так <br>
+`npm i laravel-echo-server`
+
+* И когда понадобится использовать laravel echo server вызываем его в директории проекта командой <br>
+`npx laravel-echo server`
+
+* Инициализируем Laravel Echo Server <br>
+`laravel-echo-server init` Выполняем настройку конфига. <br>
+>При выборе `https` нужно будет указать пути до сертификатов. <br>
+Если не выбрать dev mode, то в статусе не будет писаться `Channels are ready.`<br>
+Для разделённого фронта и бэка по `REST API`, нужно генерировать `ID/Key` и передавать их с запросом в заголовке 
+
+* Пробуем запустить <br>
+`laravel-echo-server start`
+
+Работает если так:
+```$xslt
+L A R A V E L  E C H O  S E R V E R
+
+version 1.6.3
+
+Starting server...
+
+✔  Running at localhost on port 6001
+✔  Channels are ready.
+✔  Listening for http events...
+✔  Listening for redis events...
+
+Server ready!
+```
 
  Проект установлен и должен работать.
 ## Require
