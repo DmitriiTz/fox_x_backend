@@ -24,9 +24,9 @@ class CreateGameCoinFlip implements ShouldBroadcast
 
     public $view, $allCash, $allGame, $allGameWait;
 
-    public function __construct($view)
+    public function __construct($game)
     {
-        $this->view = $view;
+        $this->game = $game;
 
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
