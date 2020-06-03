@@ -66,7 +66,7 @@ $this->winners = $winners;
     {
      //   info('timer - '. ($this->endGameTime - now()->timestamp));
       
-        return new PresenceChannel('online-users');
+        return new Channel('online-users');
     
     }
 }

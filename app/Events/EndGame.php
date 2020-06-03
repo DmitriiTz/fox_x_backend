@@ -118,6 +118,6 @@ class EndGame implements ShouldBroadcast
     public function broadcastOn()
     {
         (new JackpotController())->WinnerTimer($this->gameId,$this->hash,$this->winnerTicket,$this->linkHash,$this->timer,$this->percent,$this->image,$this->name,$this->bank,$this->winnerId,$this->viewHistoryWinner,$this->accountId,$this->balanceUser,$this->winners);
-        return new PresenceChannel('online-users');
+        return new Channel('online-users');
     }
 }

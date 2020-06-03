@@ -90,7 +90,7 @@ class StartGameKing implements ShouldBroadcast
             event(new EndGameKing($this->game->id, $this->game->end_game_at, $this->type));
         }
         $this->endGameAt = $this->endGameAt -1;
-        return new PresenceChannel('online-users');
+        return new Channel('online-users');
         }
     }
 }

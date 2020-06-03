@@ -97,7 +97,7 @@ class EndGameKing implements ShouldBroadcast
             $this->winnerTicket = $game->participants()->sum('cash');
             info('я сюда захожу - '. $this->newGameId);
 
-            return new PresenceChannel('online-users');
+            return new Channel('online-users');
 
         }
 
