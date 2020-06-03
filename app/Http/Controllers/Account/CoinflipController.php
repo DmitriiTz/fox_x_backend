@@ -82,7 +82,7 @@ class CoinflipController extends Controller
         $hashWinner = hash('sha224', $game->winner_ticket_big);
         $link_hash = 'http://sha224.net/?val='.$hashWinner;
         $winnerTicket = $game->winner_ticket_big;
-        
+
         //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'hashWinner', 'winnerTicket'))->render();
 
         $data = [
