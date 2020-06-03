@@ -1,4 +1,5 @@
 /.idea
+/.well-known
 /node_modules
 /public/hot
 /public/storage
