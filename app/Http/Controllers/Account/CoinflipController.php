@@ -76,17 +76,24 @@ class CoinflipController extends Controller
         $payment->game_id = 4;
         $payment->save();
 
-        $view = view('blocks.coinflip-game', compact('game'))->render();
+        //$view = view('blocks.coinflip-game', compact('game'))->render();
 
         $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', $game->winner_ticket_big);
         $link_hash = 'http://sha224.net/?val='.$hashWinner;
         $winnerTicket = $game->winner_ticket_big;
-        $viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'hashWinner', 'winnerTicket'))->render();
+        
+        //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'hashWinner', 'winnerTicket'))->render();
 
+        $data = [
+            'hashGame' => $hashGame,
+            'link_hash' => $link_hash,
+            'game' => $game,
+            'hashWinner' => $hashWinner,
+            'winnerTicket' => $winnerTicket,
+        ];
 
-
-        event(new CreateGameCoinFlip($view));
+        event(new CreateGameCoinFlip($game));
 
         $userGames = HistoryGame::where('create_account_id', auth()->user()->id)->count();
         $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
@@ -95,8 +102,16 @@ class CoinflipController extends Controller
                 ->where('price', '>', 0)
                 ->sum('price') * 10;
 
-        return ['error' => 0, 'message' => 'Игра успешно создана', 'balance' => getBalance($user), 'view' => $viewPopup, 'userGames' => $userGames, 'bankUser' => $bankUser];
+        //return ['error' => 0, 'message' => 'Игра успешно создана', 'balance' => getBalance($user), 'view' => $viewPopup, 'userGames' => $userGames, 'bankUser' => $bankUser];
 
+        return response()->json([
+            'error' => 0,
+            'message' => 'Игра успешно создана',
+            'balance' => getBalance($user),
+            'data' => $data,
+            'userGames' => $userGames,
+            'bankUser' => $bankUser
+        ]);
     }
 
     public function showGameCoinflip(Request $request) {
