@@ -54,6 +54,6 @@ class CreateGameCoinFlip implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('online-users');
+        return new Channel('online-users');
     }
 }
