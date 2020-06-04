@@ -26,12 +26,12 @@ Route::group([
 ], function () {
     Route::post('register', 'AuthController@register')->name('user.register');
     Route::post('login', 'AuthController@login')->name('user.login');
-    Route::post('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
+    Route::get('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
 Route::group([
-    'middleware' => 'auth:api',
+    'middleware' => ['auth:api'],
 ], function () {
     Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
