@@ -50,10 +50,9 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        //$request->user()->token()->revoke();
-        Auth::user()->token()->revoke();
+        $request->user()->token()->revoke();
         return response()->json([
             'message' => 'You are successfully logged out',
         ]);

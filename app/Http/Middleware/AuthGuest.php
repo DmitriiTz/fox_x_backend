@@ -19,7 +19,7 @@ class AuthGuest
      */
     public function handle($request, Closure $next)
     {
-        $user = auth('api')->user();
+        $user = auth('api')->user() ?? null;
         if($user !== null){
             Auth::loginUsingId($user->id);
         }

@@ -27,7 +27,7 @@ Route::group([
 ], function () {
     Route::post('register', 'AuthController@register')->name('user.register');
     Route::post('login', 'AuthController@login')->name('user.login');
-    Route::get('logout', 'AuthController@logout')->name('user.logout');
+    Route::get('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user');
 });
 
