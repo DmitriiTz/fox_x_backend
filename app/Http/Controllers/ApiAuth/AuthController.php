@@ -25,6 +25,8 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        Auth::logout();
+
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
@@ -48,10 +50,10 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->token()->revoke();
-
+        //$request->user()->token()->revoke();
+        Auth::user()->token()->revoke();
         return response()->json([
             'message' => 'You are successfully logged out',
         ]);
@@ -59,9 +61,9 @@ class AuthController extends Controller
 
     public function checkAuth()
     {
-        if (Auth()->check()) {
+        if (Auth::check()) {
             $data = [
-                'user' => Auth()->user()
+                'user' => Auth::user()
             ];
 
             return response()->json($data);
