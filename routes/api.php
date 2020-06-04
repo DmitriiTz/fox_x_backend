@@ -31,7 +31,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'auth:api'
+    'middleware' => 'auth:api',
 ], function () {
     Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
