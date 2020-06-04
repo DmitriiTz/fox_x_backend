@@ -8,7 +8,7 @@ use App\Participant;
 use App\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -301,9 +301,8 @@ class MainController extends Controller
 
         $userGames = false;
         $bankUser = false;
-
-        if (auth()->user()) {
-            $userGames = HistoryGame::where('create_account_id', auth()->user()->id)->count();
+        if (Auth::user()) {
+            $userGames = HistoryGame::where('create_account_id', Auth::user()->id)->count();
             $userGamesNow = HistoryGame::where('end_game_at', '=', null)->where('create_account_id', auth()->user()->id)->count();
             $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
                     ->where('created_at', '>', today())
