@@ -35,11 +35,9 @@ class CoinflipController extends Controller
             }
         }
 
-        
         $game = HistoryGame::whereNull('create_account_id')->where('game_id', 4)->first();
         $game->create_account_id = $user->id;
         $game->save();
-
 
         $newGame = new HistoryGame;
         $newGame->game_id = 4;
