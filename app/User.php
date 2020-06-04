@@ -23,7 +23,8 @@ class User extends Authenticatable
 
     protected $appends = [
         'balance',
-        'level'
+        'level',
+        'image',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -48,7 +49,7 @@ class User extends Authenticatable
     }
 
     public function getBalanceAttribute() {
-        $value = getBalance(Auth::user());
+        $value = getBalance($this);
         return $value;
     }
 
