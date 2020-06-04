@@ -30,6 +30,8 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
+Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
+
 Route::group([
     'middleware' => 'auth:api',
 ], function () {
@@ -60,7 +62,7 @@ Route::group([
         'uses' => 'MainController@coinflip'
     ]);*/
 
-    Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
+
     Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
     Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);
     Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
