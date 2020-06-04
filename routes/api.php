@@ -33,42 +33,42 @@ Route::group([
 
 Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
+//Маршруты игры Crash
+Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
+Route::get('/crash/new', ['as' => 'crash-new', 'uses' => 'CrashController@newGame']);
+Route::get('/crash/set-profit', ['as' => 'set-profit', 'uses' => 'CrashController@setProfit']);
+Route::get('/crash/info', ['as' => 'crash-info', 'uses' => 'CrashController@info']);
+Route::get('/crash/get-info', ['as' => 'get-info', 'uses' => 'CrashController@getInfo']);
+Route::get('/crash/set-current-profit', ['as' => 'set-current-profit', 'uses' => 'CrashController@setCurrentProfit']);
+Route::get('/crash/last-game', ['as' => 'crash-last', 'uses' => 'CrashController@getLastGame']);
+
+Route::post('/crash/new-bet', function (Illuminate\Http\Request $request) {
+    App\Events\JoinCrash::dispatch($request->input('body'), 1, 2);
+});
+
+Route::post('/crash/bet', ['as' => 'crash-bet', 'uses' => 'CrashController@newBet']);
+Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashController@updateBalace']);
+
+//Тестовые маршруты
+Route::get('/crash/test', function () {
+    App\Jobs\CreateCrash::dispatch("Test")
+        ->delay(now()->addMinutes(2))
+        ->onQueue('processing');
+});
+
+/*Route::get('/phpmyadmin', [
+    'uses' => 'MainController@coinflip'
+]);*/
+
+Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
+Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
+Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);
+Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
+Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
+
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-
-    //Маршруты игры Crash
-    Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
-    Route::get('/crash/new', ['as' => 'crash-new', 'uses' => 'CrashController@newGame']);
-    Route::get('/crash/set-profit', ['as' => 'set-profit', 'uses' => 'CrashController@setProfit']);
-    Route::get('/crash/info', ['as' => 'crash-info', 'uses' => 'CrashController@info']);
-    Route::get('/crash/get-info', ['as' => 'get-info', 'uses' => 'CrashController@getInfo']);
-    Route::get('/crash/set-current-profit', ['as' => 'set-current-profit', 'uses' => 'CrashController@setCurrentProfit']);
-    Route::get('/crash/last-game', ['as' => 'crash-last', 'uses' => 'CrashController@getLastGame']);
-
-    Route::post('/crash/new-bet', function (Illuminate\Http\Request $request) {
-        App\Events\JoinCrash::dispatch($request->input('body'), 1, 2);
-    });
-
-    Route::post('/crash/bet', ['as' => 'crash-bet', 'uses' => 'CrashController@newBet']);
-    Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashController@updateBalace']);
-
-//Тестовые маршруты
-    Route::get('/crash/test', function () {
-        App\Jobs\CreateCrash::dispatch("Test")
-            ->delay(now()->addMinutes(2))
-            ->onQueue('processing');
-    });
-
-    /*Route::get('/phpmyadmin', [
-        'uses' => 'MainController@coinflip'
-    ]);*/
-
-    Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
-    Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
-    Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);
-    Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
-    Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
     Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account'], function () {
         Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
