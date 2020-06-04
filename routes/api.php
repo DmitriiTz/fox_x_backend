@@ -30,6 +30,12 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
+});
+
 //Route::post('/check-auth-user', ['uses' => 'AuthController@checkAuthUser']);
 //Route::get('/referral-link/{userId}', ['as' => 'referral-link','uses' => 'AuthController@referralLink']);
 //Route::post('/registration', ['uses' => 'AuthController@registration']);
@@ -70,10 +76,7 @@ Route::match(['get', 'post'], '/', [
     'uses' => 'MainController@home'
 ]);
 
-Route::get('/coinflip', [
-    'as' => 'coinflip',
-    'uses' => 'MainController@coinflip'
-]);
+
 
 Route::get('/king-of-the-hill', [
     'as' => 'king-of-the-hill',
