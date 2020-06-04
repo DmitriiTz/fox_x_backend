@@ -8,6 +8,7 @@ class HistoryGame extends Model
 {
     protected $appends = [
         'looser',
+        'bank',
     ];
 
     public function participants() {
@@ -28,5 +29,9 @@ class HistoryGame extends Model
 
     public function nameGame() {
         return $this->belongsTo(Game::class, 'game_id');
+    }
+
+    public function getBankAttribute() {
+        return $this->participants()->sum('cash');
     }
 }
