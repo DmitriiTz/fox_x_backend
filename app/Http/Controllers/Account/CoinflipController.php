@@ -125,14 +125,25 @@ class CoinflipController extends Controller
                 ->first();
         }
 
-
         $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', strval($game->winner_ticket_big));
         $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
         $winnerTicket = $game->winner_ticket_big;
-        $viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
 
-        return $viewPopup;
+        //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
+
+        $data = [
+            'hashGame' => $hashGame,
+            'link_hash' => $link_hash,
+            'game' => $game,
+            'winnerApplication' => $winnerApplication,
+            'hashWinner' => $hashWinner,
+            'winnerTicket' => $winnerTicket,
+        ];
+
+        //return $viewPopup;
+
+        return response()->json($data);
 
     }
 
@@ -207,14 +218,27 @@ class CoinflipController extends Controller
         $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
         $game->participants = $game->participants()->get();
         $winnerTicket = $game->winner_ticket_big;
-        $viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
 
+        //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
 
+        $data_popup = [
+            'hashGame' => $hashGame,
+            'link_hash' => $link_hash,
+            'game' => $game,
+            'winnerApplication' => $winnerApplication,
+            'hashWinner' => $hashWinner,
+            'winnerTicket' => $winnerTicket,
+        ];
 
-        $view = view('blocks.coinflip-game', compact('game'))->render();
-        event(new StartGameCoinflip($view, $game->id, $viewPopup, $game->winner->name, $winnerApplication->color, $winnerApplication->cash));
+        //$view = view('blocks.coinflip-game', compact('game'))->render();
 
-        return ['error' => 0, 'message' => $viewPopup, 'balanceUser' => $balanceUser];
+        $data = [
+            'game' => $game,
+        ];
+
+        event(new StartGameCoinflip($data, $game->id, $data_popup, $game->winner->name, $winnerApplication->color, $winnerApplication->cash));
+
+        return ['error' => 0, 'data' => $data_popup, 'balanceUser' => $balanceUser];
 
     }
 
