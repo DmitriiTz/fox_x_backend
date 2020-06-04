@@ -4,6 +4,7 @@ use App\Events\JoinCrash;
 use App\Events\UserEvent;
 use App\Jobs\CreateCrash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +27,13 @@ Route::group([
 ], function () {
     Route::post('register', 'AuthController@register')->name('user.register');
     Route::post('login', 'AuthController@login')->name('user.login');
-    Route::get('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
-    Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
+    Route::get('logout', 'AuthController@logout')->name('user.logout');
+    Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user');
 });
 
 Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
 
 Route::group([
-    'middleware' => 'auth:api',
 ], function () {
     Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
@@ -68,7 +68,7 @@ Route::group([
     Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
     Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
-    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['auth:api']], function() {
+    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account'], function() {
         Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
         Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
         Route::post('/setting-music', ['uses' => 'ProfileController@settingMusic']);
