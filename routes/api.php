@@ -5,7 +5,6 @@ use App\Events\UserEvent;
 use App\Jobs\CreateCrash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,46 +30,43 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
-Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
+Route::group([
+    //'middleware' => 'auth:api'
+], function () {
+    Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
-//Маршруты игры Crash
-Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
-Route::get('/crash/new', ['as' => 'crash-new', 'uses' => 'CrashController@newGame']);
-Route::get('/crash/set-profit', ['as' => 'set-profit', 'uses' => 'CrashController@setProfit']);
-Route::get('/crash/info', ['as' => 'crash-info', 'uses' => 'CrashController@info']);
-Route::get('/crash/get-info', ['as' => 'get-info', 'uses' => 'CrashController@getInfo']);
-Route::get('/crash/set-current-profit', ['as' => 'set-current-profit', 'uses' => 'CrashController@setCurrentProfit']);
-Route::get('/crash/last-game', ['as' => 'crash-last', 'uses' => 'CrashController@getLastGame']);
+    //Маршруты игры Crash
+    Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
+    Route::get('/crash/new', ['as' => 'crash-new', 'uses' => 'CrashController@newGame']);
+    Route::get('/crash/set-profit', ['as' => 'set-profit', 'uses' => 'CrashController@setProfit']);
+    Route::get('/crash/info', ['as' => 'crash-info', 'uses' => 'CrashController@info']);
+    Route::get('/crash/get-info', ['as' => 'get-info', 'uses' => 'CrashController@getInfo']);
+    Route::get('/crash/set-current-profit', ['as' => 'set-current-profit', 'uses' => 'CrashController@setCurrentProfit']);
+    Route::get('/crash/last-game', ['as' => 'crash-last', 'uses' => 'CrashController@getLastGame']);
 
-Route::post('/crash/new-bet', function (Illuminate\Http\Request $request) {
-    App\Events\JoinCrash::dispatch($request->input('body'), 1, 2);
-});
+    Route::post('/crash/new-bet', function(Illuminate\Http\Request $request){
+        App\Events\JoinCrash::dispatch($request->input('body'), 1, 2);
+    });
 
-Route::post('/crash/bet', ['as' => 'crash-bet', 'uses' => 'CrashController@newBet']);
-Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashController@updateBalace']);
+    Route::post('/crash/bet', ['as' => 'crash-bet', 'uses' => 'CrashController@newBet']);
+    Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashController@updateBalace']);
 
 //Тестовые маршруты
-Route::get('/crash/test', function () {
-    App\Jobs\CreateCrash::dispatch("Test")
-        ->delay(now()->addMinutes(2))
-        ->onQueue('processing');
-});
+    Route::get('/crash/test', function(){
+        App\Jobs\CreateCrash::dispatch("Test")->delay(now()->addMinutes(2))->onQueue('processing');
+    });
 
-/*Route::get('/phpmyadmin', [
-    'uses' => 'MainController@coinflip'
-]);*/
+    /*Route::get('/phpmyadmin', [
+        'uses' => 'MainController@coinflip'
+    ]);*/
 
-Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
-Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
-Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);
-Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
-Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
+    Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
+    Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
+    Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);
+    Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
+    Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
-Route::group([
-    'middleware' => 'auth:api'
-], function () {
-
-    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account'], function () {
+    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['auth:api']], function() {
         Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
         Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
         Route::post('/setting-music', ['uses' => 'ProfileController@settingMusic']);
@@ -88,16 +84,16 @@ Route::group([
         Route::post('/set-participant-game', ['uses' => 'JackpotController@setParticipant']);
     });
 
-    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkAdmin']], function () {
-        Route::get('/create-games/small', function () {
-            for ($i = 0; $i < 10; $i++) {
+    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkAdmin']], function() {
+        Route::get('/create-games/small', function() {
+            for($i = 0; $i < 10; $i++) {
                 $gameBefore = new \App\HistoryGame();
                 $gameBefore->game_id = 3;
                 $gameBefore->game_type_id = 2;
                 $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                 $gameBefore->winner_ticket_big = $random;
                 $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
-                $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
+                $gameBefore->link_hash = 'http://sha224.net/?val='.$gameBefore->hash;
                 $gameBefore->status_id = 4;
                 $gameBefore->animation_at = now()->addYear();
                 $gameBefore->save();
@@ -105,8 +101,8 @@ Route::group([
             }
         });
 
-        Route::get('/create-games/classic', function () {
-            for ($i = 0; $i < 10; $i++) {
+        Route::get('/create-games/classic', function() {
+            for($i = 0; $i < 10; $i++) {
                 $gameBefore = new \App\HistoryGame();
                 $gameBefore->game_id = 3;
                 $gameBefore->game_type_id = 1;
@@ -115,7 +111,7 @@ Route::group([
                 $gameBefore->winner_ticket_big = $random;
 
                 $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
-                $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
+                $gameBefore->link_hash = 'http://sha224.net/?val='.$gameBefore->hash;
                 $gameBefore->status_id = 4;
                 $gameBefore->animation_at = now()->addYear();
                 $gameBefore->save();
