@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class HistoryGame extends Model
 {
+    protected $appends = [
+        'looser',
+    ];
+
     public function participants() {
         return $this->hasMany(Participant::class, 'history_game_id');
     }
