@@ -31,10 +31,11 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user')->middleware('auth:api');
 });
 
+Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
+
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
     //Маршруты игры Crash
     Route::get('/crash', ['as' => 'crash', 'uses' => 'CrashController@index']);
@@ -69,7 +70,7 @@ Route::group([
     Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
     Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
-    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['auth:api']], function () {
+    Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account'], function () {
         Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
         Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
         Route::post('/setting-music', ['uses' => 'ProfileController@settingMusic']);
