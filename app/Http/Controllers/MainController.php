@@ -224,16 +224,16 @@ class MainController extends Controller
 //            return $view;
 
             $data = [
-                    'game' => $game,
-                    'games' => $games,
-                    'gameTypeId' => $gameTypeId,
-                    'result' => $result,
-                    'timer' => $timer,
-                    'time' => $time,
-                    'gameType' => $gameType,
-                    'typeRequest' => $typeRequest,
-                    'luckyOfTheDay' => $luckyOfTheDay,
-                    'biggestBank' => $biggestBank,
+                'game' => $game,
+                'games' => $games,
+                'gameTypeId' => $gameTypeId,
+                'result' => $result,
+                'timer' => $timer,
+                'time' => $time,
+                'gameType' => $gameType,
+                'typeRequest' => $typeRequest,
+                'luckyOfTheDay' => $luckyOfTheDay,
+                'biggestBank' => $biggestBank,
             ];
 
             return response()->json($data);
@@ -244,18 +244,18 @@ class MainController extends Controller
 //                'biggestBank', 'lastWinner'));
 
         $data = [
-                'game' => $game,
-                'games' => $games,
-                'gameTypeId' => $gameTypeId,
-                'result' => $result,
-                'timer' => $timer,
-                'time' => $time,
-                'gameType' => $gameType,
-                'typeRequest' => $typeRequest,
-                'pageName' => $pageName,
-                'luckyOfTheDay' => $luckyOfTheDay,
-                'biggestBank' => $biggestBank,
-                'lastWinner' => $lastWinner,
+            'game' => $game,
+            'games' => $games,
+            'gameTypeId' => $gameTypeId,
+            'result' => $result,
+            'timer' => $timer,
+            'time' => $time,
+            'gameType' => $gameType,
+            'typeRequest' => $typeRequest,
+            'pageName' => $pageName,
+            'luckyOfTheDay' => $luckyOfTheDay,
+            'biggestBank' => $biggestBank,
+            'lastWinner' => $lastWinner,
         ];
 
         return response()->json($data);
@@ -281,12 +281,14 @@ class MainController extends Controller
             ->get();
 
         $animationGames = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['winner', 'participants'])
+            ->select('id')
+            ->with(['winner', 'participants.account'])
             ->where('game_id', 4)
             ->whereNotNull('end_game_at')
             ->whereNotNull('create_account_id')
             ->where('end_game_at', '>', now())
             ->get();
+
 
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
@@ -318,15 +320,15 @@ class MainController extends Controller
 //            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
 
         $data = [
-                'games' => $games,
-                'activeGames' => $activeGames,
-                'animationGames' => $animationGames,
-                'bank' => $bank,
-                'gamesToday' => $gamesToday,
-                'userGames' => $userGames,
-                'bankUser' => $bankUser,
-                'pageName' => $pageName,
-                'userGamesNow' => $userGamesNow,
+            'games' => $games,
+            'activeGames' => $activeGames,
+            'animationGames' => $animationGames,
+            'bank' => $bank,
+            'gamesToday' => $gamesToday,
+            'userGames' => $userGames,
+            'bankUser' => $bankUser,
+            'pageName' => $pageName,
+            'userGamesNow' => $userGamesNow,
         ];
 
         return response()->json($data);
@@ -389,12 +391,12 @@ class MainController extends Controller
 //        return view('king-of-the-hill', compact('games', 'gameClassic', 'gameSenyor', 'timer', 'pageName', 'lastGame'));
 
         $data = [
-                'games' => $games,
-                'gameClassic' => $gameClassic,
-                'gameSenyor' => $gameSenyor,
-                'timer' => $timer,
-                'pageName' => $pageName,
-                'lastGame' => $lastGame,
+            'games' => $games,
+            'gameClassic' => $gameClassic,
+            'gameSenyor' => $gameSenyor,
+            'timer' => $timer,
+            'pageName' => $pageName,
+            'lastGame' => $lastGame,
         ];
 
         return response()->json($data);
