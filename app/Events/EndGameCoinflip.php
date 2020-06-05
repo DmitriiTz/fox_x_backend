@@ -27,12 +27,15 @@ class EndGameCoinflip implements ShouldBroadcast
     public $winnerName;
     public $color;
     public $cash;
-    public $viewHistory, $balance, $accountId, $allCash, $allGame, $allGameWait;
+    public $balance, $accountId, $allCash, $allGame, $allGameWait;
 
     public function __construct($gameId, $endGameAt, $winnerName, $color, $cash, $balance, $accountId)
     {
         $this->gameId = $gameId;
+
         $game = HistoryGame::find($this->gameId);
+        $this->game = $game;
+
         $this->endGameAt = $endGameAt;
         $this->winnerName = $winnerName;
         $this->color = $color;
@@ -40,7 +43,7 @@ class EndGameCoinflip implements ShouldBroadcast
         $this->balance = $balance;
         $this->accountId = $accountId;
 
-        $this->viewHistory = view('blocks.history-coinflip', ['game' => $game])->render();
+        //$this->viewHistory = view('blocks.history-coinflip', ['game' => $game])->render();
 
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
