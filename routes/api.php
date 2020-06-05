@@ -1,26 +1,6 @@
 <?php
 
-use App\Events\JoinCrash;
-use App\Events\UserEvent;
-use App\Jobs\CreateCrash;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 
 /** Auth api register */
 Route::group([
@@ -56,9 +36,7 @@ Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account
 
 
 Route::group([
-], function () {
-
-});
+], function () {});
 
 Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
@@ -82,11 +60,6 @@ Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashContr
 Route::get('/crash/test', function () {
     App\Jobs\CreateCrash::dispatch("Test")->delay(now()->addMinutes(2))->onQueue('processing');
 });
-
-/*Route::get('/phpmyadmin', [
-    'uses' => 'MainController@coinflip'
-]);*/
-
 
 Route::get('/king-of-the-hill', ['as' => 'king-of-the-hill', 'uses' => 'MainController@kingOfTheHill']);
 Route::get('/help', ['as' => 'help', 'uses' => 'PageController@help']);

@@ -24,14 +24,14 @@ class StartGameCoinflip implements ShouldBroadcast
 
     public $game;
     public $gameId;
-    public $viewPopup;
+    public $data_popup;
     public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
 
-    public function __construct($game, $gameId, $viewPopup, $winnerName, $color, $cash)
+    public function __construct($game, $gameId, $data_popup, $winnerName, $color, $cash)
     {
         $this->game = $game;
         $this->gameId = $gameId;
-        $this->viewPopup = $viewPopup;
+        $this->data_popup = $data_popup;
         $this->winnerName = $winnerName;
         $this->color = $color;
         $this->cash = $cash;

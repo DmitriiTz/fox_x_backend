@@ -208,7 +208,6 @@ class CoinflipController extends Controller
         $job = (new EndGameCoinflip($game->id, $game->end_game_at, $game->winner->name, $winnerApplication->color, $winnerApplication->cash, $balance, $accountId))->delay(3);
         $this->dispatch($job);
 
-
         $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', strval($game->winner_ticket_big));
         $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
