@@ -6,8 +6,6 @@ use App\HistoryGame;
 use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -22,11 +20,11 @@ class CreateGameCoinFlip implements ShouldBroadcast
      * @return void
      */
 
-    public $view, $allCash, $allGame, $allGameWait;
+    public $game, $allCash, $allGame, $allGameWait;
 
     public function __construct($game)
     {
-        $this->game = $game;
+        $this->game = $game->toArray();
 
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
@@ -54,6 +52,6 @@ class CreateGameCoinFlip implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('online-users');
+        return new Channel('coin-flip');
     }
 }

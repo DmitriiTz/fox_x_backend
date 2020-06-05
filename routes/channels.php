@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Broadcast;
 //});
 
 //Broadcast::channel('chat', MessagesChannel::class);
-
-Broadcast::channel('chat', function () {
-    return true;
-});
+//
+//Broadcast::channel('chat', function () {
+//    return true;
+//});
