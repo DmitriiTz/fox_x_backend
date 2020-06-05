@@ -20,37 +20,45 @@ class StartGameCoinflip implements ShouldBroadcast
      * @return void
      */
 
-    public $game;
     public $gameId;
-    public $data_popup;
-    public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
+    public $participant;
+    public $cash;
 
-    public function __construct($game, $gameId, $data_popup, $winnerName, $color, $cash)
+//    public $game;
+//    public $gameId;
+//    public $data_popup;
+//    public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
+
+    public function __construct($gameId, $participant, $cash)
     {
-        $this->game = $game;
         $this->gameId = $gameId;
-        $this->data_popup = $data_popup;
-        $this->winnerName = $winnerName;
-        $this->color = $color;
+        $this->participant = $participant;
         $this->cash = $cash;
 
-        $coins = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['participants'])
-            ->where('game_id', 4)
-            ->get();
-
-        $bank = 0;
-        foreach ($coins as $coin) {
-            $bank += $coin->participants->sum('cash');
-        }
-
-        $this->allCash = $bank;
-        $this->allGame = HistoryGame::where('game_id', 4)->where('created_at', '>', Carbon::today())->where('created_at', '<', Carbon::now())->count();
-        $this->allGameWait = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['winner', 'participants'])
-            ->where('game_id', 4)
-            ->whereNull('end_game_at')
-            ->count();
+//        $this->game = $game;
+//        $this->gameId = $gameId;
+//        $this->data_popup = $data_popup;
+//        $this->winnerName = $winnerName;
+//        $this->color = $color;
+//        $this->cash = $cash;
+//
+//        $coins = HistoryGame::orderBy('created_at', 'desc')
+//            ->with(['participants'])
+//            ->where('game_id', 4)
+//            ->get();
+//
+//        $bank = 0;
+//        foreach ($coins as $coin) {
+//            $bank += $coin->participants->sum('cash');
+//        }
+//
+//        $this->allCash = $bank;
+//        $this->allGame = HistoryGame::where('game_id', 4)->where('created_at', '>', Carbon::today())->where('created_at', '<', Carbon::now())->count();
+//        $this->allGameWait = HistoryGame::orderBy('created_at', 'desc')
+//            ->with(['winner', 'participants'])
+//            ->where('game_id', 4)
+//            ->whereNull('end_game_at')
+//            ->count();
     }
 
     /**

@@ -54,7 +54,8 @@ class User extends Authenticatable
     }
 
     public function getLevelAttribute() {
-        $value = getLevel(Auth::user());
+
+        $value = getLevel($this);
         return $value;
     }
 
