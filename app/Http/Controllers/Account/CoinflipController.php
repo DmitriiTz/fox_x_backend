@@ -245,5 +245,28 @@ class CoinflipController extends Controller
 
     }
 
+    public function getResultCoinflip(Request $request){
+        $game = HistoryGame::find($request->gameId);
+
+        $winnerTicket = $game->winner_ticket_big;
+        $hashWinner = hash('sha224', strval($game->winner_ticket_big));
+        $winnerApplication = Participant::where('min_cash_number', '<=', $game->winner_ticket)
+            ->where('max_cash_number', '>=', $game->winner_ticket)
+            ->where('history_game_id', $game->id)
+            ->first();
+        $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
+        $hashGame =  hash('sha224', $game->id);
+
+        $data_popup = [
+            'hashGame' => $hashGame,
+            'link_hash' => $link_hash,
+            'game' => $game,
+            'winnerApplication' => $winnerApplication,
+            'hashWinner' => $hashWinner,
+            'winnerTicket' => $winnerTicket,
+        ];
+
+        return response()->json($data_popup);
+    }
 
 }

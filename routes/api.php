@@ -17,20 +17,27 @@ Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@ho
 
 /** Account api routes */
 Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => 'auth:api'], function () {
+
     Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
+
     Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
+    Route::post('/withdrawal-of-funds-account', ['uses' => 'PaymentController@withdrawalOfFundsAccount']);
+    Route::post('/to-up-account', ['uses' => 'PaymentController@toUpAccount']);
+
     Route::post('/setting-music', ['uses' => 'ProfileController@settingMusic']);
     Route::post('/update-profile', ['uses' => 'ProfileController@updateProfile']);
-    Route::post('/create-game-coinflip', ['uses' => 'CoinflipController@createGame']);
     Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@profile']);
-    Route::post('/show-game-coinflip', ['uses' => 'CoinflipController@showGameCoinflip']);
-    Route::post('/set-participant-coinflip', ['uses' => 'CoinflipController@setParticipantCoinflip']);
-    Route::post('/send-message', ['uses' => 'MessageController@sendMessage']);
     Route::get('/daily-bonus', ['as' => 'daily-bonus', 'uses' => 'ProfileController@dailyBonus']);
-    Route::post('/to-up-account', ['uses' => 'PaymentController@toUpAccount']);
-    Route::post('/withdrawal-of-funds-account', ['uses' => 'PaymentController@withdrawalOfFundsAccount']);
     Route::post('/activate-promocode', ['uses' => 'ProfileController@activatePromocode']);
     Route::get('/daily-bonus-generate', ['uses' => 'ProfileController@dailyBonusGenerate']);
+
+    Route::post('/create-game-coinflip', ['uses' => 'CoinflipController@createGame']);
+    Route::post('/show-game-coinflip', ['uses' => 'CoinflipController@showGameCoinflip']);
+    Route::post('/set-participant-coinflip', ['uses' => 'CoinflipController@setParticipantCoinflip']);
+    Route::post('/get-result-coinflip', ['uses' => 'CoinflipController@getResultCoinflip']);
+
+    Route::post('/send-message', ['uses' => 'MessageController@sendMessage']);
+
     Route::post('/set-participant-game', ['uses' => 'JackpotController@setParticipant']);
 });
 
