@@ -37,6 +37,7 @@ function getBalance($user, $onlyChat = false) {
     }
 
     $allSum = $allSum->sum('price') * 10;
+    $allSum = round($allSum, 2);
     return $allSum;
 }
 
