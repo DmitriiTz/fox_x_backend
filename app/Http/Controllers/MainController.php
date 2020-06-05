@@ -273,7 +273,6 @@ class MainController extends Controller
             ->limit(10)
             ->get();
 
-
         $activeGames = HistoryGame::orderBy('created_at', 'desc')
             ->with(['winner', 'participants'])
             ->where('game_id', 4)

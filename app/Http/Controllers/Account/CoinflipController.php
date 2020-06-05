@@ -149,6 +149,9 @@ class CoinflipController extends Controller
 
 
         $game = HistoryGame::find($request->gameId);
+        if(auth()->user()->id === $game->create_account_id){
+            return ['error' => 1, 'message' => 'Вы уже в этой игре'];
+        }
         if($game->participants()->count() >= 2) {
             return ['error' => 1, 'message' => 'Игра уже началась'];
         }
