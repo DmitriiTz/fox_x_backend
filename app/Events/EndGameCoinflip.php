@@ -59,8 +59,6 @@ class EndGameCoinflip implements ShouldBroadcast
             ->where('game_id', 4)
             ->whereNull('end_game_at')
             ->count();
-
-
     }
 
     /**
@@ -70,6 +68,6 @@ class EndGameCoinflip implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('online-users');
+        return new Channel('coin-flip');
     }
 }

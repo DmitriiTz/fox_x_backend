@@ -22,14 +22,14 @@ class StartGameCoinflip implements ShouldBroadcast
      * @return void
      */
 
-    public $view;
+    public $game;
     public $gameId;
     public $viewPopup;
     public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
 
-    public function __construct($view, $gameId, $viewPopup, $winnerName, $color, $cash)
+    public function __construct($game, $gameId, $viewPopup, $winnerName, $color, $cash)
     {
-        $this->view = $view;
+        $this->game = $game;
         $this->gameId = $gameId;
         $this->viewPopup = $viewPopup;
         $this->winnerName = $winnerName;
@@ -53,8 +53,6 @@ class StartGameCoinflip implements ShouldBroadcast
             ->where('game_id', 4)
             ->whereNull('end_game_at')
             ->count();
-
-
     }
 
     /**
@@ -64,6 +62,6 @@ class StartGameCoinflip implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('online-users');
+        return new Channel('coin-flip');
     }
 }

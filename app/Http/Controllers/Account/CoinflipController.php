@@ -154,9 +154,7 @@ class CoinflipController extends Controller
         }
 
         $user = auth()->user();
-
         $needCash = $game->participants()->first()->cash;
-
 
         $participant = new Participant;
         $participant->account_id = $user->id;
