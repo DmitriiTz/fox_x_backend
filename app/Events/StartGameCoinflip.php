@@ -32,7 +32,7 @@ class StartGameCoinflip implements ShouldBroadcast
     public function __construct($gameId, $participant, $cash)
     {
         $this->gameId = $gameId;
-        $this->participant = $participant;
+        $this->participants = $participant;
         $this->cash = $cash;
 
 //        $this->game = $game;
