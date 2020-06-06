@@ -266,8 +266,9 @@ class MainController extends Controller
     {
         $pageName = 'Coinflip';
 
-        $games = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['winner', 'participants', 'type'])
+        $games = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')
+            ->orderBy('created_at', 'desc')
+            ->with(['winner', 'participants.account', 'type'])
             ->where('game_id', 4)
             ->where('end_game_at', '<', now()->subSeconds(10))
             ->whereNotNull('create_account_id')
