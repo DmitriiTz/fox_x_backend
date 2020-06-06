@@ -201,7 +201,7 @@ class CoinflipController extends Controller
         $balance = getBalance($winnerApplication->account);
         $accountId = $winnerApplication->account->id;
 
-        $job = (new EndGameCoinflip($game->id, $game->end_game_at, $game->winner->name, $winnerApplication->color, $winnerApplication->cash, $balance, $accountId))->delay(10);
+        $job = (new EndGameCoinflip($game->id))->delay(23);
         $this->dispatch($job);
 
         $hashGame =  hash('sha224', $game->id);

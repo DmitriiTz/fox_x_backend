@@ -19,20 +19,20 @@ class EndGameCoinflip implements ShouldQueue
      */
 
     public $gameId;
-    public $endGameAt;
-    public $winnerName;
-    public $color;
-    public $cash, $balance, $accountId;
+//    public $endGameAt;
+//    public $winnerName;
+//    public $color;
+//    public $cash, $balance, $accountId;
 
-    public function __construct($gameId, $endGameAt, $winnerName, $color, $cash, $balance, $accountId)
+    public function __construct($gameId)
     {
         $this->gameId = $gameId;
-        $this->endGameAt = $endGameAt;
-        $this->winnerName = $winnerName;
-        $this->color = $color;
-        $this->cash = $cash;
-        $this->balance = $balance;
-        $this->accountId = $accountId;
+//        $this->endGameAt = $endGameAt;
+//        $this->winnerName = $winnerName;
+//        $this->color = $color;
+//        $this->cash = $cash;
+//        $this->balance = $balance;
+//        $this->accountId = $accountId;
     }
 
     /**
@@ -42,6 +42,6 @@ class EndGameCoinflip implements ShouldQueue
      */
     public function handle()
     {
-        event(new \App\Events\EndGameCoinflip($this->gameId, $this->endGameAt, $this->winnerName, $this->color, $this->cash, $this->balance, $this->accountId));
+        event(new \App\Events\EndGameCoinflip($this->gameId));
     }
 }

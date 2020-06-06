@@ -265,6 +265,7 @@ class MainController extends Controller
     public function coinflip()
     {
         $pageName = 'Coinflip';
+
         $games = HistoryGame::orderBy('created_at', 'desc')
             ->with(['winner', 'participants', 'type'])
             ->where('game_id', 4)
