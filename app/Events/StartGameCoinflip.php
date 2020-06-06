@@ -21,7 +21,7 @@ class StartGameCoinflip implements ShouldBroadcast
      */
 
     public $gameId;
-    public $participant;
+    public $participants;
     public $cash;
 
 //    public $game;
