@@ -291,7 +291,6 @@ class MainController extends Controller
             ->where('end_game_at', '>', now())
             ->get();
 
-
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
             ->where('game_id', 4)
@@ -316,7 +315,6 @@ class MainController extends Controller
 
         $gamesToday = HistoryGame::where('game_id', 4)->where('created_at', '>', Carbon::today())->where('created_at', '<',
             Carbon::now())->count();
-
 
 //        return view('coin-flip',
 //            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));

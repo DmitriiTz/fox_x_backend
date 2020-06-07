@@ -16,7 +16,6 @@ use App\Http\Controllers\Controller;
 
 class KingOfTheHillController extends Controller
 {
-
     public function setParticipant(Request $request) {
 
         $currentStepPrice = $this->redis->get('step.' . $request->type);
@@ -175,16 +174,16 @@ class KingOfTheHillController extends Controller
 
         if(isset($participants[1])) {
             $participant = $participants[1];
-            $view = view('blocks.king-participants', compact('participant'))->render();
+            //$view = view('blocks.king-participants', compact('participant'))->render();
         }
         else {
-            $view = '';
+            $participant = '';
         }
 
 
         $image = asset($user->image);
 
-        event(new AddParticipantKing($game->id, $bank, $view, $image, $type, $step, $countParticipants));
+        event(new AddParticipantKing($game->id, $bank, $participant, $image, $type, $step, $countParticipants));
 
         return $bank;
     }

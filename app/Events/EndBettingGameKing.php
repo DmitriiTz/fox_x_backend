@@ -49,7 +49,7 @@ class EndBettingGameKing implements ShouldBroadcast
         if(!$game->is_view) {
             info('EndBettingGameKing - '. $this->gameId);
 
-            return new Channel('online-users');
+            return new Channel('king');
 
         }
 

@@ -21,17 +21,17 @@ class AddParticipantKing implements ShouldBroadcast
      */
 
     public $bank;
-    public $view;
+    public $participant;
     public $image;
     public $type;
     public $gameId;
     public $step;
     public $countParticipants;
 
-    public function __construct($gameId,$bank, $view, $image, $type, $step, $countParticipants)
+    public function __construct($gameId,$bank, $participant, $image, $type, $step, $countParticipants)
     {
         $this->bank = $bank;
-        $this->view = $view;
+        $this->participant = $participant;
         $this->image = $image;
         $this->type = $type;
         $this->gameId = $gameId;
@@ -46,6 +46,6 @@ class AddParticipantKing implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('online-users');
+        return new Channel('king');
     }
 }

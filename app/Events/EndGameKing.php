@@ -81,7 +81,7 @@ class EndGameKing implements ShouldBroadcast
             $payment->history_game_id = $game->id;
             $payment->save();
 
-            $this->view = view('blocks.history-king', compact('game'))->render();
+            //$this->view = view('blocks.history-king', compact('game'))->render();
 
             $newGame = new HistoryGame;
             $newGame->game_type_id = $this->type;
@@ -97,7 +97,7 @@ class EndGameKing implements ShouldBroadcast
             $this->winnerTicket = $game->participants()->sum('cash');
             info('я сюда захожу - '. $this->newGameId);
 
-            return new Channel('online-users');
+            return new Channel('king');
 
         }
 
