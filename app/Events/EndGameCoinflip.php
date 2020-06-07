@@ -23,10 +23,12 @@ class EndGameCoinflip implements ShouldBroadcast
      */
 
     public $game;
+    public $bankUser;
 
-    public function __construct($gameId)
+    public function __construct($gameId, $bankUser)
     {
         $this->game = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')->where('id', $gameId)->with('participants.account')->first();
+        $this->bankUser = $bankUser;
     }
 
     /**

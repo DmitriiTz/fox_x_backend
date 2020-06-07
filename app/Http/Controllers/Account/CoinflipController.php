@@ -201,7 +201,13 @@ class CoinflipController extends Controller
         $balance = getBalance($winnerApplication->account);
         $accountId = $winnerApplication->account->id;
 
-        $job = (new EndGameCoinflip($game->id))->delay(23);
+        $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
+                ->where('created_at', '>', today())
+                ->where('created_at', '<', now())
+                ->where('price', '>', 0)
+                ->sum('price') * 10;
+
+        $job = (new EndGameCoinflip($game->id, $bankUser))->delay(23);
         $this->dispatch($job);
 
         $hashGame =  hash('sha224', $game->id);
