@@ -170,15 +170,15 @@ class KingOfTheHillController extends Controller
 
         $countParticipants = count($listParticipants);
 
-        $participants = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->with('account')->get();
+        //$participants = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->with('account')->get();
 
-        if(isset($participants[1])) {
-            $participant = $participants[1];
-            //$view = view('blocks.king-participants', compact('participant'))->render();
-        }
-        else {
-            $participant = '';
-        }
+//        if(isset($participants[1])) {
+//            $participant = $participants[1];
+//            //$view = view('blocks.king-participants', compact('participant'))->render();
+//        }
+//        else {
+//            $participant = '';
+//        }
 
 
         $image = asset($user->image);
