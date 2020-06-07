@@ -170,7 +170,7 @@ class KingOfTheHillController extends Controller
 
         $countParticipants = count($listParticipants);
 
-        $participants = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->get();
+        $participants = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->with('account')->get();
 
         if(isset($participants[1])) {
             $participant = $participants[1];
