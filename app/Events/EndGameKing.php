@@ -61,7 +61,12 @@ class EndGameKing implements ShouldBroadcast
     public function broadcastOn()
     {
         
-        $game = HistoryGame::find($this->gameId);
+        //$game = HistoryGame::find($this->gameId);
+
+        $game = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')
+            ->with(['winner', 'participants.account', 'type'])
+            ->whereId($this->gameId)
+            ->first();
 
         if(!$game->is_view) {
             $winner = Participant::where('history_game_id', $this->gameId)->orderBy('created_at', 'desc')->first();
