@@ -107,6 +107,10 @@ class KingOfTheHillController extends Controller
                     $game->end_game_at = $end_game_at;
                     unset($game->participants);
                     $game->save();
+                    
+                    $job = (new EndGameKing($game->id, $end_game_at, $type))->delay(21);
+                    $this->dispatch($job);
+
 //                        EndGameKing::dispatch($game->id, $end_game_at, $type)->delay(20);
               //      $job = (new EndGameKing($game->id, $end_game_at, $type))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay(22);
                  //   $this->dispatch($job);
@@ -114,11 +118,12 @@ class KingOfTheHillController extends Controller
                   //  $this->dispatch($job2);
                         for($i = 21,$j=0;$i >= 0,$j <= 21; $i--,$j++)
                         {
-                        $job = (new StartGameKingJob($game->id, $i, $type,$end_game_at->timestamp))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay($j);
+                        $job = (new StartGameKingJob($game->id, $i, $type,$end_game_at->timestamp))->delay($j);
                         $this->dispatch($job);
                         }
                    // event(new StartGameKing($game->id, 20, $type,$end_game_at));
                 }
+
 
                 $balance = getBalance($user);
 
