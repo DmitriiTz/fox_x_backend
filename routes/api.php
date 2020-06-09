@@ -19,6 +19,8 @@ Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@ho
 Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => 'auth:api'], function () {
 
     Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
+    Route::get('/create-senior', ['uses' => 'KingOfTheHillController@create_senior']);
+    Route::get('/create-classic', ['uses' => 'KingOfTheHillController@create_classic']);
 
     Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
     Route::post('/withdrawal-of-funds-account', ['uses' => 'PaymentController@withdrawalOfFundsAccount']);
