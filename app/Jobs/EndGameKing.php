@@ -40,7 +40,6 @@ class EndGameKing implements ShouldQueue
      */
     public function handle()
     {
-
         if($this->game->end_game_at < now() && !$this->game->is_view) {
             event(new \App\Events\EndGameKing($this->gameId, $this->game->end_game_at, $this->type));
         }
