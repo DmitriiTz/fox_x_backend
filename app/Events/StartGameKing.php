@@ -51,7 +51,7 @@ class StartGameKing implements ShouldBroadcast
         //$this->view = '';
         info('timer - ' . ($this->endGameTime - now()->timestamp));
         if (($this->endGameAt - 1) % 2 == 0) {
-            $this->game = HistoryGame::with(['participants' => function ($query) {
+            $this->game = HistoryGame::with(['winner','participants' => function ($query) {
                 $query->with('account')->orderBy('cash', 'desc');
             }])
                 ->where('id', $this->gameId)
@@ -73,14 +73,14 @@ class StartGameKing implements ShouldBroadcast
                 $participant = $participants[0];
             }
             $this->image = User::find($participant->account_id)->image;
-            $this->game = HistoryGame::find($this->gameId);
+            $this->game = HistoryGame::whereId($this->gameId)->with('winner')->first();
         }
         if (strtotime($this->game->end_game_at) - now()->timestamp - 1 <= $this->endGameAt) {
-
             if ($this->endGameAt == 0) {
                 event(new EndGameKing($this->game->id, $this->game->end_game_at, $this->type));
             }
             $this->endGameAt = $this->endGameAt - 1;
+
             return new Channel('king');
         }
     }
