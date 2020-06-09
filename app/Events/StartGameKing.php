@@ -74,6 +74,8 @@ class StartGameKing implements ShouldBroadcast
             }
             $this->image = User::find($participant->account_id)->image;
             $this->game = HistoryGame::whereId($this->gameId)->with('winner')->first();
+            $this->game->winner_account_id = $participant;
+            $this->game->save();
         }
         if (strtotime($this->game->end_game_at) - now()->timestamp - 1 <= $this->endGameAt) {
             if ($this->endGameAt == 0) {
