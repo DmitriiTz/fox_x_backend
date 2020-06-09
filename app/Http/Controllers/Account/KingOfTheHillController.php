@@ -61,6 +61,7 @@ class KingOfTheHillController extends Controller
 
         if ($type) {
             $game = HistoryGame::orderBy('updated_at', 'desc')
+                ->with('winner')
                 ->where('game_id', 2)
                 ->where('game_type_id', $type)
                 ->where('end_game_at', '>', now())
