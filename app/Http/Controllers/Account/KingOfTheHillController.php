@@ -16,37 +16,60 @@ use App\Http\Controllers\Controller;
 
 class KingOfTheHillController extends Controller
 {
-    public function setParticipant(Request $request) {
+    public function create_senior()
+    {
+        $gameSenyor = new HistoryGame;
+        $gameSenyor->game_id = 2;
+        $gameSenyor->game_type_id = 4;
+        $gameSenyor->end_game_at = now()->addYear();
+        $gameSenyor->save();
+
+        return response()->json($gameSenyor);
+    }
+
+    public function create_classic()
+    {
+        $gameClassic = new HistoryGame;
+        $gameClassic->game_id = 2;
+        $gameClassic->game_type_id = 3;
+        $gameClassic->end_game_at = now()->addYear();
+        $gameClassic->save();
+
+        return response()->json($gameClassic);
+    }
+
+    public function setParticipant(Request $request)
+    {
 
         $currentStepPrice = $this->redis->get('step.' . $request->type);
-        
+
         $user = auth()->user();
         $balance = getBalance($user);
 
         $type = false;
 
-        if($request->type == 'classic') {
+        if ($request->type == 'classic') {
             $type = 3;
         }
 
         $cash = false;
-        if($request->type == 'senyor') {
+        if ($request->type == 'senyor') {
             $type = 4;
             $cash = $request->cash;
 
         }
 
-        if($type) {
+        if ($type) {
             $game = HistoryGame::orderBy('updated_at', 'desc')
                 ->where('game_id', 2)
                 ->where('game_type_id', $type)
                 ->where('end_game_at', '>', now())
                 ->first();
 
-            info($game->id.'- номер игры -'. now());
+            info($game->id . '- номер игры -' . now());
 
-            if(!$game) {
-                if($balance < 10) {
+            if (!$game) {
+                if ($balance < 10) {
                     return ['error' => 1, 'message' => 'Недостаточно на балансе'];
                 }
 
@@ -58,14 +81,12 @@ class KingOfTheHillController extends Controller
 
                 $currentStepPrice = 0;
 
-                if($type == 3 && $balance >= $currentStepPrice + 10) {
+                if ($type == 3 && $balance >= $currentStepPrice + 10) {
                     $currentBank = $this->createParticipant($user, $game, $currentStepPrice + 10, $type);
 
-                }
-                elseif($type == 4 && $cash && $balance >= $cash) {
+                } elseif ($type == 4 && $cash && $balance >= $cash) {
                     $currentBank = $this->createParticipant($user, $game, $cash, $type);
-                }
-                else {
+                } else {
                     return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
                 }
 
@@ -74,56 +95,42 @@ class KingOfTheHillController extends Controller
                 return ['error' => 0, 'message' => 'Ставка успешно сделана', 'balance' => $balance, 'bank' => $currentBank, 'type' => $type];
 
 
-            }
-            else {
+            } else {
 
-                if($game->end_game_at && $game->end_game_at < now()) {
+                if ($game->end_game_at && $game->end_game_at < now()) {
                     return ['error' => 1, 'message' => 'Игра закончена'];
                 }
 
-               // $currentStepPrice = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->first();
+                // $currentStepPrice = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->first();
 
-                if(!$currentStepPrice) {
+                if (!$currentStepPrice) {
                     $currentStepPrice = 0;
                 }
-               
 
-                info($type.'- сумма '.$cash.'- баланс '.$balance.'- шаг '.$currentStepPrice.'- номер игры'. $game->id);
-                if($type == 3 && $balance >= $currentStepPrice + 10) {
+
+                info($type . '- сумма ' . $cash . '- баланс ' . $balance . '- шаг ' . $currentStepPrice . '- номер игры' . $game->id);
+                if ($type == 3 && $balance >= $currentStepPrice + 10) {
                     $currentBank = $this->createParticipant($user, $game, $currentStepPrice + 10, $type);
-                }
-                elseif($type == 4 && $cash && $balance >= $cash && $cash > $currentStepPrice) {
+                } elseif ($type == 4 && $cash && $balance >= $cash && $cash > $currentStepPrice) {
                     $currentBank = $this->createParticipant($user, $game, $cash, $type);
-                }
-                else {
+                } else {
                     return ['error' => 1, 'message' => 'Неккоректная сумма'];
                 }
 
 
                 $countParticipants = $game->participants->groupBy('account_id')->count();
-                if($countParticipants >= 2) {
+                if ($countParticipants >= 2) {
                     $timer = now();
                     $end_game_at = $timer->addSeconds(21);
                     $game->end_game_at = $end_game_at;
                     unset($game->participants);
                     $game->save();
-                    
-                    $job = (new EndGameKing($game->id, $end_game_at, $type))->delay(21);
-                    $this->dispatch($job);
-
-//                        EndGameKing::dispatch($game->id, $end_game_at, $type)->delay(20);
-              //      $job = (new EndGameKing($game->id, $end_game_at, $type))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay(22);
-                 //   $this->dispatch($job);
-                  //  $job2 = (new EndBettingGameKing($game->id, $end_game_at, $type))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay(20);
-                  //  $this->dispatch($job2);
-                        for($i = 21,$j=0;$i >= 0,$j <= 21; $i--,$j++)
-                        {
-                        $job = (new StartGameKingJob($game->id, $i, $type,$end_game_at->timestamp))->delay($j);
+                    for ($i = 21, $j = 0; $i >= 0, $j <= 21; $i--, $j++) {
+                        $job = (new StartGameKingJob($game->id, $i, $type, $end_game_at->timestamp))->delay($j);
                         $this->dispatch($job);
-                        }
-                   // event(new StartGameKing($game->id, 20, $type,$end_game_at));
+                    }
+                    // event(new StartGameKing($game->id, 20, $type,$end_game_at));
                 }
-
 
                 $balance = getBalance($user);
 
@@ -131,21 +138,18 @@ class KingOfTheHillController extends Controller
 
             }
 
-        }
-        else {
+        } else {
             return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
         }
 
     }
 
-    public function createParticipant($user, $game, $cash, $type) {
+    public function createParticipant($user, $game, $cash, $type)
+    {
 
-        if($type == 3)
-        {
+        if ($type == 3) {
             $this->redis->set('step.classic', $cash);
-        }
-        else
-        {
+        } else {
             $this->redis->set('step.senyor', $cash);
         }
         $participant = new Participant;
@@ -169,7 +173,7 @@ class KingOfTheHillController extends Controller
 
         $step = count($listParticipants) * 10;
 
-        if($type == 4) {
+        if ($type == 4) {
             $step = Participant::where('history_game_id', $game->id)->orderBy('cash', 'desc')->first()->cash;
         }
 
@@ -192,7 +196,6 @@ class KingOfTheHillController extends Controller
 
         return $bank;
     }
-
 
 
 }
