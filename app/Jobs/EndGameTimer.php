@@ -36,22 +36,22 @@ class EndGameTimer implements ShouldQueue
     public $balanceUser;
     public $winners;
 
-    public function __construct($mainTimer,$temp,$gameId,$hash,$winnerTicket,$linkHash,$timer,$percent,$image,$name,$bank,$winnerId,$viewHistoryWinner,$accountId,$balanceUser,$winners)
+    public function __construct($mainTimer, $temp, $gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners)
     {
-     $this->gameId  = $gameId;
-$this->hash = $hash;
-$this->winnerTicket = $winnerTicket;
-$this->linkHash = $linkHash;
-$this->time = $timer;
-$this->percent = $percent;
-$this->image = $image;
-$this->name = $name;
-$this->bank = $bank;
-$this->winnerId = $winnerId;
-$this->viewHistoryWinner = $viewHistoryWinner;
-$this->accountId = $accountId;
-$this->balanceUser = $balanceUser;
-$this->winners = $winners;
+        $this->gameId = $gameId;
+        $this->hash = $hash;
+        $this->winnerTicket = $winnerTicket;
+        $this->linkHash = $linkHash;
+        $this->time = $timer;
+        $this->percent = $percent;
+        $this->image = $image;
+        $this->name = $name;
+        $this->bank = $bank;
+        $this->winnerId = $winnerId;
+        $this->viewHistoryWinner = $viewHistoryWinner;
+        $this->accountId = $accountId;
+        $this->balanceUser = $balanceUser;
+        $this->winners = $winners;
         $this->timer = $mainTimer;
 
     }
@@ -63,8 +63,8 @@ $this->winners = $winners;
      */
     public function handle()
     {
- 
-        event(new \App\Events\EndGameTimer($this->timer,$this->gameId,$this->hash,$this->winnerTicket,$this->linkHash,$this->time,$this->percent,$this->image,$this->name,$this->bank,$this->winnerId,$this->viewHistoryWinner,$this->accountId,$this->balanceUser,$this->winners));
+
+        event(new \App\Events\EndGameTimer($this->timer, $this->gameId, $this->hash, $this->winnerTicket, $this->linkHash, $this->time, $this->percent, $this->image, $this->name, $this->bank, $this->winnerId, $this->viewHistoryWinner, $this->accountId, $this->balanceUser, $this->winners));
 
     }
 }

@@ -64,7 +64,7 @@ class StartGame implements ShouldBroadcast
         else
         {
         $this->endGameAt = $this->endGameAt -1;
-        return new Channel('online-users');
+        return new Channel('jackpot');
         }
     }
     }

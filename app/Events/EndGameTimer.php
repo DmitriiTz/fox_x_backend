@@ -37,23 +37,23 @@ class EndGameTimer implements ShouldBroadcast
     public $balanceUser;
     public $winners;
 
-    public function __construct($mainTimer,$gameId,$hash,$winnerTicket,$linkHash,$timer,$percent,$image,$name,$bank,$winnerId,$viewHistoryWinner,$accountId,$balanceUser,$winners)
+    public function __construct($mainTimer, $gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners)
     {
-       
-      $this->gameId  = $gameId;
-$this->hash = $hash;
-$this->winnerTicket = $winnerTicket;
-$this->linkHash = $linkHash;
-$this->time = $timer;
-$this->percent = $percent;
-$this->image = $image;
-$this->name = $name;
-$this->bank = $bank;
-$this->winnerId = $winnerId;
-$this->viewHistoryWinner = $viewHistoryWinner;
-$this->accountId = $accountId;
-$this->balanceUser = $balanceUser;
-$this->winners = $winners;
+
+        $this->gameId = $gameId;
+        $this->hash = $hash;
+        $this->winnerTicket = $winnerTicket;
+        $this->linkHash = $linkHash;
+        $this->time = $timer;
+        $this->percent = $percent;
+        $this->image = $image;
+        $this->name = $name;
+        $this->bank = $bank;
+        $this->winnerId = $winnerId;
+        $this->viewHistoryWinner = $viewHistoryWinner;
+        $this->accountId = $accountId;
+        $this->balanceUser = $balanceUser;
+        $this->winners = $winners;
         $this->timer = $mainTimer;
     }
 
@@ -64,9 +64,9 @@ $this->winners = $winners;
      */
     public function broadcastOn()
     {
-     //   info('timer - '. ($this->endGameTime - now()->timestamp));
-      
-        return new Channel('online-users');
-    
+        //   info('timer - '. ($this->endGameTime - now()->timestamp));
+
+        return new Channel('jackpot');
+
     }
 }

@@ -52,6 +52,6 @@ class AddParticipant implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('online-users');
+        return new Channel('jackpot');
     }
 }

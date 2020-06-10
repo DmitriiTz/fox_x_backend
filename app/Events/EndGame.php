@@ -81,8 +81,9 @@ class EndGame implements ShouldBroadcast
         $this->bank = $bank;
         $this->winnerId = $account->id;
         $gameIteration = HistoryGame::where('id', $this->gameId)->with(['winner', 'participants'])->first();
-        $this->viewHistoryWinner = view('blocks.history-jackpot', compact('gameIteration'))->render();
 
+        //$this->viewHistoryWinner = view('blocks.history-jackpot', compact('gameIteration'))->render();
+        $this->viewHistoryWinner = $gameIteration;
     
 
 
@@ -104,8 +105,8 @@ class EndGame implements ShouldBroadcast
         }])->where('id',$game->id)->first();
         $listParticipants = $game->participants;
 
-        $this->winners = view('blocks.choose-winner-slider', ['game' => $game])->render();
-
+        //$this->winners = view('blocks.choose-winner-slider', ['game' => $game])->render();
+        $this->winners = $game;
     }
 
     /**
@@ -118,6 +119,6 @@ class EndGame implements ShouldBroadcast
     public function broadcastOn()
     {
         (new JackpotController())->WinnerTimer($this->gameId,$this->hash,$this->winnerTicket,$this->linkHash,$this->timer,$this->percent,$this->image,$this->name,$this->bank,$this->winnerId,$this->viewHistoryWinner,$this->accountId,$this->balanceUser,$this->winners);
-        return new Channel('online-users');
+        return new Channel('jackpot');
     }
 }

@@ -56,7 +56,7 @@ class JackpotController extends Controller
                 $balanceUser,
                 $winners
             )
-            )->onConnection(env('QUEUE_CONNECTION_2', 'redis'))->delay($j);
+            )->delay($j);
             $this->dispatch($job);
         }
         return true;
@@ -214,9 +214,10 @@ class JackpotController extends Controller
         }])->where('id', $historyGame->id)->first();
         $listParticipants = $historyGame->participants;
         $bank = $historyGame->participants->sum('cash');
-        $winners = view('blocks.choose-winner-slider', ['game' => $historyGame])->render();
-        $view = view('blocks.jackpot-participants', ['game' => $historyGame])->render();
-        $bet = view('blocks.bet-jackpot', ['bet' => $participant])->render();
+        //$winners = view('blocks.choose-winner-slider', ['game' => $historyGame])->render();
+        //$view = view('blocks.jackpot-participants', ['game' => $historyGame])->render();
+
+        //$bet = view('blocks.bet-jackpot', ['bet' => $participant])->render();
 
         if (count($listParticipants) == 1) {
             $isReload = 1;
@@ -225,7 +226,7 @@ class JackpotController extends Controller
         }
 
         $hashGame = $historyGame->hash;
-        event(new AddParticipant($view, $winners, $bet, 'jackpot', $bank, $isReload, count($listParticipants), $historyGame->id, $gameType->name, $hashGame));
+        event(new AddParticipant($historyGame, $historyGame, $participant, 'jackpot', $bank, $isReload, count($listParticipants), $historyGame->id, $gameType->name, $hashGame));
 
     }
 
