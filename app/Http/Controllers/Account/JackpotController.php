@@ -102,11 +102,14 @@ class JackpotController extends Controller
 
             if (!$game) {
 
-                $game = HistoryGame::where('status_id', 4)->where('game_type_id', $request->gameTypeId)->first();
+                //$game = HistoryGame::where('status_id', 1)->where('game_type_id', $request->gameTypeId)->first();
 
+                $game = new HistoryGame;
+                $game->game_id = 3;
+                $game->game_type_id = $request->gameTypeId;
                 $game->status_id = 1;
+                $game->end_game_at = now()->addYear();
                 $game->save();
-
 
                 srand(time() / 5 + 199526178);
                 $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
