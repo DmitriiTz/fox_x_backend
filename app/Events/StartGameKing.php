@@ -59,26 +59,24 @@ class StartGameKing implements ShouldBroadcast
             if (count($this->game->participants) > 0) {
                 $participant = $this->game->participants[0];
 
+                //dump(['1 step' => $participant->account_id]);
+
                 $this->image = $participant->account->image;
-//                foreach ($this->game->participants as $key => $participant) {
-//                    if ($key == 0) {
-//                        continue;
-//                    }
-//                    //$this->view .= view('blocks.king-participants', compact('participant'))->render();
-//                }
             }
         } else {
             $participants = Participant::where('history_game_id', $this->gameId)->orderBy('cash', 'desc')->get();
             if (isset($participants[0])) {
                 $participant = $participants[0];
+                //dump(['2 step' => $participant->account_id]);
             }
             $this->image = User::find($participant->account_id)->image;
             $this->game = HistoryGame::whereId($this->gameId)->with('winner')->first();
-            $this->game->winner_account_id = $participant;
+            $this->game->winner_account_id = $participant->account_id;
             $this->game->save();
         }
         if (strtotime($this->game->end_game_at) - now()->timestamp - 1 <= $this->endGameAt) {
             if ($this->endGameAt == 0) {
+                //dump(['game_id' => $this->game->game_id]);
                 event(new EndGameKing($this->game->id, $this->game->end_game_at, $this->type));
             }
             $this->endGameAt = $this->endGameAt - 1;

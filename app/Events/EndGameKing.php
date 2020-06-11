@@ -63,13 +63,13 @@ class EndGameKing implements ShouldBroadcast
         
         //$game = HistoryGame::find($this->gameId);
 
-        $game = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')
-            ->with(['winner', 'participants.account', 'type'])
-            ->whereId($this->gameId)
-            ->first();
+        $game = HistoryGame::with(['winner', 'participants.account', 'type'])->whereId($this->gameId)->first();
+
+        //dump(['winner' =>$game->winner_account_id]);
 
         if(!$game->is_view) {
             $winner = Participant::where('history_game_id', $this->gameId)->orderBy('created_at', 'desc')->first();
+            //dump(['winner_participant' => $winner->account_id]);
             $game->winner_account_id = $winner->account_id;
             $game->status_id = 2;
             $game->is_view = 1;
@@ -77,30 +77,31 @@ class EndGameKing implements ShouldBroadcast
             $winner->save();
 
             $user = User::find($winner->account_id);
-
             $result = commission($game);
+            //dump('2');
             $payment = new Payment;
+            //dump('3');
             $payment->account_id = $winner->account_id;
             $payment->price = ($game->participants()->sum('cash') / 10) - $result;
             $payment->payment_type_id = 7;
             $payment->history_game_id = $game->id;
             $payment->save();
-
+            //dump('4');
             //$this->view = view('blocks.history-king', compact('game'))->render();
 
-            $newGame = new HistoryGame;
-            $newGame->game_type_id = $this->type;
-            $newGame->game_id = 2;
-            $newGame->end_game_at = now()->addYear();
-            $newGame->save();
-            $this->newGameId = $newGame->id;
+//            $newGame = new HistoryGame;
+//            $newGame->game_type_id = $this->type;
+//            $newGame->game_id = 2;
+//            $newGame->end_game_at = now()->addYear();
+//            $newGame->save();
+//            $this->newGameId = $newGame->id;
             $this->balance = getBalance($user);
             $this->winnerAccountId = $winner->account_id;
             $user->price = Participant::where('history_game_id', $this->gameId)->where('account_id', $winner->account_id)->sum('cash');
             $this->winner = $user;
             $this->temp = 'temp';
             $this->winnerTicket = $game->participants()->sum('cash');
-            info('я сюда захожу - '. $this->newGameId);
+            //info('я сюда захожу - '. $this->newGameId);
 
             return new Channel('king');
 

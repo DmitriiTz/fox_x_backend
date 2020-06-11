@@ -127,16 +127,6 @@ class KingOfTheHillController extends Controller
                     unset($game->participants);
                     $game->save();
                     for ($i = 21, $j = 0; $i >= 0, $j <= 21; $i--, $j++) {
-                        if($i == -1)
-                        {
-                            $result = commission($game);
-                            $payment = new Payment;
-                            $payment->account_id = $game->participants[0]->account_id;
-                            $payment->price = ($game->participants()->sum('cash') / 10) - $result;
-                            $payment->payment_type_id = 7;
-                            $payment->history_game_id = $game->id;
-                            $payment->save();
-                        }
                         $job = (new StartGameKingJob($game->id, $i, $type, $end_game_at->timestamp))->delay($j);
                         $this->dispatch($job);
                     }
