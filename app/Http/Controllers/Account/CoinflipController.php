@@ -11,6 +11,7 @@ use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CoinflipController extends Controller
 {
@@ -264,6 +265,20 @@ class CoinflipController extends Controller
         ];
 
         return response()->json($data_popup);
+    }
+
+    public function userBank()
+    {
+        $user = Auth::user();
+        $data = [
+            'balance' => getBalance($user),
+            'bankUser' => Payment::where('game_id', 4)->where('account_id', $user->id)
+                    ->where('created_at', '>', today())
+                    ->where('created_at', '<', now())
+                    ->where('price', '>', 0)
+                    ->sum('price') * 10
+        ];
+        return response()->json($data);
     }
 
 }
