@@ -37,6 +37,7 @@ Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account
     Route::post('/show-game-coinflip', ['uses' => 'CoinflipController@showGameCoinflip']);
     Route::post('/set-participant-coinflip', ['uses' => 'CoinflipController@setParticipantCoinflip']);
     Route::post('/get-result-coinflip', ['uses' => 'CoinflipController@getResultCoinflip']);
+    Route::get('/bank-user', ['uses' => 'CoinflipController@userBank']);
 
     Route::post('/send-message', ['uses' => 'MessageController@sendMessage']);
 
