@@ -15,23 +15,22 @@ use Carbon\Carbon;
 class CoinflipController extends Controller
 {
 
-    public function createGame(Request $request)
-    {
+    public function createGame(Request $request) {
 
         $user = auth()->user();
         $balance = getBalance($user);
 
-        if ($request->cash < 100) {
+        if($request->cash < 100) {
             return ['error' => 1, 'message' => 'Минимальная ставка - 100 COINS'];
         }
 
-        if ($request->cash > $balance) {
+        if($request->cash > $balance) {
             return ['error' => 1, 'message' => 'Недостаточно средств на балансе'];
         }
 
         $color = 0;
-        if ($request->color) {
-            if ($request->color == 'orange') {
+        if($request->color) {
+            if($request->color == 'orange') {
                 $color = 1;
             }
         }
@@ -47,7 +46,7 @@ class CoinflipController extends Controller
         $newGame->winner_ticket_big = $random;
         $newGame->winner_ticket = 100 * $random;
         $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
-        $newGame->link_hash = 'http://sha224.net/?val=' . $newGame->winner_ticket_big;
+        $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
         $newGame->save();
 
         $participant = new Participant;
@@ -56,10 +55,11 @@ class CoinflipController extends Controller
         $participant->history_game_id = $game->id;
         $participant->color = $color;
 
-        if (!$color) {
+        if(!$color) {
             $participant->min_cash_number = 51;
             $participant->max_cash_number = 100;
-        } else {
+        }
+        else {
             $participant->min_cash_number = 1;
             $participant->max_cash_number = 50;
         }
@@ -74,9 +74,9 @@ class CoinflipController extends Controller
         $payment->game_id = 4;
         $payment->save();
 
-        $hashGame = hash('sha224', $game->id);
+        $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', $game->winner_ticket_big);
-        $link_hash = 'http://sha224.net/?val=' . $hashWinner;
+        $link_hash = 'http://sha224.net/?val='.$hashWinner;
         $winnerTicket = $game->winner_ticket_big;
 
         $data = [
@@ -106,21 +106,20 @@ class CoinflipController extends Controller
         ]);
     }
 
-    public function showGameCoinflip(Request $request)
-    {
+    public function showGameCoinflip(Request $request) {
 
         $game = HistoryGame::find($request->gameId);
 
-        if ($game->end_game_at) {
+        if($game->end_game_at) {
             $winnerApplication = Participant::where('min_cash_number', '<=', $game->winner_ticket)
                 ->where('max_cash_number', '>=', $game->winner_ticket)
                 ->where('history_game_id', $game->id)
                 ->first();
         }
 
-        $hashGame = hash('sha224', $game->id);
+        $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', strval($game->winner_ticket_big));
-        $link_hash = 'http://sha224.net/?val=' . $game->winner_ticket_big;
+        $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
         $winnerTicket = $game->winner_ticket_big;
 
         //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
@@ -140,24 +139,23 @@ class CoinflipController extends Controller
 
     }
 
-    public function setParticipantCoinflip(Request $request)
-    {
+    public function setParticipantCoinflip(Request $request) {
         $game = HistoryGame::find($request->gameId);
 
-        if (auth()->user()->id === $game->create_account_id) {
+        if(auth()->user()->id === $game->create_account_id){
             return ['error' => 1, 'message' => 'Вы уже в этой игре'];
         }
-        if ($game->participants()->count() >= 2) {
+        if($game->participants()->count() >= 2) {
             return ['error' => 1, 'message' => 'Игра уже началась'];
         }
 
         $user = auth()->user();
+        $needCash = $game->participants()->first()->cash;
         $balanceUser = getBalance($user);
+
         if ($game->bank > $balanceUser) {
             return ['error' => 1, 'message' => 'Недостаточно средств на балансе'];
         }
-
-        $needCash = $game->participants()->first()->cash;
 
         $participant = new Participant;
         $participant->account_id = $user->id;
@@ -165,10 +163,11 @@ class CoinflipController extends Controller
         $participant->history_game_id = $game->id;
         $participant->color = ($game->participants()->first()->color == '1') ? '0' : '1';
 
-        if ($participant->color == '0') {
+        if($participant->color == '0') {
             $participant->min_cash_number = 51;
             $participant->max_cash_number = 100;
-        } else {
+        }
+        else {
             $participant->min_cash_number = 1;
             $participant->max_cash_number = 50;
         }
@@ -182,7 +181,6 @@ class CoinflipController extends Controller
         $payment->history_game_id = $game->id;
         $payment->game_id = 4;
         $payment->save();
-
 
         $winnerApplication = Participant::where('min_cash_number', '<=', $game->winner_ticket)
             ->where('max_cash_number', '>=', $game->winner_ticket)
@@ -215,12 +213,12 @@ class CoinflipController extends Controller
         $job = (new EndGameCoinflip($game->id, $bankUser))->delay(23);
         $this->dispatch($job);
 
-        $hashGame = hash('sha224', $game->id);
+        $hashGame =  hash('sha224', $game->id);
         $hashWinner = hash('sha224', strval($game->winner_ticket_big));
-        $link_hash = 'http://sha224.net/?val=' . $game->winner_ticket_big;
+        $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
 
         //$game->participants = $game->participants()->get();
-        $participants = $game->participants()->with('account')->get()->toArray();
+        $participants =  $game->participants()->with('account')->get()->toArray();
         $winnerTicket = $game->winner_ticket_big;
 
         //$viewPopup = view('popups.wait-player', compact('hashGame', 'link_hash', 'game', 'winnerApplication', 'hashWinner', 'winnerTicket'))->render();
@@ -244,8 +242,7 @@ class CoinflipController extends Controller
 
     }
 
-    public function getResultCoinflip(Request $request)
-    {
+    public function getResultCoinflip(Request $request){
         $game = HistoryGame::find($request->gameId);
 
         $winnerTicket = $game->winner_ticket_big;
@@ -254,8 +251,8 @@ class CoinflipController extends Controller
             ->where('max_cash_number', '>=', $game->winner_ticket)
             ->where('history_game_id', $game->id)
             ->first();
-        $link_hash = 'http://sha224.net/?val=' . $game->winner_ticket_big;
-        $hashGame = hash('sha224', $game->id);
+        $link_hash = 'http://sha224.net/?val='.$game->winner_ticket_big;
+        $hashGame =  hash('sha224', $game->id);
 
         $data_popup = [
             'hashGame' => $hashGame,
