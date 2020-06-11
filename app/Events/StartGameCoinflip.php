@@ -30,19 +30,17 @@ class StartGameCoinflip implements ShouldBroadcast
 //    public $data_popup;
 //    public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
 
-    public function __construct($gameId, $participant, $cash, $user_id)
+    public function __construct($gameId, $participant, $cash)
     {
         $this->game = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')->where('id', $gameId)->with('participants.account')->first();
         $this->id = $gameId;
         $this->participants = $participant;
         $this->cash = $cash;
-        $bankUser = Payment::where('game_id', 4)->where('account_id', $user_id)
+        $this->bankUser = Payment::where('game_id', 4)->where('account_id', $this->game->winner_account_id)
                 ->where('created_at', '>', today())
                 ->where('created_at', '<', now())
                 ->where('price', '>', 0)
                 ->sum('price') * 10;
-
-        $this->bankUser = $bankUser;
 
 //        $this->game = $game;
 //        $this->gameId = $gameId;
