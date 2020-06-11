@@ -236,7 +236,7 @@ class CoinflipController extends Controller
 
         //event(new StartGameCoinflip($data, $game->id, $data_popup, $game->winner->name, $winnerApplication->color, $winnerApplication->cash));
 
-        event(new StartGameCoinflip($game->id, $participants, $winnerApplication->cash));
+        event(new StartGameCoinflip($game->id, $participants, $winnerApplication->cash, $user->id));
 
         return ['error' => 0, 'data' => $data_popup, 'balanceUser' => $balanceUser];
 

@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\HistoryGame;
+use App\Payment;
 use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -23,17 +24,24 @@ class StartGameCoinflip implements ShouldBroadcast
     public $id;
     public $participants;
     public $cash;
-
+    public $bankUser;
 //    public $game;
 //    public $gameId;
 //    public $data_popup;
 //    public $winnerName, $color, $cash, $allCash, $allGame, $allGameWait;
 
-    public function __construct($gameId, $participant, $cash)
+    public function __construct($gameId, $participant, $cash, $user_id)
     {
         $this->id = $gameId;
         $this->participants = $participant;
         $this->cash = $cash;
+        $bankUser = Payment::where('game_id', 4)->where('account_id', $user_id)
+                ->where('created_at', '>', today())
+                ->where('created_at', '<', now())
+                ->where('price', '>', 0)
+                ->sum('price') * 10;
+
+        $this->bankUser = $bankUser;
 
 //        $this->game = $game;
 //        $this->gameId = $gameId;
