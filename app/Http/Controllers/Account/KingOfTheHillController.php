@@ -112,7 +112,7 @@ class KingOfTheHillController extends Controller
                 info($type . '- сумма ' . $cash . '- баланс ' . $balance . '- шаг ' . $currentStepPrice . '- номер игры' . $game->id);
                 if ($type == 3 && $balance >= $currentStepPrice + 10) {
                     $currentBank = $this->createParticipant($user, $game, $currentStepPrice + 10, $type);
-                } elseif ($type == 4 && $cash && $balance >= $cash && $cash >= $currentStepPrice) {
+                } elseif ($type == 4 && $cash && $balance >= $cash && $cash > $currentStepPrice) {
                     $currentBank = $this->createParticipant($user, $game, $cash, $type);
                 } else {
                     return ['error' => 1, 'message' => 'Неккоректная сумма'];
