@@ -42,8 +42,12 @@ class EndGame implements ShouldBroadcast
 
     public function __construct($gameId, $hash = false, $winnerTicket = false, $linkHash = false, $timer = false, $percent = false, $image = false, $name = false, $bank = false, $winnerId = false, $winners = false)
     {
+        dump(['gameId' => $gameId]);
+        $game = HistoryGame::whereId($gameId)->with('participants')->first();
+        //dd($game);
         $this->gameId = $gameId;
-        $game = HistoryGame::with('participants')->where('id', $this->gameId)->first();
+        //$game = HistoryGame::with('participants')->where('id', $this->gameId)->first();
+
         $bank = $game->participants()->sum('cash');
 
         $winnerTicket = round($bank * $game->winner_ticket_big);
@@ -84,7 +88,7 @@ class EndGame implements ShouldBroadcast
 
         //$this->viewHistoryWinner = view('blocks.history-jackpot', compact('gameIteration'))->render();
         $this->viewHistoryWinner = $gameIteration;
-    
+
 
 
         $gameBefore = new \App\HistoryGame();

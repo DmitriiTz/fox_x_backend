@@ -25,7 +25,6 @@ class MainController extends Controller
             $typeRequest = 'post';
         }
 
-
         $gameType = GameType::find($gameTypeId);
         $game = HistoryGame::with([
             'participants' => function ($query) {

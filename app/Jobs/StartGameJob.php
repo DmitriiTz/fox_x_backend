@@ -26,7 +26,7 @@ class StartGameJob implements ShouldQueue
     public $end_game_at;
     public $tries = 1;
 
-    public function __construct($gameId,$end_game_at , $type,$endGameAt)
+    public function __construct($gameId, $end_game_at , $type,$endGameAt)
     {
         $this->gameId = $gameId;
         $this->endGameAt = $endGameAt;
@@ -41,10 +41,6 @@ class StartGameJob implements ShouldQueue
      */
     public function handle()
     {
-
            event(new \App\Events\StartGame($this->gameId, $this->end_game_at, $this->type,$this->endGameAt));
-    
-
-
     }
 }

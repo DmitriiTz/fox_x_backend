@@ -85,7 +85,6 @@ class JackpotController extends Controller
         if ($balance < $request->cash) {
             return ['error' => 1, 'message' => 'Недостаточно на балансе'];
         }
-
         if ($request->cash && $request->gameTypeId) {
             $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
             $game = HistoryGame::orderBy('created_at', 'desc')
@@ -95,29 +94,34 @@ class JackpotController extends Controller
                 ->where('status_id', '!=', 4)
                 ->where('animation_at', '>', Carbon::now())
                 ->first();
-
+            //dump(['game' => $game]);
             if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
                 return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
             }
 
             if (!$game) {
-
+                //dump('if (!$game)');
                 //$game = HistoryGame::where('status_id', 1)->where('game_type_id', $request->gameTypeId)->first();
 
                 $game = new HistoryGame;
                 $game->game_id = 3;
-                $game->game_type_id = $request->gameTypeId;
                 $game->status_id = 1;
-                $game->end_game_at = now()->addYear();
+                $game->game_type_id = $request->gameTypeId;
+                $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                $game->winner_ticket_big = $random;
+                $game->hash = hash('sha224', strval($game->winner_ticket_big));
+                $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
+                $game->animation_at = now()->addYear();
                 $game->save();
 
-                srand(time() / 5 + 199526178);
+                //srand(time() / 5 + 199526178);
                 $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
                 if ($firstGameBet) {
                     $color = $firstGameBet->color;
                 } else {
                     $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
                 }
+                //dump(['$user' => $user, '$game' => $game, 'cash' => $request->cash, '$gameType' => $gameType, '$color' => $color]);
                 $this->createParticipant($user, $game, $request->cash, $gameType, $color);
                 return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
             } else {
@@ -129,10 +133,12 @@ class JackpotController extends Controller
 
                 }
                 if ($game->end_game_at && $game->end_game_at > now()) {
+                    //dump('if ($game->end_game_at && $game->end_game_at > now())');
                     $getCountAppication = $this->getCountApplicationAccount($user, $game);
                     if ($getCountAppication) {
-
+                        //dump('start create par');
                         $this->createParticipant($user, $game, $request->cash, $gameType, $color);
+                        //dump('finish create par');
                         return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
                     } else {
                         return ['error' => 1, 'message' => 'Максимальное количество ставок - 3'];
@@ -152,7 +158,7 @@ class JackpotController extends Controller
                         if ($countParticipants == 2) {
                             $timer = now();
                             $timer2 = now();
-                            $end_game_at = $timer->addSeconds(36);
+                            $end_game_at = $timer->addSeconds(5);
                             unset($game->participants);
                             $game->end_game_at = $end_game_at;
                             $animationAt = $timer2->addSeconds(50);
@@ -165,8 +171,8 @@ class JackpotController extends Controller
                              $job = (new EndGame($game->id, $end_game_at))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay(34);
                                $this->dispatch($job);
                    */
-                            for ($i = 36, $j = 0; $i >= 0, $j <= 36; $i--, $j++) {
-                                $job = (new StartGameJob($game->id, $end_game_at, $gameType->name, $i))->onConnection(env('QUEUE_CONNECTION_2', 'redis'))->delay($j);
+                            for ($i = 5, $j = 0; $i >= 0, $j <= 5; $i--, $j++) {
+                                $job = (new StartGameJob($game->id, $end_game_at, $gameType->name, $i))->delay($j);
                                 $this->dispatch($job);
                             }
 

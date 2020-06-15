@@ -31,7 +31,7 @@ class StartGame implements ShouldBroadcast
     public $end_game_at;
     public $JackpotController;
 
-    public function __construct($gameId, $endGame, $gameTypeName,$endGameAt)
+    public function __construct($gameId, $endGame, $gameTypeName, $endGameAt)
     {
         $this->gameId = $gameId;
         $this->game = HistoryGame::find($this->gameId);
@@ -40,7 +40,7 @@ class StartGame implements ShouldBroadcast
         $this->gameTypeName = $gameTypeName;
         $this->hashGame = $this->game->hash;
         $this->endGameAt = $endGameAt;
-     //   $this->JackpotController = new JackpotController();
+        //   $this->JackpotController = new JackpotController();
     }
 
     /**
@@ -50,22 +50,14 @@ class StartGame implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        
-        info('timer - '. ($this->endGame - 1) );
-            if($this->endGame - 1  <= $this->endGameAt)
-        {
-
-        if($this->endGameAt == 0)
-        {  
-             event(new EndGame($this->game->id, $this->end_game_at));
-
-
+        //info('timer - ' . ($this->endGame - 1));
+        if ($this->endGame - 1 <= $this->endGameAt) {
+            if ($this->endGameAt == 0) {
+                event(new EndGame($this->game->id, $this->end_game_at));
+            } else {
+                $this->endGameAt = $this->endGameAt - 1;
+                return new Channel('jackpot');
+            }
         }
-        else
-        {
-        $this->endGameAt = $this->endGameAt -1;
-        return new Channel('jackpot');
-        }
-    }
     }
 }
