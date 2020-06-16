@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Events\AddParticipant;
+use App\Events\CreateGame;
 use App\Events\StartGame;
 use App\Jobs\StartGameJob;
 use App\GameType;
@@ -85,7 +86,7 @@ class JackpotController extends Controller
         if ($balance < $request->cash) {
             return ['error' => 1, 'message' => 'Недостаточно на балансе'];
         }
-        if ($request->cash && $request->gameTypeId) {
+        //if ($request->cash && $request->gameTypeId) {
             $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
             $game = HistoryGame::orderBy('created_at', 'desc')
                 ->where('game_id', 3)
@@ -114,6 +115,8 @@ class JackpotController extends Controller
                 $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
                 $game->animation_at = now()->addYear();
                 $game->save();
+
+                event(new CreateGame($game));
 
                 //srand(time() / 5 + 199526178);
                 $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
@@ -191,7 +194,7 @@ class JackpotController extends Controller
 
             }
 
-        }
+        //}
 
         return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
 
