@@ -42,7 +42,7 @@ class EndGame implements ShouldBroadcast
 
     public function __construct($gameId, $hash = false, $winnerTicket = false, $linkHash = false, $timer = false, $percent = false, $image = false, $name = false, $bank = false, $winnerId = false, $winners = false)
     {
-        dump(['gameId' => $gameId]);
+        //dump(['gameId' => $gameId]);
         $game = HistoryGame::whereId($gameId)->with('participants')->first();
         //dd($game);
         $this->gameId = $gameId;
@@ -89,20 +89,18 @@ class EndGame implements ShouldBroadcast
         //$this->viewHistoryWinner = view('blocks.history-jackpot', compact('gameIteration'))->render();
         $this->viewHistoryWinner = $gameIteration;
 
-
-
-        $gameBefore = new \App\HistoryGame();
-        $gameBefore->game_id = 3;
-        $gameBefore->game_type_id = $game->game_type_id;
-
-        $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-        $gameBefore->winner_ticket_big = $random;
-
-        $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
-        $gameBefore->link_hash = 'http://sha224.net/?val='.$game->hash;
-        $gameBefore->status_id = 4;
-        $gameBefore->animation_at = now()->addYear();
-        $gameBefore->save();
+//        $gameBefore = new \App\HistoryGame();
+//        $gameBefore->game_id = 3;
+//        $gameBefore->game_type_id = $game->game_type_id;
+//
+//        $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+//        $gameBefore->winner_ticket_big = $random;
+//
+//        $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
+//        $gameBefore->link_hash = 'http://sha224.net/?val='.$game->hash;
+//        $gameBefore->status_id = 4;
+//        $gameBefore->animation_at = now()->addYear();
+//        $gameBefore->save();
 
         $game = HistoryGame::with(['participants' => function($query) {
             $query->with('account');
@@ -122,7 +120,21 @@ class EndGame implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        (new JackpotController())->WinnerTimer($this->gameId,$this->hash,$this->winnerTicket,$this->linkHash,$this->timer,$this->percent,$this->image,$this->name,$this->bank,$this->winnerId,$this->viewHistoryWinner,$this->accountId,$this->balanceUser,$this->winners);
+        (new JackpotController())->WinnerTimer(
+            $this->gameId,
+            $this->hash,
+            $this->winnerTicket,
+            $this->linkHash,
+            $this->timer,
+            $this->percent,
+            $this->image,
+            $this->name,
+            $this->bank,
+            $this->winnerId,
+            $this->viewHistoryWinner,
+            $this->accountId,
+            $this->balanceUser,
+            $this->winners);
         return new Channel('jackpot');
     }
 }

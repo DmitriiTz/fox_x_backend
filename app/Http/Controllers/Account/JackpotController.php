@@ -94,6 +94,7 @@ class JackpotController extends Controller
                 ->where('status_id', '!=', 4)
                 ->where('animation_at', '>', Carbon::now())
                 ->first();
+
             //dump(['game' => $game]);
             if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
                 return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
