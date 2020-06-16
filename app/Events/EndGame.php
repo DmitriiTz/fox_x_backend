@@ -87,7 +87,17 @@ class EndGame implements ShouldBroadcast
         $this->bank = $bank;
         $this->winnerId = $account->id;
         $gameIteration = HistoryGame::where('id', $this->gameId)->with(['winner', 'participants'])->first();
+        //dump(['game1' => $gameIteration->toArray()]);
+        $particIter = Participant::where('min_cash_number', '<=', $gameIteration->winner_ticket)
+            ->where('max_cash_number', '>=', $gameIteration->winner_ticket)
+            ->where('history_game_id', $gameIteration->id)
+            ->first();
 
+        //dump(['winner' => $gameIteration->winner]);
+        //dump(['check' => $particIter->min_cash_number . ' - ' . $particIter->max_cash_number]);
+        $gameIteration->winner->range = $particIter->min_cash_number . ' - ' . $particIter->max_cash_number;
+        $gameIteration->save();
+        //dump(['winner' => $gameIteration->winner]);
         //$this->viewHistoryWinner = view('blocks.history-jackpot', compact('gameIteration'))->render();
         $this->viewHistoryWinner = $gameIteration;
 
