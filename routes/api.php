@@ -42,11 +42,39 @@ Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account
     Route::post('/send-message', ['uses' => 'MessageController@sendMessage']);
 
     Route::post('/set-participant-game', ['uses' => 'JackpotController@setParticipant']);
+    Route::get('/create-games/small', function () {
+        $gameBefore = new \App\HistoryGame();
+        $gameBefore->game_id = 3;
+        $gameBefore->game_type_id = 2;
+        $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+        $gameBefore->winner_ticket_big = $random;
+        $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
+        $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
+        $gameBefore->status_id = 1;
+        $gameBefore->animation_at = now()->addYear();
+        $gameBefore->save();
+        return response()->json($gameBefore);
+    });
+
+    Route::get('/create-games/classic', function () {
+        $gameBefore = new \App\HistoryGame();
+        $gameBefore->game_id = 3;
+        $gameBefore->game_type_id = 1;
+        $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+        $gameBefore->winner_ticket_big = $random;
+        $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
+        $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
+        $gameBefore->status_id = 1;
+        $gameBefore->animation_at = now()->addYear();
+        $gameBefore->save();
+        return response()->json($gameBefore);
+    });
 });
 
 
 Route::group([
-], function () {});
+], function () {
+});
 
 Route::get('/coinflip', ['as' => 'coinflip', 'uses' => 'MainController@coinflip']);
 
@@ -77,38 +105,7 @@ Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
 Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkAdmin']], function () {
-    Route::get('/create-games/small', function () {
-        for ($i = 0; $i < 10; $i++) {
-            $gameBefore = new \App\HistoryGame();
-            $gameBefore->game_id = 3;
-            $gameBefore->game_type_id = 2;
-            $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-            $gameBefore->winner_ticket_big = $random;
-            $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
-            $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
-            $gameBefore->status_id = 4;
-            $gameBefore->animation_at = now()->addYear();
-            $gameBefore->save();
 
-        }
-    });
-
-    Route::get('/create-games/classic', function () {
-        for ($i = 0; $i < 10; $i++) {
-            $gameBefore = new \App\HistoryGame();
-            $gameBefore->game_id = 3;
-            $gameBefore->game_type_id = 1;
-
-            $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-            $gameBefore->winner_ticket_big = $random;
-
-            $gameBefore->hash = hash('sha224', strval($gameBefore->winner_ticket_big));
-            $gameBefore->link_hash = 'http://sha224.net/?val=' . $gameBefore->hash;
-            $gameBefore->status_id = 4;
-            $gameBefore->animation_at = now()->addYear();
-            $gameBefore->save();
-        }
-    });
 
     Route::get('/', ['as' => 'admin', 'uses' => 'MainController@home']);
     Route::get('/users', ['as' => 'users', 'uses' => 'MainController@users']);
