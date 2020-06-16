@@ -25,6 +25,7 @@ class EndGame implements ShouldBroadcast
      * @return void
      */
 
+    public $game;
     public $gameId;
     public $hash;
     public $winnerTicket;
@@ -44,6 +45,7 @@ class EndGame implements ShouldBroadcast
     {
         //dump(['gameId' => $gameId]);
         $game = HistoryGame::whereId($gameId)->with('participants')->first();
+        $this->game = $game;
         //dd($game);
         $this->gameId = $gameId;
         //$game = HistoryGame::with('participants')->where('id', $this->gameId)->first();
@@ -120,21 +122,40 @@ class EndGame implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        (new JackpotController())->WinnerTimer(
-            $this->gameId,
-            $this->hash,
-            $this->winnerTicket,
-            $this->linkHash,
-            $this->timer,
-            $this->percent,
-            $this->image,
-            $this->name,
-            $this->bank,
-            $this->winnerId,
-            $this->viewHistoryWinner,
-            $this->accountId,
-            $this->balanceUser,
-            $this->winners);
-        return new Channel('jackpot');
+        if($this->game->game_type_id === 1){
+            (new JackpotController())->WinnerTimer(
+                $this->gameId,
+                $this->hash,
+                $this->winnerTicket,
+                $this->linkHash,
+                $this->timer,
+                $this->percent,
+                $this->image,
+                $this->name,
+                $this->bank,
+                $this->winnerId,
+                $this->viewHistoryWinner,
+                $this->accountId,
+                $this->balanceUser,
+                $this->winners);
+            return new Channel('jackpot-classic');
+        }else{
+            (new JackpotController())->WinnerTimer(
+                $this->gameId,
+                $this->hash,
+                $this->winnerTicket,
+                $this->linkHash,
+                $this->timer,
+                $this->percent,
+                $this->image,
+                $this->name,
+                $this->bank,
+                $this->winnerId,
+                $this->viewHistoryWinner,
+                $this->accountId,
+                $this->balanceUser,
+                $this->winners);
+            return new Channel('jackpot');
+        }
     }
 }

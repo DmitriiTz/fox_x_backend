@@ -21,7 +21,7 @@ class AddParticipant implements ShouldBroadcast
      */
 
     public $view;
-    public $type;
+    public $game;
     public $bank;
     public $isReload;
     public $winners;
@@ -33,7 +33,7 @@ class AddParticipant implements ShouldBroadcast
 
     public function __construct($view, $winners, $bet, $type, $bank, $isReload, $countParticipants, $gameId, $gameTypeName, $hashGame)
     {
-        $this->view = $view;
+        $this->game = $view;
         $this->type = $type;
         $this->bet = $bet;
         $this->bank = $bank;
@@ -52,6 +52,11 @@ class AddParticipant implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('jackpot');
+        if($this->game->game_type_id === 1){
+            return new Channel('jackpot-classic');
+        }
+        else{
+            return new Channel('jackpot');
+        }
     }
 }

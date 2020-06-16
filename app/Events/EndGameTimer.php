@@ -21,6 +21,7 @@ class EndGameTimer implements ShouldBroadcast
      *
      * @return void
      */
+    public $game;
     public $timer;
     public $gameId;
     public $hash;
@@ -39,7 +40,7 @@ class EndGameTimer implements ShouldBroadcast
 
     public function __construct($mainTimer, $gameId, $hash, $winnerTicket, $linkHash, $timer, $percent, $image, $name, $bank, $winnerId, $viewHistoryWinner, $accountId, $balanceUser, $winners)
     {
-
+        $this->game = HistoryGame::find($gameId);
         $this->gameId = $gameId;
         $this->hash = $hash;
         $this->winnerTicket = $winnerTicket;
@@ -65,8 +66,12 @@ class EndGameTimer implements ShouldBroadcast
     public function broadcastOn()
     {
         //   info('timer - '. ($this->endGameTime - now()->timestamp));
-
-        return new Channel('jackpot');
+        if($this->game->game_type_id === 1){
+            return new Channel('jackpot-classic');
+        }
+        else{
+            return new Channel('jackpot');
+        }
 
     }
 }

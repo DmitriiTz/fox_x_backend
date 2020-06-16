@@ -56,7 +56,13 @@ class StartGame implements ShouldBroadcast
                 event(new EndGame($this->game->id, $this->end_game_at));
             } else {
                 $this->endGameAt = $this->endGameAt - 1;
-                return new Channel('jackpot');
+                if($this->game->game_type_id === 1){
+                    return new Channel('jackpot-classic');
+                }
+                else{
+                    return new Channel('jackpot');
+                }
+
             }
         }
     }
