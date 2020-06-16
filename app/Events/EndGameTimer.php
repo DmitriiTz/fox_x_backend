@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\HistoryGame;
 use App\Events\EndGameKing;
+use App\Participant;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -22,6 +23,7 @@ class EndGameTimer implements ShouldBroadcast
      * @return void
      */
     public $game;
+    public $range;
     public $timer;
     public $gameId;
     public $hash;
@@ -52,6 +54,14 @@ class EndGameTimer implements ShouldBroadcast
         $this->bank = $bank;
         $this->winnerId = $winnerId;
         $this->viewHistoryWinner = $viewHistoryWinner;
+
+        $particIter = Participant::where('min_cash_number', '<=', $this->game->winner_ticket)
+            ->where('max_cash_number', '>=', $this->game->winner_ticket)
+            ->where('history_game_id', $this->game->id)
+            ->first();
+        $this->viewHistoryWinner->winner->range = $particIter->min_cash_number . ' - ' . $particIter->max_cash_number;
+        $this->range = $particIter->min_cash_number . ' - ' . $particIter->max_cash_number;
+
         $this->accountId = $accountId;
         $this->balanceUser = $balanceUser;
         $this->winners = $winners;
