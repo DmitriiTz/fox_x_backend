@@ -295,7 +295,17 @@ class CrashController extends Controller {
 
 		//var_dump(getBalance());
 
-		return view('crash', compact('pageName', 'game','bets', 'games', 'price', 'ubets'));
+        //return view('crash', compact('pageName', 'game','bets', 'games', 'price', 'ubets'));
+
+        $data = [
+            'pageName' => $pageName,
+            'game' => $game,
+            'bets' => $bets,
+            'games' => $games,
+            'price' => $price,
+            'ubets' => $ubets,
+        ];
+		return response()->json($data);
 	}
 
 	public function info(){
