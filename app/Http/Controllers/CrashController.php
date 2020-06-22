@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CrashTimer;
+use App\Jobs\CrashTimerJob;
 use App\User;
 use App\CrashGame;
 use App\CrashBet;
@@ -281,7 +282,7 @@ class CrashController extends Controller {
 			AdmCrash::dispatch($adm);
 
             for ($i = 0; $i <= $time; $i++) {
-                $job = (new CrashTimer($game->id, $i))->delay($i);
+                $job = (new CrashTimerJob($game->id, $i))->delay($i);
                 $this->dispatch($job);
             }
 		}
