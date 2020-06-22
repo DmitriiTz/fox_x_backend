@@ -254,8 +254,8 @@ class CrashController extends Controller {
 		if($game->stop_game < time() OR $game->status == 1){
 
 			$i = 1;
-			$x_int = rand(1, 1000);
-			$x_float = rand(10, 100);
+			$x_int = rand(1, 100);
+			$x_float = rand(10, 10);
 			$x = $x_int . '.' . $x_float;
 			$y = 1;
 
@@ -267,13 +267,13 @@ class CrashController extends Controller {
 				$i++;
 			}
 
-			$time =  time() + $i + 0;
+			$time = $i + 17;
 
 			CrashGame::create([
 				'number' => $i,
 				'create_game' => time(),
 				'profit' => $y,
-				'stop_game' => $time
+				'stop_game' => time() + $i + 17
 			]);
 
 			$game = CrashGame::orderBy('id', 'desc')->first();
@@ -281,8 +281,8 @@ class CrashController extends Controller {
 			$adm = time() - $game->create_game;
 			AdmCrash::dispatch($adm);
 
-            for ($i = 0; $i <= $time; $i++) {
-                $job = (new CrashTimerJob($game->id, $i))->delay($i);
+            for ($j = 0; $j <= $time; $j++) {
+                $job = (new CrashTimerJob($game->id, $j))->delay($j);
                 $this->dispatch($job);
             }
 		}
