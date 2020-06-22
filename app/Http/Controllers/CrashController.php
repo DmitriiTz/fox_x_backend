@@ -281,7 +281,7 @@ class CrashController extends Controller {
 			$adm = time() - $game->create_game;
 			AdmCrash::dispatch($adm);
 
-            for ($j = 0; $j <= $time; $j++) {
+            for ($j = 0; $j <= $time; $j += 0.5) {
                 $job = (new CrashTimerJob($game->id, $j))->delay($j);
                 $this->dispatch($job);
             }
