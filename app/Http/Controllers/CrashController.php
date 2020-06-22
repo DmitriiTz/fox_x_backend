@@ -268,15 +268,16 @@ class CrashController extends Controller {
 			}
 
 			$time = $i + 17;
+			$hash = hash('sha224', strval($y));
 
-			CrashGame::create([
-				'number' => $i,
-				'create_game' => time(),
-				'profit' => $y,
-				'stop_game' => time() + $time
-			]);
-
-			$game = CrashGame::orderBy('id', 'desc')->first();
+			$game = CrashGame::create([
+                'number' => $i,
+                'create_game' => time(),
+                'profit' => $y,
+                'stop_game' => time() + $time,
+                'hash' => $hash,
+                'link_hash' => 'http://sha224.net/?val='.$hash
+            ]);
 
 			$adm = time() - $game->create_game;
 			AdmCrash::dispatch($adm);
