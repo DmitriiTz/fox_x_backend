@@ -29,7 +29,6 @@ class CrashTimer implements ShouldBroadcast
 
     public function __construct($gameId, $end_game_at)
     {
-
         $this->gameId = $gameId;
         $this->endGameAt = $end_game_at;
     }

@@ -266,7 +266,7 @@ class CrashController extends Controller {
 				$i++;
 			}
 
-			$time =  time() + $i + 17;
+			$time =  time() + $i + 0;
 
 			CrashGame::create([
 				'number' => $i,
@@ -280,13 +280,11 @@ class CrashController extends Controller {
 			$adm = time() - $game->create_game;
 			AdmCrash::dispatch($adm);
 
-            for ($i = $time, $j = 0; $i >= 0, $j <= $time; $i--, $j++) {
-                $job = (new CrashTimer($game->id, $i))->delay($j);
+            for ($i = 0; $i <= $time; $i++) {
+                $job = (new CrashTimer($game->id, $i))->delay($i);
                 $this->dispatch($job);
             }
 		}
-
-
 
 		$bets = DB::table('crashbets')->where('crash_game_id', $game->id)->get();
 		$price = 0;
