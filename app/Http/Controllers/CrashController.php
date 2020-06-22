@@ -273,7 +273,7 @@ class CrashController extends Controller {
 				'number' => $i,
 				'create_game' => time(),
 				'profit' => $y,
-				'stop_game' => time() + $i + 17
+				'stop_game' => time() + $time
 			]);
 
 			$game = CrashGame::orderBy('id', 'desc')->first();
@@ -282,7 +282,7 @@ class CrashController extends Controller {
 			AdmCrash::dispatch($adm);
 
             for ($j = 0; $j <= $time; $j += 0.5) {
-                $coef = $i * ($j / ($i + 17));
+                $coef = $i * ($j / ($time));
                 $job = (new CrashTimerJob($game->id, $j, $coef))->delay($j);
                 $this->dispatch($job);
             }
