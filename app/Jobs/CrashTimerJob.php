@@ -20,11 +20,13 @@ class CrashTimerJob implements ShouldQueue
 
     public $gameId;
     public $endGameAt;
+    public $coef;
 
-    public function __construct($gameId, $endGameAt)
+    public function __construct($gameId, $endGameAt, $coef)
     {
         $this->gameId = $gameId;
         $this->endGameAt = $endGameAt;
+        $this->coef = $coef;
     }
 
     /**
@@ -34,6 +36,6 @@ class CrashTimerJob implements ShouldQueue
      */
     public function handle()
     {
-        event(new \App\Events\CrashTimer($this->gameId, $this->endGameAt));
+        event(new \App\Events\CrashTimer($this->gameId, $this->endGameAt, $this->coef));
     }
 }

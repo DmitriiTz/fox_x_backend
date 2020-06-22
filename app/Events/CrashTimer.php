@@ -14,11 +14,13 @@ class CrashTimer implements ShouldBroadcast
 
     public $gameId;
     public $endGameAt;
+    public $coef;
 
-    public function __construct($gameId, $end_game_at)
+    public function __construct($gameId, $end_game_at, $coef)
     {
         $this->gameId = $gameId;
         $this->endGameAt = $end_game_at;
+        $this->coef = $coef;
     }
 
     public function broadcastOn()
