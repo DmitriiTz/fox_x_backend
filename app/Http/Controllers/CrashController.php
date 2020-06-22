@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CrashTimer;
 use App\User;
 use App\CrashGame;
 use App\CrashBet;
@@ -265,11 +266,13 @@ class CrashController extends Controller {
 				$i++;
 			}
 
+			$time =  time() + $i + 17;
+
 			CrashGame::create([
 				'number' => $i,
 				'create_game' => time(),
 				'profit' => $y,
-				'stop_game' => time() + $i + 17
+				'stop_game' => $time
 			]);
 
 			$game = CrashGame::orderBy('id', 'desc')->first();
@@ -277,7 +280,13 @@ class CrashController extends Controller {
 			$adm = time() - $game->create_game;
 			AdmCrash::dispatch($adm);
 
+            for ($i = $time, $j = 0; $i >= 0, $j <= $time; $i--, $j++) {
+                $job = (new CrashTimer($game->id, $i))->delay($j);
+                $this->dispatch($job);
+            }
 		}
+
+
 
 		$bets = DB::table('crashbets')->where('crash_game_id', $game->id)->get();
 		$price = 0;
