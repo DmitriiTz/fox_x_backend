@@ -43,7 +43,7 @@ class CreateGameCrash implements ShouldBroadcast
             'number' => $i,
             'create_game' => time(),
             'profit' => $y,
-            'stop_game' => time() + $time,
+            'stop_game' => time() + $time + 10,
             'hash' => $hash,
             'link_hash' => 'http://sha224.net/?val='.$hash
         ]);
@@ -53,7 +53,7 @@ class CreateGameCrash implements ShouldBroadcast
 
         for ($j = 0; $j <= $time; $j++) {
             $coef = $i * ($j / ($time));
-            $job = (new CrashTimerJob($game->id, $j, $coef))->delay($j);
+            $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j + 10);
             $this->dispatch($job);
         }
     }
