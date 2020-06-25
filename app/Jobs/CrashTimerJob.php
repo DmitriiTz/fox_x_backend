@@ -44,7 +44,7 @@ class CrashTimerJob implements ShouldQueue
     {
         if($this->endGameAt === $this->endTimer){
             for ($i = 0,$j = 10; $i <= 10,$j >= 0; $i++,$j--) {
-                $job = (new EndCrashTimerJob($this->game->id, $j))->delay($i);
+                $job = (new EndCrashTimerJob($this->game->id, $j, $this->coef))->delay($i);
                 $this->dispatch($job);
             }
         }

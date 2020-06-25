@@ -254,8 +254,8 @@ class CrashController extends Controller {
 		if($game->stop_game < time() OR $game->status == 1){
 
 			$i = 1;
-			$x_int = rand(1, 10);
-			$x_float = rand(10, 1);
+			$x_int = rand(1, 100);
+			$x_float = rand(100, 1);
 			$x = $x_int . '.' . $x_float;
 			$y = 1;
 
