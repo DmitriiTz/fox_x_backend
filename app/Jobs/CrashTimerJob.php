@@ -46,6 +46,7 @@ class CrashTimerJob implements ShouldQueue
         if($this->endGameAt === $this->endTimer){
             dump(['EndCrashTimerJob start']);
             for ($i = 0; $i <= 10; $i++) {
+                dump(['enter to foreach']);
                 $job = (new EndCrashTimerJob($i))->delay($i);
                 $this->dispatch($job);
             }

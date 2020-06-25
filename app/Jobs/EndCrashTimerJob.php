@@ -22,6 +22,7 @@ class EndCrashTimerJob implements ShouldQueue
 
     public function __construct($timer)
     {
+        dump(['timer' => $timer]);
         $this->timer = $timer;
     }
 
