@@ -97,13 +97,60 @@ class MainController extends Controller
         $kingStatistics3Months = Commission::where('created_at', '>', Carbon::today()->subMonths(3))->where('created_at', '<', Carbon::now())->where('game_id', 2)->sum('price');
 
 
-        return view('admin.home', compact('page', 'paymentsInput3Months', 'paymentsInput7days', 'paymentsInputMonth', 'paymentsInputToday', 'paymentsInputYesterday',
-            'paymentsOutput3Months', 'paymentsOutput7days', 'paymentsOutputMonth', 'paymentsOutputToday', 'paymentsOutputYesterday', 'income3Months', 'income7days',
-            'incomeMonth', 'incomeYesterday', 'incomeToday', 'newUsers3Months', 'newUsers7days', 'newUsersMonth','newUsersYesterday', 'newUsersToday',
-            'paymentsReferralYesterday', 'paymentsReferralToday', 'paymentsReferral7days', 'paymentsReferralMonth', 'paymentsReferral3Months', 'jackpotStatisticsToday',
-            'jackpotStatisticsYesterday', 'jackpotStatistics7days', 'jackpotStatisticsMonth', 'jackpotStatistics3Months', 'coinflipStatisticsToday',
-            'coinflipStatisticsYesterday', 'coinflipStatistics7days', 'coinflipStatisticsMonth', 'coinflipStatistics3Months', 'kingStatisticsToday',
-            'kingStatisticsYesterday', 'kingStatistics7days', 'kingStatisticsMonth', 'kingStatistics3Months'));
+
+
+        $data = [
+            'page' => $page,
+            'paymentsInput3Months' => $paymentsInput3Months,
+            'paymentsInput7days' => $paymentsInput7days,
+            'paymentsInputMonth' => $paymentsInputMonth,
+            'paymentsInputToday' => $paymentsInputToday,
+            'paymentsInputYesterday' => $paymentsInputYesterday,
+            'paymentsOutput3Months' => $paymentsOutput3Months,
+            'paymentsOutput7days' => $paymentsOutput7days,
+            'paymentsOutputMonth' => $paymentsOutputMonth,
+            'paymentsOutputToday' => $paymentsOutputToday,
+            'paymentsOutputYesterday' => $paymentsOutputYesterday,
+            'income3Months' => $income3Months,
+            'income7days' => $income7days,
+            'incomeMonth' => $incomeMonth,
+            'incomeYesterday' => $incomeYesterday,
+            'incomeToday' => $incomeToday,
+            'newUsers3Months' => $newUsers3Months,
+            'newUsers7days' => $newUsers7days,
+            'newUsersMonth' => $newUsersMonth,
+            'newUsersYesterday' => $newUsersYesterday,
+            'newUsersToday' => $newUsersToday,
+            'paymentsReferralYesterday' => $paymentsReferralYesterday,
+            'paymentsReferralToday' => $paymentsReferralToday,
+            'paymentsReferral7days' => $paymentsReferral7days,
+            'paymentsReferralMonth' => $paymentsReferralMonth,
+            'paymentsReferral3Months' => $paymentsReferral3Months,
+            'jackpotStatisticsToday' => $jackpotStatisticsToday,
+            'jackpotStatisticsYesterday' => $jackpotStatisticsYesterday,
+            'jackpotStatistics7days' => $jackpotStatistics7days,
+            'jackpotStatisticsMonth' => $jackpotStatisticsMonth,
+            'jackpotStatistics3Months' => $jackpotStatistics3Months,
+            'coinflipStatisticsToday' => $coinflipStatisticsToday,
+            'coinflipStatisticsYesterday' => $coinflipStatisticsYesterday,
+            'coinflipStatistics7days' => $coinflipStatistics7days,
+            'coinflipStatisticsMonth' => $coinflipStatisticsMonth,
+            'coinflipStatistics3Months' => $coinflipStatistics3Months,
+            'kingStatisticsToday' => $kingStatisticsToday,
+            'kingStatisticsYesterday' => $kingStatisticsYesterday,
+            'kingStatistics7days' => $kingStatistics7days,
+            'kingStatisticsMonth' => $kingStatisticsMonth,
+            'kingStatistics3Months' => $kingStatistics3Months];
+
+        return response()->json($data);
+
+//        return view('admin.home', compact('page', 'paymentsInput3Months', 'paymentsInput7days', 'paymentsInputMonth', 'paymentsInputToday', 'paymentsInputYesterday',
+//            'paymentsOutput3Months', 'paymentsOutput7days', 'paymentsOutputMonth', 'paymentsOutputToday', 'paymentsOutputYesterday', 'income3Months', 'income7days',
+//            'incomeMonth', 'incomeYesterday', 'incomeToday', 'newUsers3Months', 'newUsers7days', 'newUsersMonth','newUsersYesterday', 'newUsersToday',
+//            'paymentsReferralYesterday', 'paymentsReferralToday', 'paymentsReferral7days', 'paymentsReferralMonth', 'paymentsReferral3Months', 'jackpotStatisticsToday',
+//            'jackpotStatisticsYesterday', 'jackpotStatistics7days', 'jackpotStatisticsMonth', 'jackpotStatistics3Months', 'coinflipStatisticsToday',
+//            'coinflipStatisticsYesterday', 'coinflipStatistics7days', 'coinflipStatisticsMonth', 'coinflipStatistics3Months', 'kingStatisticsToday',
+//            'kingStatisticsYesterday', 'kingStatistics7days', 'kingStatisticsMonth', 'kingStatistics3Months'));
     }
 
     // Выводит список пользователей
@@ -136,7 +183,17 @@ class MainController extends Controller
 
         $users = $users->paginate($paginate); // пагинация
 
-        return view('admin.users', compact('users', 'paginate', 'search', 'page', 'sort', 'arraySort'));
+        $data = [
+            'users' => $users,
+            'paginate' => $paginate,
+            'search' => $search,
+            'page' => $page,
+            'sort' => $sort,
+            'arraySort' => $arraySort,
+        ];
+        return response()->json($data);
+
+        //return view('admin.users', compact('users', 'paginate', 'search', 'page', 'sort', 'arraySort'));
     }
 
     // Страница отвечающая за вывод списка пополнений пользователей
@@ -185,7 +242,17 @@ class MainController extends Controller
             'sort' => $request->sort
         ];
 
-        return view('admin.wallet', compact('payments', 'paginate', 'page', 'sort', 'arraySort'));
+        $data = [
+            'payments' => $payments,
+            'paginate' => $paginate,
+            'page' => $page,
+            'sort' => $sort,
+            'arraySort' => $arraySort,
+        ];
+
+        return response()->json($data);
+
+        //return view('admin.wallet', compact('payments', 'paginate', 'page', 'sort', 'arraySort'));
     }
 
     // Метод отвечающий за страницу заявок на вывод денег из сервиса
@@ -232,8 +299,17 @@ class MainController extends Controller
 
         $applications = $applications->paginate($paginate);
 
+        $data = [
+            'applications' => $applications,
+            'paginate' => $paginate,
+            'page' => $page,
+            'sort' => $sort,
+            'search' => $search,
+        ];
 
-        return view('admin.output', compact('page', 'paginate', 'applications', 'search', 'sort'));
+        return response()->json($data);
+
+        //return view('admin.output', compact('page', 'paginate', 'applications', 'search', 'sort'));
     }
 
     // Страница отвечающая за вывод списка промокодов
@@ -282,7 +358,17 @@ class MainController extends Controller
 
         $promocodes = $promocodes->where('accrual', 0)->paginate($paginate);
 
-        return view('admin.promo', compact('promocodes', 'paginate', 'page', 'sort', 'arraySort'));
+        $data = [
+            'promocodes' => $promocodes,
+            'paginate' => $paginate,
+            'page' => $page,
+            'sort' => $sort,
+            'arraySort' => $arraySort,
+        ];
+
+        return response()->json($data);
+
+        //return view('admin.promo', compact('promocodes', 'paginate', 'page', 'sort', 'arraySort'));
     }
 
     // Страница отвечающая за вывод игр и информации по играм
@@ -312,7 +398,15 @@ class MainController extends Controller
             ->limit(100) // количество
             ->get(); // вывод игр по игре coinflip
 
-        return view('admin.games', compact('page', 'jackpotGames', 'coinflipGames'));
+        $data = [
+            'jackpotGames' => $jackpotGames,
+            'coinflipGames' => $coinflipGames,
+            'page' => $page,
+        ];
+
+        return response()->json($data);
+
+        //return view('admin.games', compact('page', 'jackpotGames', 'coinflipGames'));
     }
 
     // Страница отвечающая за вывод игр и информации по играм Crash
@@ -338,7 +432,17 @@ class MainController extends Controller
 
         }
 
-        return view('admin.crash', compact('page', 'info', 'bets', 'mode', 'profit'));
+        $data = [
+            'info' => $info,
+            'bets' => $bets,
+            'mode' => $mode,
+            'page' => $page,
+            'profit' => $profit,
+        ];
+
+        return response()->json($data);
+
+        //return view('admin.crash', compact('page', 'info', 'bets', 'mode', 'profit'));
     }
 
     // Метод возвращающий информацию по текущим ставкам Crash
@@ -351,6 +455,7 @@ class MainController extends Controller
         }else{
             $content = '';
         }
+        $data = [];
         foreach ($bets as $bet) {
             if($game->profit > $bet->number){
                 $z = '+';
@@ -363,9 +468,18 @@ class MainController extends Controller
             $content .=    '<td>'.$bet->price.'</td>';
             $content .=    '<td>'.$z.$bts.'</td>';
             $content .= '</tr>';
+
+            $data[] = [
+                'bts' => $bts,
+                'bet_number' => $bet->number,
+                'bet_price' => $bet->price,
+                'z_bts' => $z.$bts,
+            ];
         }
 
-        return $content;
+        return response()->json($data);
+
+        //return $content;
     }
 
     // Метод останавливает график Crash
@@ -386,9 +500,15 @@ class MainController extends Controller
 
         $user = User::findOrFail($request->userId);
 
-        $view = view('admin.blocks.popup-get-info-user', compact('user'))->render();
+        $data = [
+            'user' => $user,
+        ];
 
-        return $view;
+        return response()->json($data);
+
+        //$view = view('admin.blocks.popup-get-info-user', compact('user'))->render();
+
+        //return $view;
     }
 
     // Метод возвращает информацию по заявке на вывод
@@ -396,21 +516,35 @@ class MainController extends Controller
         $user = User::findOrFail($request->userId);
         $application = WithdrawMoneyAccountApplication::findOrFail($request->applicationId);
 
-        $view = view('admin.blocks.output-info-user', compact('user', 'application'))->render();
+        $data = [
+            'user' => $user,
+            'application' => $application,
+        ];
+
+        return response()->json($data);
+
+        //$view = view('admin.blocks.output-info-user', compact('user', 'application'))->render();
 
 
-        return $view;
+        //return $view;
     }
 
     // Метод выводит пагинацию по оплатам для определенного пользователя
     public function usersNextPage(Request $request) {
 
-
         $user = User::findOrFail($request->userId);
         $payments = Payment::where('account_id', $request->userId)->where('is_admin', 0)->whereIn('payment_type_id', [1,2,3])->paginate(10);
-        $view = view('admin.blocks.paginate-user', compact('payments', 'user'))->render();
 
-        return $view;
+        $data = [
+            'payments' => $payments,
+            'user' => $user,
+        ];
+
+        return response()->json($data);
+
+        //$view = view('admin.blocks.paginate-user', compact('payments', 'user'))->render();
+
+        //return $view;
 
     }
 

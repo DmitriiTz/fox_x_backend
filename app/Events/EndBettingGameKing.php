@@ -33,7 +33,6 @@ class EndBettingGameKing implements ShouldBroadcast
         $this->gameId = $gameId;
         $this->endGameAt = $endGameAt;
         $this->type = $type;
-
     }
 
     /**
@@ -43,7 +42,6 @@ class EndBettingGameKing implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
         $game = HistoryGame::find($this->gameId);
 
         if(!$game->is_view) {
@@ -52,7 +50,5 @@ class EndBettingGameKing implements ShouldBroadcast
             return new Channel('king');
 
         }
-
-        
     }
 }
