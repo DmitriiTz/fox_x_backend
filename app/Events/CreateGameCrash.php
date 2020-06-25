@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\CrashGame;
 use App\Jobs\CrashTimerJob;
+use App\Jobs\EndCrashTimerJob;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -20,42 +21,28 @@ class CreateGameCrash implements ShouldBroadcast
      * @return void
      */
 
-    public function __construct()
+    public $number,
+        $create_game,
+        $profit,
+        $stop_game,
+        $hash,
+        $link_hash;
+
+    public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
-        $i = 1;
-        $x_int = rand(1, 10);
-        $x_float = rand(10, 1);
-        $x = $x_int . '.' . $x_float;
-        $y = 1;
+        dump(['Enter Create game']);
 
-        while($i <= 1000){
-            $y = $y * 1.06;
-            if($y >= $x){
-                break;
-            }
-            $i++;
-        }
-
-        $time = $i + 17;
-        $hash = hash('sha224', strval($y));
-
-        $game = CrashGame::create([
-            'number' => $i,
-            'create_game' => time(),
-            'profit' => $y,
-            'stop_game' => time() + $time + 10,
+        $this->game = CrashGame::create([
+            'number' => $number,
+            'create_game' => $create_game,
+            'profit' => $profit,
+            'stop_game' => $stop_game,
             'hash' => $hash,
-            'link_hash' => 'http://sha224.net/?val='.$hash
+            'link_hash' => $link_hash
         ]);
 
-        $adm = time() - $game->create_game;
+        $adm = time() - $this->create_game;
         AdmCrash::dispatch($adm);
-
-        for ($j = 0; $j <= $time; $j++) {
-            $coef = $i * ($j / ($time));
-            $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j + 10);
-            $this->dispatch($job);
-        }
     }
 
     /**
@@ -65,6 +52,7 @@ class CreateGameCrash implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        dump('create Crash');
         return new Channel('crash');
     }
 }

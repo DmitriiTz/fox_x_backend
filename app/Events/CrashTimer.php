@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Http\Controllers\CrashController;
+use App\Jobs\EndCrashTimerJob;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -15,16 +17,23 @@ class CrashTimer implements ShouldBroadcast
     public $gameId;
     public $endGameAt;
     public $coef;
+    public $endTimer;
 
-    public function __construct($gameId, $end_game_at, $coef)
+    public function __construct($gameId, $end_game_at, $coef, $endTimer)
     {
         $this->gameId = $gameId;
         $this->endGameAt = $end_game_at;
         $this->coef = $coef;
+        $this->endTimer = $endTimer;
     }
 
     public function broadcastOn()
     {
+        if($this->endGameAt === $this->endTimer)
+        {
+            $create_game = new CrashController();
+            $create_game->createGame();
+        }
         return new Channel('crash-timer');
     }
 }

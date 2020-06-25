@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\EndGameTimerCrash;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,7 +23,6 @@ class EndCrashTimerJob implements ShouldQueue
 
     public function __construct($timer)
     {
-        dump(['timer' => $timer]);
         $this->timer = $timer;
     }
 
@@ -33,6 +33,6 @@ class EndCrashTimerJob implements ShouldQueue
      */
     public function handle()
     {
-        event(new \App\Events\EndGameTimerCrash($this->timer));
+        event(new EndGameTimerCrash($this->timer));
     }
 }
