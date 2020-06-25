@@ -105,8 +105,6 @@ Route::get('/change-theme', ['uses' => 'GlobalController@changeTheme']);
 Route::post('/payment-callback0707', ['uses' => 'Account\PaymentController@paymentCallback']);
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkAdmin']], function () {
-
-
     Route::get('/', ['as' => 'admin', 'uses' => 'MainController@home']);
     Route::get('/users', ['as' => 'users', 'uses' => 'MainController@users']);
     Route::get('/wallet', ['as' => 'wallet', 'uses' => 'MainController@wallet']);
