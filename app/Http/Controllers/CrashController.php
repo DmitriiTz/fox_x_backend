@@ -284,7 +284,7 @@ class CrashController extends Controller {
 
             for ($j = 0; $j <= $time; $j++) {
                 $coef = $i * ($j / ($time));
-                $job = (new CrashTimerJob($game->id, $j, $time, $coef))->delay($j);
+                $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j);
                 $this->dispatch($job);
             }
 		}
