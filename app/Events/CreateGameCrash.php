@@ -26,7 +26,8 @@ class CreateGameCrash implements ShouldBroadcast
         $profit,
         $stop_game,
         $hash,
-        $link_hash;
+        $link_hash,
+        $game;
 
     public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
