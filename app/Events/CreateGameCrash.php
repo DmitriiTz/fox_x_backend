@@ -21,13 +21,7 @@ class CreateGameCrash implements ShouldBroadcast
      * @return void
      */
 
-    public $number,
-        $create_game,
-        $profit,
-        $stop_game,
-        $hash,
-        $link_hash,
-        $game;
+    public $game;
 
     public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
@@ -42,8 +36,8 @@ class CreateGameCrash implements ShouldBroadcast
             'link_hash' => $link_hash
         ]);
 
-        $adm = time() - $this->create_game;
-        AdmCrash::dispatch($adm);
+//        $adm = time() - $this->create_game;
+//        AdmCrash::dispatch($adm);
     }
 
     /**
