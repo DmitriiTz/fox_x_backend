@@ -31,11 +31,9 @@ class CrashTimer implements ShouldBroadcast
     public function broadcastOn()
     {
         $game = HistoryGame::find($this->gameId);
-        if ($game->status !== 3) {
-            if ($this->endGameAt === $this->endTimer) {
+        if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
                 $create_game = new CrashController();
                 $create_game->createGame();
-            }
         }
         return new Channel('crash-timer');
     }
