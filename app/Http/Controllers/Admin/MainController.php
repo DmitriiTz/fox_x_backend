@@ -486,7 +486,7 @@ class MainController extends Controller
     // Метод останавливает график Crash
     public function crash_stop(Request $request){
 
-        Artisan::call('queue:clear redis');
+        Artisan::call('php artisan queue:clear redis');
 
         $game = CrashGame::orderBy('id', 'desc')->first();
         $stop = time();
