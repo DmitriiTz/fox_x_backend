@@ -36,7 +36,7 @@ class CrashTimer implements ShouldBroadcast
                 $create_game = new CrashController();
                 $create_game->createGame();
             }
-            return new Channel('crash-timer');
         }
+        return new Channel('crash-timer');
     }
 }
