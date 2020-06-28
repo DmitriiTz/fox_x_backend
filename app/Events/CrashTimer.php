@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\HistoryGame;
 use App\Http\Controllers\CrashController;
 use App\Jobs\EndCrashTimerJob;
 use Illuminate\Broadcasting\Channel;
@@ -29,11 +30,13 @@ class CrashTimer implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        if($this->endGameAt === $this->endTimer)
-        {
-            $create_game = new CrashController();
-            $create_game->createGame();
+        $game = HistoryGame::find($this->gameId);
+        if ($game->status !== 3) {
+            if ($this->endGameAt === $this->endTimer) {
+                $create_game = new CrashController();
+                $create_game->createGame();
+            }
+            return new Channel('crash-timer');
         }
-        return new Channel('crash-timer');
     }
 }

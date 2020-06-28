@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Controllers\CrashController;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -33,6 +34,8 @@ class StopCrash implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        $create_game = new CrashController();
+        $create_game->createGame();
         return new Channel('crash-stop');
     }
 }

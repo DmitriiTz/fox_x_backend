@@ -17,6 +17,7 @@ use App\Events\StopCrash;
 
 use App\CrashGame;
 use DB;
+use Illuminate\Support\Facades\Artisan;
 
 class MainController extends Controller
 {
@@ -484,6 +485,9 @@ class MainController extends Controller
 
     // Метод останавливает график Crash
     public function crash_stop(Request $request){
+
+        Artisan::call('queue:clear redis crash-timer');
+
         $game = CrashGame::orderBy('id', 'desc')->first();
         $stop = time();
         DB::table('crashgames')->where('id', $game->id)->update([
