@@ -25,13 +25,11 @@ class CrashTimerJob implements ShouldQueue
     public $endGameAt;
     public $coef;
     public $endTimer;
-    public $game;
 
     public function __construct($gameId, $i, $coef, $endTimer)
     {
         $this->endTimer = $endTimer;
         $this->gameId = $gameId;
-        $this->game = CrashGame::find($gameId);
         $this->endGameAt = $i;
         $this->coef = $coef;
     }
