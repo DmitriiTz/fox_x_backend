@@ -14,6 +14,11 @@ use Validator;
 
 class ProfileController extends Controller
 {
+    public function getBalance(){
+        $user = Auth::user();
+        return response()->json($user->balance);
+    }
+
     public function profile(Request $request)
     {
         $pageName = 'Профиль';

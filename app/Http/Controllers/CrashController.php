@@ -379,6 +379,10 @@ class CrashController extends Controller
 
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
+
+        if($game->status == 2){
+            return response()->json(['status' => 0, 'error' => 'Игра уже началась, ставки не принимаются']);
+        }
 //        $game_id = $game->id;
 
         $next_id = $game->id + 1;
@@ -405,14 +409,14 @@ class CrashController extends Controller
         } elseif (!$bet_next_exist) {
             $game_id = $next_id;
             $status = 2;
-            $result['msg'] = 'Ставка с суммой ' . $bet . ' руб. и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
+            $result['msg'] = 'Ставка с суммой ' . $bet . ' и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
         } else {
             $game_id = 0;
             $status = 0;
             $result['msg'] = 'Вы уже сделали ставку';
         }
 
-        if ($status != 0 && $status != 2) {
+        if ($status !== 0 && $status !== 2) {
             DB::table('crashbets')->insert([
                 'user_id' => $user->id,
                 'number' => $cashout,

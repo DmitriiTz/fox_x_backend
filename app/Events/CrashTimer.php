@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\CrashBet;
 use App\CrashGame;
 use App\HistoryGame;
 use App\Http\Controllers\CrashController;
@@ -20,6 +21,7 @@ class CrashTimer implements ShouldBroadcast
     public $endGameAt;
     public $coef;
     public $endTimer;
+    public $payments;
 
     public function __construct($gameId, $end_game_at, $coef, $endTimer)
     {
@@ -28,6 +30,7 @@ class CrashTimer implements ShouldBroadcast
         $this->endGameAt = $end_game_at;
         $this->coef = $coef;
         $this->endTimer = $endTimer;
+        $this->payments;
     }
 
     public function broadcastOn()
@@ -36,6 +39,18 @@ class CrashTimer implements ShouldBroadcast
         $game->profit = 1.06 ** $this->coef;
         $game->save();
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
+
+            $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
+            foreach ($bets as $bet){
+                DB::table('payments')->insert([
+                    'account_id' => $bet->user_id,
+                    'price' => $bet->price / 10
+                ]);
+                $this->payments[] = ;
+            }
+
+
+
             $create_game = new CrashController();
             $create_game->createGame();
 
