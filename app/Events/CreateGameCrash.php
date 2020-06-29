@@ -23,7 +23,7 @@ class CreateGameCrash implements ShouldBroadcast
      */
 
     public $game;
-
+    public $ubets;
     public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
         $this->game = CrashGame::create([
@@ -34,13 +34,13 @@ class CreateGameCrash implements ShouldBroadcast
             'hash' => $hash,
             'link_hash' => $link_hash
         ]);
-
-        foreach ($this->game->bets as $key) {
-            $this->game->ubets[] = [
+        $bets = DB::table('crashbets')->where('crash_game_id', $this->game->id)->get();
+        $this->ubets = array();
+        foreach ($bets as $key) {
+            $this->ubets[] = [
                 'bet' => $key,
                 'user' => User::Where('id', $key->user_id)->first()
             ];
-            $this->game->save();
         }
 
 //        $adm = time() - $this->create_game;
