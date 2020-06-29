@@ -33,6 +33,8 @@ class CrashTimer implements ShouldBroadcast
     public function broadcastOn()
     {
         $game = CrashGame::find($this->gameId);
+        $game->profit = 1.06 ** $this->coef;
+        $game->save();
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
                 $create_game = new CrashController();
                 $create_game->createGame();
