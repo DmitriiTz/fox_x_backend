@@ -379,10 +379,7 @@ class CrashController extends Controller
 
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
-
-        if($game->status == 2){
-            return response()->json(['status' => 0, 'msg' => 'Игра уже началась, ставки не принимаются']);
-        }
+        
 //        $game_id = $game->id;
 
         $next_id = $game->id + 1;
