@@ -18,6 +18,8 @@ Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@ho
 /** Account api routes */
 Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => 'auth:api'], function () {
 
+    Route::post('/get-balance', ['uses' => 'ProfileController@getBalance']);
+
     Route::post('/set-participants-king', ['uses' => 'KingOfTheHillController@setParticipant']);
     Route::get('/create-senior', ['uses' => 'KingOfTheHillController@create_senior']);
     Route::get('/create-classic', ['uses' => 'KingOfTheHillController@create_classic']);
