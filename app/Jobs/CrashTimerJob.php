@@ -42,6 +42,10 @@ class CrashTimerJob implements ShouldQueue
      */
     public function handle()
     {
+        if($this->endGameAt === $this->endTimer){
+            $this->game->status = 3;
+            $this->game->save();
+        }
         event(new \App\Events\CrashTimer($this->gameId, $this->endGameAt, $this->coef, $this->endTimer));
     }
 }
