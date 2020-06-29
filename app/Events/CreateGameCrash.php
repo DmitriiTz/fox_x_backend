@@ -5,6 +5,7 @@ namespace App\Events;
 use App\CrashGame;
 use App\Jobs\CrashTimerJob;
 use App\Jobs\EndCrashTimerJob;
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -25,8 +26,6 @@ class CreateGameCrash implements ShouldBroadcast
 
     public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
-        dump(['Enter Create game']);
-
         $this->game = CrashGame::create([
             'number' => $number,
             'create_game' => $create_game,
@@ -35,6 +34,14 @@ class CreateGameCrash implements ShouldBroadcast
             'hash' => $hash,
             'link_hash' => $link_hash
         ]);
+
+        foreach ($this->game->bets as $key) {
+            $this->game->ubets[] = [
+                'bet' => $key,
+                'user' => User::Where('id', $key->user_id)->first()
+            ];
+            $this->game->save();
+        }
 
 //        $adm = time() - $this->create_game;
 //        AdmCrash::dispatch($adm);
@@ -47,7 +54,6 @@ class CreateGameCrash implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        dump('create Crash');
         return new Channel('crash');
     }
 }
