@@ -263,7 +263,7 @@ class CrashController extends Controller
 
         $game = CrashGame::orderBy('id', 'desc')->first();
 
-        for ($j = 0; $j <= $time; $j += 0.1) {
+        for ($j = 0; $j <= $time; $j += 0.5) {
             $coef = $i * ($j / ($time));
             $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j + 10);
             $this->dispatch($job);
