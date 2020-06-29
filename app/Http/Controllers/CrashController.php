@@ -292,7 +292,7 @@ class CrashController extends Controller
 
         $bets = null;
 
-        if ($game->stop_game < time() OR $game->status == 1) {
+        if ($game->stop_game < time() OR $game->status == 3) {
             $this->createGame();
         }
 
