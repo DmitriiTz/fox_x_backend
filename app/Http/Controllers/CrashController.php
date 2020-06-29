@@ -384,7 +384,8 @@ class CrashController extends Controller
                     'user' => User::Where('id', $key->user_id)->first()
                 ];
             }
-            $result['ubets'] = view('crash-ubets', compact('ubets'))->render();
+            //$result['ubets'] = view('crash-ubets', compact('ubets'))->render();
+            $result['ubets'] = $ubets;
             $result['msg'] = 'Ваша ставка на текущую игру успешно принята!';
         } elseif (!$bet_next_exist) {
             $game_id = $next_id;
