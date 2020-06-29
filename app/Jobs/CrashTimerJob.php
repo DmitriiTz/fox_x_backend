@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\CrashGame;
 use App\Events\EndGameTimerCrash;
 use App\HistoryGame;
 use Illuminate\Bus\Queueable;
@@ -30,7 +31,7 @@ class CrashTimerJob implements ShouldQueue
     {
         $this->endTimer = $endTimer;
         $this->gameId = $gameId;
-        $this->game = HistoryGame::find($gameId);
+        $this->game = CrashGame::find($gameId);
         $this->endGameAt = $i;
         $this->coef = $coef;
     }
@@ -42,10 +43,6 @@ class CrashTimerJob implements ShouldQueue
      */
     public function handle()
     {
-        if($this->endGameAt === $this->endTimer){
-            $this->game->status = 3;
-            $this->game->save();
-        }
         event(new \App\Events\CrashTimer($this->gameId, $this->endGameAt, $this->coef, $this->endTimer));
     }
 }

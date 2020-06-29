@@ -36,8 +36,10 @@ class CrashTimer implements ShouldBroadcast
         $game->profit = 1.06 ** $this->coef;
         $game->save();
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
-                $create_game = new CrashController();
-                $create_game->createGame();
+            $create_game = new CrashController();
+            $create_game->createGame();
+
+            $game->update(['status' => 3]);
         }
         return new Channel('crash-timer');
     }
