@@ -42,10 +42,12 @@ class CrashTimer implements ShouldBroadcast
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
             foreach ($bets as $bet) {
-                DB::table('payments')->insert([
-                    'account_id' => $bet->user_id,
-                    'price' => $bet->price / 10
-                ]);
+                if($bet->number > $game->profit){
+                    DB::table('payments')->insert([
+                        'account_id' => $bet->user_id,
+                        'price' => $bet->price * $bet->number / 10
+                    ]);
+                }
             }
 
             $create_game = new CrashController();

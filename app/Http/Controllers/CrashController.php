@@ -379,7 +379,7 @@ class CrashController extends Controller
 
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
-        
+
 //        $game_id = $game->id;
 
         $next_id = $game->id + 1;
