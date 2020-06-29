@@ -357,6 +357,21 @@ class CrashController extends Controller
 
     }
 
+    public function cashout()
+    {
+        $user = Auth::user();
+        $game = CrashGame::orderBy('id', 'desc')->first();
+        $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
+        if($game->status === 2){
+            DB::table('payments')->insert([
+                'account_id' => $user->id,
+                'price' => $bet->price / 10
+            ]);
+            return response()->json(['id' => $user->id, 'price' => $bet->price]);
+        }
+
+        return response()->json(['status' => 0, 'error' => 'Игра уже закончена']);
+    }
     public function newBet(Request $request)
     {
         $cashout = $request->get('cashout');
@@ -414,16 +429,6 @@ class CrashController extends Controller
         $result['bet'] = $bet;
         $result['status'] = $status;
         return response()->json($result);
-    }
-
-    public function updateBalace(Request $request)
-    {
-        DB::table('payments')->insert([
-            'account_id' => $request->get('id'),
-            'price' => $request->get('price') / 10
-        ]);
-
-        return response()->json(['id' => $request->get('id'), 'price' => $request->get('price')]);
     }
 
     public function algorithm()

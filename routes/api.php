@@ -92,6 +92,7 @@ Route::post('/crash/new-bet', function (Illuminate\Http\Request $request) {
 });
 
 Route::post('/crash/bet', ['as' => 'crash-bet', 'uses' => 'CrashController@newBet']);
+Route::post('/crash/cashout', 'CrashController@cashout');
 Route::get('/crash/update-balance', ['as' => 'crash-last', 'uses' => 'CrashController@updateBalace']);
 
 //Тестовые маршруты
