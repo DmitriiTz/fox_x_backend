@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Support\Facades\DB;
 
 class CrashTimer implements ShouldBroadcast
 {
@@ -39,17 +40,13 @@ class CrashTimer implements ShouldBroadcast
         $game->profit = 1.06 ** $this->coef;
         $game->save();
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
-
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
-            foreach ($bets as $bet){
+            foreach ($bets as $bet) {
                 DB::table('payments')->insert([
                     'account_id' => $bet->user_id,
                     'price' => $bet->price / 10
                 ]);
-                $this->payments[] = ;
             }
-
-
 
             $create_game = new CrashController();
             $create_game->createGame();
