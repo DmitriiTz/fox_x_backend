@@ -390,7 +390,7 @@ class CrashController extends Controller
         $bet_next_exist = CrashBet::where('user_id', '=', $user->id)->where('crash_game_id', '=', $next_id)->exists();
 
         $game_id = $game->id;
-        if (!$bet_exist && $game->rand_number == 0) {
+        if (!$bet_exist && $game->rand_number == 0 && $game->status === 1) {
             $game_id = $game->id;
             $status = 1;
             $bets = DB::table('crashbets')->where('crash_game_id', $game_id)->get();
