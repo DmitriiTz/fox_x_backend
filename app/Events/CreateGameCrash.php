@@ -30,7 +30,7 @@ class CreateGameCrash implements ShouldBroadcast
         $this->game = CrashGame::create([
             'number' => $number,
             'create_game' => $create_game,
-            'status' => 2,
+            'status' => 1,
             'profit' => $profit,
             'stop_game' => $stop_game,
             'hash' => $hash,

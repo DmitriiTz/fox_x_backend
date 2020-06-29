@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\CrashGame;
 use App\HistoryGame;
 use App\Events\EndGameKing;
 use App\Participant;
@@ -37,6 +38,10 @@ class EndGameTimerCrash implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        if($this->timer === 10){
+            $game = CrashGame::where('status', 1)->first();
+            $game->update(['status' => 2]);
+        }
         return new Channel('end-crash-timer');
     }
 }
