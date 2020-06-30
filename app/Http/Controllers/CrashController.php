@@ -363,11 +363,13 @@ class CrashController extends Controller
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
-        $bet->update(['number' => $game->profit]);
+        if($bet->number === 0){
+            $bet->update(['number' => $game->profit]);
+        }
 
         event(new FlashOutCrash($bet));
 
-        return response()->json(['status' => 1, 'msg' => 'Вы вышли на '. $bet->number . ' коэффициент']);
+        return response()->json(['status' => 1, 'msg' => 'Вы вышли на '. $bet->number . ' коэффициентe']);
     }
 
     public function cashout()
