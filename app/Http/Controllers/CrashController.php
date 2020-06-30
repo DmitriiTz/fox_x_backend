@@ -364,7 +364,8 @@ class CrashController extends Controller
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
         if($bet->number === 0){
-            $bet->update(['number' => $game->profit]);
+            $bet->number = $game->profit;
+            $bet->save();
         }
 
         event(new FlashOutCrash($bet));
