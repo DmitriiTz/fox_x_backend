@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\CrashTimer;
 use App\Events\CreateGameCrash;
 use App\Events\FlashOutCrash;
 use App\Jobs\CrashTimerJob;
-use App\Jobs\CreateCrashJob;
 use App\Jobs\EndCrashTimerJob;
 use App\User;
 use App\CrashGame;
 use App\CrashBet;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use App\Http\Requests;
 use Illuminate\Support\Cache;
 use App\Events\JoinCrash;
 use App\Events\AdmCrash;
 use App\Events\CrashCoef;
-
+use Illuminate\Support\Collection;
 use Auth;
 use App\Payment;
 
@@ -315,8 +311,10 @@ class CrashController extends Controller
 
         //return view('crash', compact('pageName', 'game','bets', 'games', 'price', 'ubets'));
 
-        $game = $game->except('profit');
-            
+        $game = $game->toArray();
+
+        unset($game['profit']);
+
         $data = [
             'pageName' => $pageName,
             'game' => $game,
