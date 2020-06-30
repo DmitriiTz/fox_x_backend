@@ -421,7 +421,13 @@ class CrashController extends Controller
         } elseif (!$bet_next_exist) {
             $game_id = $next_id;
             $status = 2;
-            $result['msg'] = 'Ставка с суммой ' . $bet . ' и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
+            if($cashout === 0)
+            {
+                $result['msg'] = 'Вы поставили на нулевой коэффициент';
+            }else{
+                $result['msg'] = 'Ставка с суммой ' . $bet . ' и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
+            }
+
         } else {
             $game_id = 0;
             $status = 0;
