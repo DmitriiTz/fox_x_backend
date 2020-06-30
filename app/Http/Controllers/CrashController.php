@@ -319,7 +319,7 @@ class CrashController extends Controller
 
         $data = [
             'pageName' => $pageName,
-            'game' => $game,
+            'game' => $game->all(),
             'bets' => $bets,
             'games' => $games,
             'price' => $price,
