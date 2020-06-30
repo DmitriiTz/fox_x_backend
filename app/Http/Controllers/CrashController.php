@@ -315,6 +315,8 @@ class CrashController extends Controller
 
         //return view('crash', compact('pageName', 'game','bets', 'games', 'price', 'ubets'));
 
+        unset($game->profit);
+
         $data = [
             'pageName' => $pageName,
             'game' => $game,
@@ -422,7 +424,7 @@ class CrashController extends Controller
         } elseif (!$bet_next_exist) {
             $game_id = $next_id;
             $status = 2;
-            if($cashout === 0)
+            if($cashout === '0.00')
             {
                 $result['msg'] = 'Вы поставили на нулевой коэффициент';
             }else{
