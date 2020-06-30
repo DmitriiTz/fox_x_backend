@@ -424,7 +424,10 @@ class CrashController extends Controller
                 'account_id' => Auth::user()->id,
                 'price' => '-' . $bet / 10
             ]);
-            JoinCrash::dispatch($user, $request->get('cashout'), $request->get('bet'));
+
+            if($status !== 2){
+                JoinCrash::dispatch($user, $request->get('cashout'), $request->get('bet'));
+            }
         }
 
         $result['bet'] = $bet;
