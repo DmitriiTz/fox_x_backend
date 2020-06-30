@@ -413,7 +413,7 @@ class CrashController extends Controller
             $result['msg'] = 'Вы уже сделали ставку';
         }
 
-        if ($status !== 0 && $status !== 2) {
+        if ($status !== 0) {
             DB::table('crashbets')->insert([
                 'user_id' => $user->id,
                 'number' => $cashout,
