@@ -315,7 +315,7 @@ class CrashController extends Controller
 
         //return view('crash', compact('pageName', 'game','bets', 'games', 'price', 'ubets'));
 
-        unset($game->profit);
+        $game->forget('profit');
 
         $data = [
             'pageName' => $pageName,
