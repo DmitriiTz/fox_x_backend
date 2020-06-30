@@ -357,6 +357,14 @@ class CrashController extends Controller
 
     }
 
+    public function flashCashOut()
+    {
+        $user = Auth::user();
+        $game = CrashGame::orderBy('id', 'desc')->first();
+        $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
+        $bet->update(['number' => $game->profit]);
+    }
+
     public function cashout()
     {
         $user = Auth::user();
