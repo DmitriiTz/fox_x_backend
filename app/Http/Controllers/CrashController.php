@@ -426,7 +426,7 @@ class CrashController extends Controller
             $status = 2;
             if($cashout === '0.00')
             {
-                $result['msg'] = 'Вы поставили на нулевой коэффициент';
+                $result['msg'] = 'Вы сделали ставку на следущую игру с произвольным коэффициентом';
             }else{
                 $result['msg'] = 'Ставка с суммой ' . $bet . ' и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
             }
