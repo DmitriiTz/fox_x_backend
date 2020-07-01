@@ -433,10 +433,19 @@ class MainController extends Controller
 
         }
 
+        $ubets = array();
+        foreach ($game->bets as $key) {
+            $ubets[] = [
+                'bet' => $key,
+                'user' => User::Where('id', $key->user_id)->first()
+            ];
+        }
+
         $data = [
             'game' => $game,
             'info' => $info,
             'bets' => $bets,
+            'ubets' => $ubets,
             'mode' => $mode,
             'page' => $page,
             'profit' => $game->profit,
