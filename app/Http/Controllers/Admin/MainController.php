@@ -507,13 +507,11 @@ class MainController extends Controller
         $total_price_input = $user->payments->where('payment_type_id', 1)->sum('price');
         $total_price_referal = $user->payments->where('payment_type_id', 3)->sum('price');
 
-        $user = $user->payments->where('payment_type_id', [1,2])->get();
-
         $data = [
             'total_price_output' => $total_price_output,
             'total_price_input' => $total_price_input,
             'total_price_referal' => $total_price_referal,
-            'user' => $user,
+            'user' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
         ];
 
         return response()->json($data);
