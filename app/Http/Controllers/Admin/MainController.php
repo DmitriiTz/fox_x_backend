@@ -520,7 +520,8 @@ class MainController extends Controller
             'total_price_output' => $total_price_output,
             'total_price_input' => $total_price_input,
             'total_price_referal' => $total_price_referal,
-            'user' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
+            'user' => $user,
+            'payments' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
         ];
 
         return response()->json($data);
@@ -544,7 +545,8 @@ class MainController extends Controller
             'total_price_output' => $total_price_output,
             'total_price_input' => $total_price_input,
             'total_price_referal' => $total_price_referal,
-            'user' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
+            'user' => $user,
+            'payments' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
             'application' => $application,
         ];
 
