@@ -523,11 +523,19 @@ class MainController extends Controller
 
     // Метод возвращает информацию по заявке на вывод
     public function getInfoUserOutput(Request $request) {
-        $user = User::findOrFail($request->userId);
+        $user = User::with(['payments',])->findOrFail($request->userId);
+
+        $total_price_output = $user->payments->where('payment_type_id', 2)->sum('price');
+        $total_price_input = $user->payments->where('payment_type_id', 1)->sum('price');
+        $total_price_referal = $user->payments->where('payment_type_id', 3)->sum('price');
+
         $application = WithdrawMoneyAccountApplication::findOrFail($request->applicationId);
 
         $data = [
-            'user' => $user,
+            'total_price_output' => $total_price_output,
+            'total_price_input' => $total_price_input,
+            'total_price_referal' => $total_price_referal,
+            'user' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
             'application' => $application,
         ];
 
@@ -683,10 +691,19 @@ class MainController extends Controller
                 $payment->payment_type_id = 2;
                 $payment->payment_system_id = $application->payment_system_id;
                 $payment->save();
+                return response()->json();
             }
 
         }
-
+        if($application->status_id === 1 && $request->status_id === 3) {
+            $application->status_id = $request->status_id;
+            $application->save();
+            Payment::destroy($application->payment_id);
+            return response()->json();
+        }
+        $application->status_id = $request->status_id;
+        $application->save();
+        return response()->json();
     }
 
 
