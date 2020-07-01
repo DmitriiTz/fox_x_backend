@@ -443,7 +443,6 @@ class MainController extends Controller
 
         $data = [
             'game' => $game,
-            'info' => $info,
             'bets' => $bets,
             'ubets' => $ubets,
             'mode' => $mode,
