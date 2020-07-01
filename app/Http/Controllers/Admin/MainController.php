@@ -434,6 +434,7 @@ class MainController extends Controller
         }
 
         $data = [
+            'game' => $game,
             'info' => $info,
             'bets' => $bets,
             'mode' => $mode,
