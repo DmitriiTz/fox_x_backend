@@ -502,10 +502,13 @@ class MainController extends Controller
     // Метод возвращающий информацию по определенному пользователю
     public function getInfoUser(Request $request) {
 
-        $user = User::with(['payments',])->where('payments.payment_type_id', [1,2])->findOrFail($request->userId);
+        $user = User::with(['payments',])->findOrFail($request->userId);
         $total_price_output = $user->payments->where('payment_type_id', 2)->sum('price');
         $total_price_input = $user->payments->where('payment_type_id', 1)->sum('price');
         $total_price_referal = $user->payments->where('payment_type_id', 3)->sum('price');
+
+        $user = $user->payments->where('payment_type_id', [1,2])->get();
+
         $data = [
             'total_price_output' => $total_price_output,
             'total_price_input' => $total_price_input,
