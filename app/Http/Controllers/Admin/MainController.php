@@ -202,7 +202,7 @@ class MainController extends Controller
 
         $page = 'Пополнение';
         $paginate = 20;
-        $payments = Payment::where('payment_type_id', 1);
+        $payments = Payment::where('payment_type_id', 1)->with(['account', 'payment_system']);
 
         if($request->calendar_range) {
             if(strpos($request->calendar_range, '—') !== false) {
