@@ -438,7 +438,7 @@ class MainController extends Controller
             'bets' => $bets,
             'mode' => $mode,
             'page' => $page,
-            'profit' => $profit,
+            'profit' => $game->profit,
         ];
 
         return response()->json($data);
