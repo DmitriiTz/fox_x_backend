@@ -269,13 +269,13 @@ class MainController extends Controller
                 $explode = explode('—', $request->calendar_range);
                 $dateFrom = Carbon::parse(trim(implode('-', array_reverse(explode('.', $explode[0])))));
                 $dateTo = Carbon::parse(trim(implode('-', array_reverse(explode('.', $explode[1])))));
-                $applications = $applications->where('created_at', '>', $dateFrom)->where('created_at', '<', $dateTo);
+                $applications = $applications->with(['account', 'payment_system'])->where('created_at', '>', $dateFrom)->where('created_at', '<', $dateTo);
             }
             else {
                 $date = implode('-', array_reverse(explode('.', $request->calendar_range)));
                 $dateFrom = Carbon::parse($date);
                 $dateTo = Carbon::parse($date)->addDay();
-                $applications = $applications->where('created_at', '>', $dateFrom)->where('created_at', '<', $dateTo);
+                $applications = $applications->with(['account', 'payment_system'])->where('created_at', '>', $dateFrom)->where('created_at', '<', $dateTo);
             }
         }
 
