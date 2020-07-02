@@ -285,3 +285,4 @@
 //    'as' => 'logout',
 //    'uses' => 'AuthController@logout'
 //]);
+Route::view('/{path?}', 'app');

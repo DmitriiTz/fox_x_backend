@@ -110,6 +110,7 @@ class ComposerStaticInitae7d55c3b4bce93536565b58b18552f8
         ),
         'M' => 
         array (
+            'Morrislaptop\\LaravelQueueClear\\' => 31,
             'Monolog\\' => 8,
         ),
         'L' => 
@@ -335,6 +336,10 @@ class ComposerStaticInitae7d55c3b4bce93536565b58b18552f8
         array (
             0 => __DIR__ . '/..' . '/nexmo/client/src',
         ),
+        'Morrislaptop\\LaravelQueueClear\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/morrislaptop/laravel-queue-clear/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -515,12 +520,16 @@ class ComposerStaticInitae7d55c3b4bce93536565b58b18552f8
         'App\\Events\\AddParticipantKing' => __DIR__ . '/../..' . '/app/Events/AddParticipantKing.php',
         'App\\Events\\AdmCrash' => __DIR__ . '/../..' . '/app/Events/AdmCrash.php',
         'App\\Events\\CrashCoef' => __DIR__ . '/../..' . '/app/Events/CrashCoef.php',
+        'App\\Events\\CrashTimer' => __DIR__ . '/../..' . '/app/Events/CrashTimer.php',
+        'App\\Events\\CreateGame' => __DIR__ . '/../..' . '/app/Events/CreateGame.php',
         'App\\Events\\CreateGameCoinFlip' => __DIR__ . '/../..' . '/app/Events/CreateGameCoinFlip.php',
+        'App\\Events\\CreateGameCrash' => __DIR__ . '/../..' . '/app/Events/CreateGameCrash.php',
         'App\\Events\\EndBettingGameKing' => __DIR__ . '/../..' . '/app/Events/EndBettingGameKing.php',
         'App\\Events\\EndGame' => __DIR__ . '/../..' . '/app/Events/EndGame.php',
         'App\\Events\\EndGameCoinflip' => __DIR__ . '/../..' . '/app/Events/EndGameCoinflip.php',
         'App\\Events\\EndGameKing' => __DIR__ . '/../..' . '/app/Events/EndGameKing.php',
         'App\\Events\\EndGameTimer' => __DIR__ . '/../..' . '/app/Events/EndGameTimer.php',
+        'App\\Events\\EndGameTimerCrash' => __DIR__ . '/../..' . '/app/Events/EndGameTimerCrash.php',
         'App\\Events\\JoinCrash' => __DIR__ . '/../..' . '/app/Events/JoinCrash.php',
         'App\\Events\\SendMessage' => __DIR__ . '/../..' . '/app/Events/SendMessage.php',
         'App\\Events\\StartGame' => __DIR__ . '/../..' . '/app/Events/StartGame.php',
@@ -563,8 +572,10 @@ class ComposerStaticInitae7d55c3b4bce93536565b58b18552f8
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\ApiRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ApiRequest.php',
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
+        'App\\Jobs\\CrashTimerJob' => __DIR__ . '/../..' . '/app/Jobs/CrashTimerJob.php',
         'App\\Jobs\\CreateCrash' => __DIR__ . '/../..' . '/app/Jobs/CreateCrash.php',
         'App\\Jobs\\EndBettingGameKing' => __DIR__ . '/../..' . '/app/Jobs/EndBettingGameKing.php',
+        'App\\Jobs\\EndCrashTimerJob' => __DIR__ . '/../..' . '/app/Jobs/EndCrashTimerJob.php',
         'App\\Jobs\\EndGame' => __DIR__ . '/../..' . '/app/Jobs/EndGame.php',
         'App\\Jobs\\EndGameCoinflip' => __DIR__ . '/../..' . '/app/Jobs/EndGameCoinflip.php',
         'App\\Jobs\\EndGameKing' => __DIR__ . '/../..' . '/app/Jobs/EndGameKing.php',
@@ -2763,6 +2774,10 @@ class ComposerStaticInitae7d55c3b4bce93536565b58b18552f8
         'Monolog\\ResettableInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ResettableInterface.php',
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Morrislaptop\\LaravelQueueClear\\Clearer' => __DIR__ . '/..' . '/morrislaptop/laravel-queue-clear/src/Clearer.php',
+        'Morrislaptop\\LaravelQueueClear\\Console\\QueueClearCommand' => __DIR__ . '/..' . '/morrislaptop/laravel-queue-clear/src/Console/QueueClearCommand.php',
+        'Morrislaptop\\LaravelQueueClear\\Contracts\\Clearer' => __DIR__ . '/..' . '/morrislaptop/laravel-queue-clear/src/Contracts/Clearer.php',
+        'Morrislaptop\\LaravelQueueClear\\LaravelQueueClearServiceProvider' => __DIR__ . '/..' . '/morrislaptop/laravel-queue-clear/src/LaravelQueueClearServiceProvider.php',
         'Nexmo\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client/src/Account/Balance.php',
         'Nexmo\\Account\\Client' => __DIR__ . '/..' . '/nexmo/client/src/Account/Client.php',
         'Nexmo\\Account\\PrefixPrice' => __DIR__ . '/..' . '/nexmo/client/src/Account/PrefixPrice.php',

@@ -2221,6 +2221,49 @@
         ]
     },
     {
+        "name": "morrislaptop/laravel-queue-clear",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/morrislaptop/laravel-queue-clear.git",
+            "reference": "58c8b64e0f6e9f190fa687b8e44b442a649cbc98"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/morrislaptop/laravel-queue-clear/zipball/58c8b64e0f6e9f190fa687b8e44b442a649cbc98",
+            "reference": "58c8b64e0f6e9f190fa687b8e44b442a649cbc98",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": ">=5.0.0",
+            "php": ">=5.4.0"
+        },
+        "time": "2019-08-05T15:21:24+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Morrislaptop\\LaravelQueueClear\\LaravelQueueClearServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Morrislaptop\\LaravelQueueClear\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Craig Morris",
+                "email": "craig.michael.morris@gmail.com"
+            }
+        ],
+        "description": "Command for wiping your queues clear"
+    },
+    {
         "name": "myclabs/deep-copy",
         "version": "1.8.1",
         "version_normalized": "1.8.1.0",

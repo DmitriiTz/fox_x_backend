@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a7ed9a00.chunk.css",
+    "main.js": "/static/js/main.1ad08b39.chunk.js",
+    "main.js.map": "/static/js/main.1ad08b39.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.014c307f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.014c307f.js.map",
+    "static/css/2.cd331053.chunk.css": "/static/css/2.cd331053.chunk.css",
+    "static/js/2.ba30257e.chunk.js": "/static/js/2.ba30257e.chunk.js",
+    "static/js/2.ba30257e.chunk.js.map": "/static/js/2.ba30257e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.7e12a57c95d16b694380e0b92c1badf5.js": "/precache-manifest.7e12a57c95d16b694380e0b92c1badf5.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.cd331053.chunk.css.map": "/static/css/2.cd331053.chunk.css.map",
+    "static/css/main.a7ed9a00.chunk.css.map": "/static/css/main.a7ed9a00.chunk.css.map",
+    "static/js/2.ba30257e.chunk.js.LICENSE.txt": "/static/js/2.ba30257e.chunk.js.LICENSE.txt",
+    "static/media/material-icons.css": "/static/media/MaterialIcons-Regular.d120c85b.ttf",
+    "static/media/main.min.css": "/static/media/time-out-bg.2c2a0493.png",
+    "static/media/admin.fontFace.css": "/static/media/Roboto-Medium.d0884059.ttf",
+    "static/media/blick.png": "/static/media/blick.60e1a211.png",
+    "static/media/blickGreen.png": "/static/media/blickGreen.2434db41.png",
+    "static/media/blickOrange.png": "/static/media/blickOrange.63fe019f.png",
+    "static/media/mv.png": "/static/media/mv.62212558.png",
+    "static/media/CoinFlipStyle.css": "/static/media/strelki.730c0256.png",
+    "static/media/yandex.png": "/static/media/yandex.0f8cf707.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.014c307f.js",
+    "static/css/2.cd331053.chunk.css",
+    "static/js/2.ba30257e.chunk.js",
+    "static/css/main.a7ed9a00.chunk.css",
+    "static/js/main.1ad08b39.chunk.js"
+  ]
+}
