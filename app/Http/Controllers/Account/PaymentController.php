@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
-    public function toUpAccount(Request $request) {
+    public function toUpAccount(Request $request)
+    {
         $summa = $request->summa;
         $user = auth()->user();
         $payment = new Order;
@@ -22,87 +23,96 @@ class PaymentController extends Controller
 
         $merchantId = 115943;
 
-        if($request->paymentType == 1) {
+        if ($request->paymentType == 1) {
             $codeCurrency = 63;
         }
 
-        if($request->paymentType == 2) {
+        if ($request->paymentType == 2) {
             $codeCurrency = 80;
         }
 
-        if($request->paymentType == 3) {
+        if ($request->paymentType == 3) {
             $codeCurrency = 45;
         }
 
-        if($request->paymentType == 4) {
+        if ($request->paymentType == 4) {
             $codeCurrency = 160;
         }
 
 
         $orderId = $payment->id;
-        $sign = md5($merchantId.':'.$summa.':nio9ahlh:'.$orderId);
+        $sign = md5($merchantId . ':' . $summa . ':nio9ahlh:' . $orderId);
 
-        //$html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
+        $html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
 
-        $url = 'http://www.free-kassa.ru/merchant/cash.php?m='.$merchantId.'&oa='.$summa.'&o='.$orderId.'&s='.$sign.'&i='.$codeCurrency.'&lang=ru&us_id='.$user->id.'&pay=Оплатить';
-        return response()->json($url);
+        $data = [
+            'm' => $merchantId,
+            'oa' => $summa,
+            'o' => $orderId,
+            's' => $sign,
+            'i' => $codeCurrency,
+            'lang' => 'ru',
+            'us_id' => $user->id,
+            'pay' => 'Оплатить'
+        ];
 
-    }
-
-    public function withdrawalOfFundsAccount(Request $request) {
-
-        $frozenapp = WithdrawMoneyAccountApplication::where('account_id',auth()->user()->id)->where('status_id',8)->first();
-        if(!$frozenapp)
-        {
-        if(getBalance(auth()->user()) >= $request->summa)
-        {
-        $payment = new Payment;
-        $payment->account_id = auth()->user()->id;
-        $payment->price = -$request->summa;
-        $payment->payment_system_id = $request->paymentType;
-        $payment->payment_type_id = 2;
-        $payment->save();
-
-        $application = new WithdrawMoneyAccountApplication;
-        $application->account_id = auth()->user()->id;
-        $application->status_id = 1;
-        $application->price = $request->summa;
-        $application->payment_system_id = $request->paymentType;
-        $application->phone = $request->phone;
-        $application->payment_id = $payment->id;
-        $application->save();
-
-        $balance = getBalance(auth()->user());
-        return $balance;
-        }
-        else
-        {
-            $application = new WithdrawMoneyAccountApplication;
-        $application->account_id = auth()->user()->id;
-        $application->price = $request->summa;
-        $application->payment_system_id = $request->paymentType;
-        $application->phone = $request->phone;
-        $application->payment_id = $payment->id;
-        $application->save();
-
-        $balance = getBalance(auth()->user());
-        return $balance;
-
-        }
-        }
+        return response()->json($data);
 
 
     }
 
-    public function successPayment(Request $request) {
+    public function withdrawalOfFundsAccount(Request $request)
+    {
+
+        $frozenapp = WithdrawMoneyAccountApplication::where('account_id', auth()->user()->id)->where('status_id', 8)->first();
+        if (!$frozenapp) {
+            if (getBalance(auth()->user()) >= $request->summa) {
+                $payment = new Payment;
+                $payment->account_id = auth()->user()->id;
+                $payment->price = -$request->summa;
+                $payment->payment_system_id = $request->paymentType;
+                $payment->payment_type_id = 2;
+                $payment->save();
+
+                $application = new WithdrawMoneyAccountApplication;
+                $application->account_id = auth()->user()->id;
+                $application->status_id = 1;
+                $application->price = $request->summa;
+                $application->payment_system_id = $request->paymentType;
+                $application->phone = $request->phone;
+                $application->payment_id = $payment->id;
+                $application->save();
+
+                $balance = getBalance(auth()->user());
+                return $balance;
+            } else {
+                $application = new WithdrawMoneyAccountApplication;
+                $application->account_id = auth()->user()->id;
+                $application->price = $request->summa;
+                $application->payment_system_id = $request->paymentType;
+                $application->phone = $request->phone;
+                $application->payment_id = $payment->id;
+                $application->save();
+
+                $balance = getBalance(auth()->user());
+                return $balance;
+
+            }
+        }
+
+
+    }
+
+    public function successPayment(Request $request)
+    {
 
         $data = $request->all();
         info(json_encode($data));
 
-        if(isset($data['MERCHANT_ORDER_ID'])) {
+        if (isset($data['MERCHANT_ORDER_ID'])) {
             $order = Order::findOrFail($data['MERCHANT_ORDER_ID']);
 
-            if($order->status_id == 1) {
+            if ($order->status_id == 1) {
                 return redirect('/');
             }
 
@@ -111,10 +121,9 @@ class PaymentController extends Controller
             $experience = $order->price * 10 / 2;
             $user = User::find($order->account_id);
 
-            if($user->experience < 80000) {
+            if ($user->experience < 80000) {
                 $experience = $user->experience + $experience;
-            }
-            else {
+            } else {
                 $experience = 80000;
             }
 
@@ -126,10 +135,10 @@ class PaymentController extends Controller
             $payment->payment_type_id = 1;
             $payment->save();
 
-            if($user->referral_account_id) {
+            if ($user->referral_account_id) {
                 $referralAccount = User::find($user->referral_account_id);
 
-                if($referralAccount->is_referral_power) {
+                if ($referralAccount->is_referral_power) {
                     $lvl = getLevel($referralAccount);
                     $percent = $lvl * 0.1;
                     $referralSum = ($order->price * $percent) / 100;
@@ -147,7 +156,7 @@ class PaymentController extends Controller
 
             $user->experience = $experience;
 
-            if($user->experience >= 80000) {
+            if ($user->experience >= 80000) {
                 $user->experience = 80000;
             }
 
@@ -160,7 +169,8 @@ class PaymentController extends Controller
     }
 
 
-    public function paymentCallback() {
+    public function paymentCallback()
+    {
         return 'YES';
     }
 
