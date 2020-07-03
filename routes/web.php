@@ -90,7 +90,7 @@
 //    'uses' => 'Account\PaymentController@paymentCallback'
 //]);
 //
-//Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['checkUser']], function() {
+Route::group(['as' => 'account.', 'prefix' => 'account', 'namespace' => 'Account', 'middleware' => ['checkUser']], function() {
 //
 //
 //    Route::post('/set-participants-king', [
@@ -135,9 +135,9 @@
 //        'uses' => 'ProfileController@dailyBonus'
 //    ]);
 //
-//    Route::post('/to-up-account', [
-//        'uses' => 'PaymentController@toUpAccount'
-//    ]);
+    Route::post('/to-up-account', [
+       'uses' => 'PaymentController@toUpAccount'
+    ]);
 //
 //    Route::post('/withdrawal-of-funds-account', [
 //        'uses' => 'PaymentController@withdrawalOfFundsAccount'
@@ -155,7 +155,7 @@
 //        'uses' => 'JackpotController@setParticipant'
 //    ]);
 //
-//});
+});
 //
 //
 //Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkAdmin']], function() {
