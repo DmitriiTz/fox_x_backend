@@ -44,15 +44,7 @@ class PaymentController extends Controller
 
         //$html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
 
-        $url = 'http://www.free-kassa.ru/merchant/cash.php?
-            m='.$merchantId.'&
-            oa='.$summa.'
-            &o='.$orderId.'
-            &s='.$sign.'
-            &i='.$codeCurrency.'
-            &lang=ru
-            &us_id='.$user->id.'
-            &pay=Оплатить';
+        $url = 'http://www.free-kassa.ru/merchant/cash.php?m='.$merchantId.'&oa='.$summa.'&o='.$orderId.'&s='.$sign.'&i='.$codeCurrency.'&lang=ru&us_id='.$user->id.'&pay=Оплатить';
         return response()->json($url);
 
     }
