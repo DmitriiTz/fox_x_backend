@@ -44,7 +44,7 @@ class PaymentController extends Controller
 
         //$html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
 
-        return redirect('http://www.free-kassa.ru/merchant/cash.php?
+        $url = 'http://www.free-kassa.ru/merchant/cash.php?
             m='.$merchantId.'&
             oa='.$summa.'
             &o='.$orderId.'
@@ -52,8 +52,9 @@ class PaymentController extends Controller
             &i='.$codeCurrency.'
             &lang=ru
             &us_id='.$user->id.'
-            &pay=Оплатить');
-        
+            &pay=Оплатить';
+        return response()->json($url);
+
     }
 
     public function withdrawalOfFundsAccount(Request $request) {
