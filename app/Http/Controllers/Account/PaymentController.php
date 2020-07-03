@@ -12,8 +12,6 @@ use App\Http\Controllers\Controller;
 class PaymentController extends Controller
 {
     public function toUpAccount(Request $request) {
-
-
         $summa = $request->summa;
         $user = auth()->user();
         $payment = new Order;
@@ -46,7 +44,23 @@ class PaymentController extends Controller
 
         $html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
 
-        return $html;
+        //return redirect('http://www.free-kassa.ru/merchant/cash.php?');
+
+        $endpoint = "http://www.free-kassa.ru/merchant/cash.php";
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', $endpoint, ['query' => [
+            'm' => $merchantId,
+            'oa' => $summa,
+            'o' => $orderId,
+            's' => $sign,
+            'i' => $codeCurrency,
+            'lang' => 'ru',
+            'us_id' => $user->id,
+            'pay' => 'Оплатить',
+        ]]);
+
+        return $response;
 
 
     }
