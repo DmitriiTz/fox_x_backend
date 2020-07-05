@@ -24,7 +24,7 @@ class RegisterRequest extends ApiRequest
         return [
             'name' => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:users',
-            'referral_account_id' => 'nullable|string',
+            'referral_account_id' => 'nullable|integer',
             'password' => 'required|min:6',
         ];
     }
