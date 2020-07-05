@@ -88,9 +88,8 @@ class JackpotController extends Controller
         $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
         $game = HistoryGame::orderBy('created_at', 'desc')
             ->where('game_id', 3)
-//                ->where('status_id', 1)
             ->where('game_type_id', $gameType->id)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [0,4])
             ->where('animation_at', '>', Carbon::now())
             ->first();
 
