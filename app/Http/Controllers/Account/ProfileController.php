@@ -52,8 +52,7 @@ class ProfileController extends Controller
                 }, 'nameGame']);
             }])
             ->where('is_admin', 0)
-            ->where('payment_type_id', 6)
-            ->orWhere('payment_type_id', 3)
+            ->whereIn('payment_type_id', [6,7])
             ->whereNotNull('history_game_id')
             ->whereHas('game', function ($query) {
                 $query->whereNotNull('winner_account_id');
