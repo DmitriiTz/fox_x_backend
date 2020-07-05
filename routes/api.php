@@ -130,7 +130,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
 
 //Route::post('/check-auth-user', ['uses' => 'AuthController@checkAuthUser']);
-//Route::get('/referral-link/{userId}', ['as' => 'referral-link','uses' => 'AuthController@referralLink']);
+Route::get('/referral-link/{userId}', ['as' => 'referral-link','uses' => 'AuthController@referralLink']);
 //Route::post('/registration', ['uses' => 'AuthController@registration']);
 //Route::post('auth-user', ['uses' => 'AuthController@authUser']);
 //Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
