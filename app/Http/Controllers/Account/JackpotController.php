@@ -76,7 +76,6 @@ class JackpotController extends Controller
 
         if ($request->get('userid') > 0) {
             echo 'antihack';
-            //      $user = User::where('id', $request->get('userid'))->first();
         } else {
             $user = auth()->user();
         }
@@ -86,115 +85,111 @@ class JackpotController extends Controller
         if ($balance < $request->cash) {
             return ['error' => 1, 'message' => 'Недостаточно на балансе'];
         }
-        //if ($request->cash && $request->gameTypeId) {
-            $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
-            $game = HistoryGame::orderBy('created_at', 'desc')
-                ->where('game_id', 3)
+        $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
+        $game = HistoryGame::orderBy('created_at', 'desc')
+            ->where('game_id', 3)
 //                ->where('status_id', 1)
-                ->where('game_type_id', $gameType->id)
-                ->where('status_id', '!=', 4)
-                ->where('animation_at', '>', Carbon::now())
-                ->first();
+            ->where('game_type_id', $gameType->id)
+            ->where('status_id', '!=', 4)
+            ->where('animation_at', '>', Carbon::now())
+            ->first();
 
-            //dump(['game' => $game]);
-            if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
-                return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
+        if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
+            return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
+        }
+
+        if (!$game) {
+
+            $gameBefore = HistoryGame::where('status', 0)->where('game_id', 3)->get();
+            if($gameBefore->count() < 10)
+            {
+                while($gameBefore->count() < 10)
+                {
+                    $newGame = new HistoryGame;
+                    $newGame->status = 0;
+                    $newGame->game_id = 3;
+                    $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                    $newGame->winner_ticket_big = $random;
+                    $newGame->winner_ticket = 100 * $random;
+                    $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
+                    $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
+                    $newGame->save();
+                }
             }
 
-            if (!$game) {
-                //dump('if (!$game)');
-                //$game = HistoryGame::where('status_id', 1)->where('game_type_id', $request->gameTypeId)->first();
+            $game = $gameBefore->first();
+            $game->status_id = 1;
+            $game->game_type_id = $request->gameTypeId;
+            $game->animation_at = now()->addYear();
+            $game->save();
 
-                $game = new HistoryGame;
-                $game->game_id = 3;
-                $game->status_id = 1;
-                $game->game_type_id = $request->gameTypeId;
-                $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-                $game->winner_ticket_big = $random;
-                $game->hash = hash('sha224', strval($game->winner_ticket_big));
-                $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
-                $game->animation_at = now()->addYear();
-                $game->save();
+            event(new CreateGame($game));
 
-                event(new CreateGame($game));
-
-                //srand(time() / 5 + 199526178);
-                $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
-                if ($firstGameBet) {
-                    $color = $firstGameBet->color;
-                } else {
-                    $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
-                }
-                //dump(['$user' => $user, '$game' => $game, 'cash' => $request->cash, '$gameType' => $gameType, '$color' => $color]);
-                $this->createParticipant($user, $game, $request->cash, $gameType, $color);
-                return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
+            $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
+            if ($firstGameBet) {
+                $color = $firstGameBet->color;
             } else {
-                $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
-                if ($firstGameBet) {
-                    $color = $firstGameBet->color;
+                $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+            }
+
+            $this->createParticipant($user, $game, $request->cash, $gameType, $color);
+            return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
+        } else {
+            $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
+            if ($firstGameBet) {
+                $color = $firstGameBet->color;
+            } else {
+                $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+
+            }
+            if ($game->end_game_at && $game->end_game_at > now()) {
+
+                $getCountAppication = $this->getCountApplicationAccount($user, $game);
+                if ($getCountAppication) {
+
+                    $this->createParticipant($user, $game, $request->cash, $gameType, $color);
+
+                    return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
                 } else {
-                    $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
-
-                }
-                if ($game->end_game_at && $game->end_game_at > now()) {
-                    //dump('if ($game->end_game_at && $game->end_game_at > now())');
-                    $getCountAppication = $this->getCountApplicationAccount($user, $game);
-                    if ($getCountAppication) {
-                        //dump('start create par');
-                        $this->createParticipant($user, $game, $request->cash, $gameType, $color);
-                        //dump('finish create par');
-                        return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
-                    } else {
-                        return ['error' => 1, 'message' => 'Максимальное количество ставок - 3'];
-                    }
-
-                } elseif ($game->end_game_at && $game->end_game_at < now()) {
-                    return ['error' => 1, 'message' => 'Время закончилось для ставок'];
+                    return ['error' => 1, 'message' => 'Максимальное количество ставок - 3'];
                 }
 
-                if (!$game->end_game_at) {
-                    $getCountAppication = $this->getCountApplicationAccount($user, $game);
-                    if ($getCountAppication) {
-                        $this->createParticipant($user, $game, $request->cash, $gameType, $color);
+            } elseif ($game->end_game_at && $game->end_game_at < now()) {
+                return ['error' => 1, 'message' => 'Время закончилось для ставок'];
+            }
 
-                        $countParticipants = $game->participants->groupBy('account_id')->count();
+            if (!$game->end_game_at) {
+                $getCountAppication = $this->getCountApplicationAccount($user, $game);
+                if ($getCountAppication) {
+                    $this->createParticipant($user, $game, $request->cash, $gameType, $color);
 
-                        if ($countParticipants == 2) {
-                            $timer = now();
-                            $timer2 = now();
-                            $end_game_at = $timer->addSeconds(34);
-                            unset($game->participants);
-                            $game->end_game_at = $end_game_at;
-                            $animationAt = $timer2->addSeconds(50);
-                            $game->animation_at = $animationAt; //33
-                            $game->save();
-//                            EndGame::dispatch($game->id, $end_game_at)->delay(20);
+                    $countParticipants = $game->participants->groupBy('account_id')->count();
 
+                    if ($countParticipants == 2) {
+                        $timer = now();
+                        $timer2 = now();
+                        $end_game_at = $timer->addSeconds(34);
+                        unset($game->participants);
+                        $game->end_game_at = $end_game_at;
+                        $animationAt = $timer2->addSeconds(50);
+                        $game->animation_at = $animationAt; //33
+                        $game->save();
 
-                            /*
-                             $job = (new EndGame($game->id, $end_game_at))->onConnection( env('QUEUE_CONNECTION_2','redis') )->delay(34);
-                               $this->dispatch($job);
-                   */
-                            for ($i = 34, $j = 0; $i >= 0, $j <= 34; $i--, $j++) {
-                                $job = (new StartGameJob($game->id, $end_game_at, $gameType->name, $i))->delay($j);
-                                $this->dispatch($job);
-                            }
-
-                            //       event(new StartGame($game->id, $end_game_at, $gameType->name));
-
+                        for ($i = 34, $j = 0; $i >= 0, $j <= 34; $i--, $j++) {
+                            $job = (new StartGameJob($game->id, $end_game_at, $gameType->name, $i))->delay($j);
+                            $this->dispatch($job);
                         }
-
-                        return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
-
-                    } else {
-                        return ['error' => 1, 'message' => 'Максимальное количество ставок - 3'];
                     }
 
+                    return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
+
+                } else {
+                    return ['error' => 1, 'message' => 'Максимальное количество ставок - 3'];
                 }
 
             }
 
-        //}
+        }
 
         return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
 

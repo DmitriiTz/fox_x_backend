@@ -36,19 +36,28 @@ class CoinflipController extends Controller
             }
         }
 
-        $game = HistoryGame::whereNull('create_account_id')->where('game_id', 4)->first();
+        $gameBefore = HistoryGame::whereNull('create_account_id')->where('status', 0)->where('game_id', 4)->get();
+        if($gameBefore->count() < 10)
+        {
+            while($gameBefore->count() < 10)
+            {
+                $newGame = new HistoryGame;
+                $newGame->status = 0;
+                $newGame->game_id = 4;
+                $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                $newGame->winner_ticket_big = $random;
+                $newGame->winner_ticket = 100 * $random;
+                $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
+                $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
+                $newGame->save();
+            }
+        }
+        //$game = HistoryGame::whereNull('create_account_id')->where('game_id', 4)->first();
+        $game = $gameBefore->first();
+        $game->status = 1;
         $game->create_account_id = $user->id;
+        $game->animation_at = now()->addYear();
         $game->save();
-
-        $newGame = new HistoryGame;
-        $newGame->game_id = 4;
-        $newGame->animation_at = now()->addYear();
-        $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-        $newGame->winner_ticket_big = $random;
-        $newGame->winner_ticket = 100 * $random;
-        $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
-        $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
-        $newGame->save();
 
         $participant = new Participant;
         $participant->account_id = $user->id;

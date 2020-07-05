@@ -376,27 +376,39 @@ class MainController extends Controller
     public function games() {
         $page = 'Игры';
 
-        $jackpotGames = HistoryGame::with(['participants' => function($query) {
-            $query->with('account');
-        }, 'type', 'winner'])
-            ->orderBy('id', 'asc')
+//        $jackpotGames = HistoryGame::with(['participants' => function($query) {
+//            $query->with('account');
+//        }, 'type', 'winner'])
+//            ->orderBy('id', 'asc')
+//            ->where('game_id', 3)
+//            ->where(function($query) {
+//                $query->whereNull('end_game_at')->orWhere('end_game_at', '>', now());
+//            })
+//            ->limit(100)
+//            ->get(); // вывод игр по игре jackpot
+
+        $jackpotGames = HistoryGame::orderBy('id', 'asc')
             ->where('game_id', 3)
-            ->where(function($query) {
-                $query->whereNull('end_game_at')->orWhere('end_game_at', '>', now());
-            })
-            ->limit(100)
+            ->where('status', 0)
+            ->take(10)
             ->get(); // вывод игр по игре jackpot
 
-        $coinflipGames = HistoryGame::with(['participants' => function($query) {
-            $query->with('account');
-        }, 'winner'])
-            ->orderBy('id', 'asc') // сортировка по id
+//        $coinflipGames = HistoryGame::with(['participants' => function($query) {
+//            $query->with('account');
+//        }, 'winner'])
+//            ->orderBy('id', 'asc') // сортировка по id
+//            ->where('game_id', 4) // тип игры
+//            ->where('end_game_at','=', NULL)
+//          //  ->where('status_id','!=',1)
+//            ->whereNotNull('winner_ticket_big')
+//            ->has('participants', '<', 2)
+//            ->limit(100) // количество
+//            ->get(); // вывод игр по игре coinflip
+
+        $coinflipGames = HistoryGame::orderBy('id', 'asc') // сортировка по id
             ->where('game_id', 4) // тип игры
-            ->where('end_game_at','=', NULL)
-          //  ->where('status_id','!=',1)
-            ->whereNotNull('winner_ticket_big')
-            ->has('participants', '<', 2)
-            ->limit(100) // количество
+            ->where('status', 0)
+            ->take(10) // количество
             ->get(); // вывод игр по игре coinflip
 
         $data = [
