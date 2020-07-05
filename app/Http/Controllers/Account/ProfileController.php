@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $pageName = 'Профиль';
         $user = auth()->user();
         $getHistoryBalance = Payment::where('account_id', $user->id)
-            ->with('payment_system')
+            ->with(['payment_system', 'game.nameGame'])
             ->where('is_admin', 0)
             ->orderBy('created_at', 'desc')
             ->get();
