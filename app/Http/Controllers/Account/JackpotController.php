@@ -100,13 +100,13 @@ class JackpotController extends Controller
 
         if (!$game) {
 
-            $gameBefore = HistoryGame::where('status', 0)->where('game_id', 3)->get();
+            $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->get();
             if($gameBefore->count() < 10)
             {
                 while($gameBefore->count() < 10)
                 {
                     $newGame = new HistoryGame;
-                    $newGame->status = 0;
+                    $newGame->status_id = 0;
                     $newGame->game_id = 3;
                     $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                     $newGame->winner_ticket_big = $random;

@@ -36,13 +36,13 @@ class CoinflipController extends Controller
             }
         }
 
-        $gameBefore = HistoryGame::whereNull('create_account_id')->where('status', 0)->where('game_id', 4)->get();
+        $gameBefore = HistoryGame::whereNull('create_account_id')->where('status_id', 0)->where('game_id', 4)->get();
         if($gameBefore->count() < 10)
         {
             while($gameBefore->count() < 10)
             {
                 $newGame = new HistoryGame;
-                $newGame->status = 0;
+                $newGame->status_id = 0;
                 $newGame->game_id = 4;
                 $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                 $newGame->winner_ticket_big = $random;
@@ -54,7 +54,7 @@ class CoinflipController extends Controller
         }
         //$game = HistoryGame::whereNull('create_account_id')->where('game_id', 4)->first();
         $game = $gameBefore->first();
-        $game->status = 1;
+        $game->status_id = 1;
         $game->create_account_id = $user->id;
         $game->animation_at = now()->addYear();
         $game->save();
