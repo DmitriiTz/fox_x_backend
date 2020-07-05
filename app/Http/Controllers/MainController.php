@@ -35,7 +35,7 @@ class MainController extends Controller
             ->where('game_id', 3)
             ->where('animation_at', '>', Carbon::now())
             ->where('game_type_id', $gameTypeId)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [0,4])
             ->first();
 
         $result = [];
