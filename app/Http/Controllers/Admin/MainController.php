@@ -393,18 +393,6 @@ class MainController extends Controller
             ->take(10)
             ->get(); // вывод игр по игре jackpot
 
-//        $coinflipGames = HistoryGame::with(['participants' => function($query) {
-//            $query->with('account');
-//        }, 'winner'])
-//            ->orderBy('id', 'asc') // сортировка по id
-//            ->where('game_id', 4) // тип игры
-//            ->where('end_game_at','=', NULL)
-//          //  ->where('status_id','!=',1)
-//            ->whereNotNull('winner_ticket_big')
-//            ->has('participants', '<', 2)
-//            ->limit(100) // количество
-//            ->get(); // вывод игр по игре coinflip
-
         $coinflipGames = HistoryGame::orderBy('id', 'asc') // сортировка по id
             ->where('game_id', 4) // тип игры
             ->where('status_id', 0)

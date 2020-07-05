@@ -93,7 +93,7 @@ class MainController extends Controller
             ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameTypeId)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [0,4])
             ->where('winner_ticket', '!=', null)
             ->first();
         if (isset($tempGame)) {
@@ -135,7 +135,7 @@ class MainController extends Controller
             ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameTypeId)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [0,4])
             ->where('winner_ticket', '!=', null)
             ->first();
 
@@ -182,7 +182,7 @@ class MainController extends Controller
             ->where('id', $biggestBank->history_game_id)
             ->where('game_id', 3)
             ->where('game_type_id', $gameTypeId)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [0,4])
             ->where('winner_ticket', '!=', null)
             ->first();
 
