@@ -96,6 +96,8 @@ class MainController extends Controller
             ->whereNotIn('status_id', [0,4])
             ->where('winner_ticket', '!=', null)
             ->first();
+        
+        return response()->json($tempGame);
         if (isset($tempGame)) {
             $bank = $tempGame->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $tempGame->id)->where('account_id',
