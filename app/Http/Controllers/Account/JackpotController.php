@@ -98,8 +98,23 @@ class JackpotController extends Controller
         }
 
         if (!$game) {
-            //dump('if (!$game)');
-            //$game = HistoryGame::where('status_id', 1)->where('game_type_id', $request->gameTypeId)->first();
+
+            $gameBefore = HistoryGame::where('status', 0)->where('game_id', 3)->get();
+            if($gameBefore->count() < 10)
+            {
+                while($gameBefore->count() < 10)
+                {
+                    $game = new HistoryGame;
+                    $game->game_id = 3;
+                    $game->status_id = 0;
+                    $game->game_type_id = $request->gameTypeId;
+                    $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                    $game->winner_ticket_big = $random;
+                    $game->hash = hash('sha224', strval($game->winner_ticket_big));
+                    $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
+                    $game->save();
+                }
+            }
 
             $game = new HistoryGame;
             $game->game_id = 3;
