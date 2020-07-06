@@ -89,7 +89,7 @@ class JackpotController extends Controller
         $game = HistoryGame::orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameType->id)
-            ->whereNotIn('status_id', [0,4])
+            ->where('status_id', '!=', 4)
             ->where('animation_at', '>', Carbon::now())
             ->first();
 
@@ -98,39 +98,30 @@ class JackpotController extends Controller
         }
 
         if (!$game) {
+            //dump('if (!$game)');
+            //$game = HistoryGame::where('status_id', 1)->where('game_type_id', $request->gameTypeId)->first();
 
-            $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->get();
-            if($gameBefore->count() < 10)
-            {
-                while($gameBefore->count() < 10)
-                {
-                    $newGame = new HistoryGame;
-                    $newGame->status_id = 0;
-                    $newGame->game_id = 3;
-                    $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-                    $newGame->winner_ticket_big = $random;
-                    $newGame->winner_ticket = 100 * $random;
-                    $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
-                    $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
-                    $newGame->save();
-                }
-            }
-
-            $game = $gameBefore->first();
+            $game = new HistoryGame;
+            $game->game_id = 3;
             $game->status_id = 1;
             $game->game_type_id = $request->gameTypeId;
+            $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+            $game->winner_ticket_big = $random;
+            $game->hash = hash('sha224', strval($game->winner_ticket_big));
+            $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
             $game->animation_at = now()->addYear();
             $game->save();
 
             event(new CreateGame($game));
 
+            //srand(time() / 5 + 199526178);
             $firstGameBet = Participant::where('account_id', $user->id)->where('history_game_id', $game->id)->first();
             if ($firstGameBet) {
                 $color = $firstGameBet->color;
             } else {
                 $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
             }
-
+            //dump(['$user' => $user, '$game' => $game, 'cash' => $request->cash, '$gameType' => $gameType, '$color' => $color]);
             $this->createParticipant($user, $game, $request->cash, $gameType, $color);
             return ['error' => 0, 'message' => 'Ставки принята', 'balance' => getBalance($user)];
         } else {
