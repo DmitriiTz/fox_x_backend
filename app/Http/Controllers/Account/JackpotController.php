@@ -99,7 +99,7 @@ class JackpotController extends Controller
 
         if (!$game) {
 
-            $gameBefore = HistoryGame::where('status', 0)->where('game_id', 3)->get();
+            $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->get();
             if($gameBefore->count() < 10)
             {
                 while($gameBefore->count() < 10)
