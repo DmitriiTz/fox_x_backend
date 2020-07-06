@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\GameType;
 use App\HistoryGame;
+use App\Message;
 use App\Participant;
 use App\Payment;
 use Carbon\Carbon;
@@ -96,8 +97,6 @@ class MainController extends Controller
             ->whereNotIn('status_id', [0,4])
             ->where('winner_ticket', '!=', null)
             ->first();
-        
-        return response()->json($tempGame);
         if (isset($tempGame)) {
             $bank = $tempGame->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $tempGame->id)->where('account_id',
@@ -263,7 +262,15 @@ class MainController extends Controller
 
     }
 
+    public function getMessage()
+    {
+        $messages = Message::with('account')->take(100)->get();
+
+        return response()->json($messages);
+    }
+
     public function coinflip()
+
     {
         $pageName = 'Coinflip';
 

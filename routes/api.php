@@ -12,6 +12,8 @@ Route::group([
     Route::get('check-auth', 'AuthController@checkAuth')->name('user.check_user');
 });
 
+Route::get('get-message', 'MainController@getMessage');
+
 /** Main api route */
 Route::match(['get', 'post'], '/', ['as' => 'home', 'uses' => 'MainController@home']);
 
