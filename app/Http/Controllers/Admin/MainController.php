@@ -157,7 +157,7 @@ class MainController extends Controller
     //
     public function setProfit(Request $request){
         $gameBefore = CrashGame::where('status', 0)->first();
-        $gameBefore->number = 17.1618 * log(0.371364, $request->profit);
+        $gameBefore->number = (log($request->profit) - 17 * log(1.06)) / log(1.06);
         $gameBefore->save();
 
         return response()->json($gameBefore);
