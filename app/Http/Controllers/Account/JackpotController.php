@@ -89,7 +89,7 @@ class JackpotController extends Controller
         $game = HistoryGame::orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameType->id)
-            ->where('status_id', '!=', 4)
+            ->whereNotIn('status_id', [4, 0])
             ->where('animation_at', '>', Carbon::now())
             ->first();
 
@@ -116,14 +116,8 @@ class JackpotController extends Controller
                 }
             }
 
-            $game = new HistoryGame;
-            $game->game_id = 3;
+            $game = $gameBefore->first();
             $game->status_id = 1;
-            $game->game_type_id = $request->gameTypeId;
-            $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
-            $game->winner_ticket_big = $random;
-            $game->hash = hash('sha224', strval($game->winner_ticket_big));
-            $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
             $game->animation_at = now()->addYear();
             $game->save();
 
