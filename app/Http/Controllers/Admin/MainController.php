@@ -159,8 +159,8 @@ class MainController extends Controller
         $gameBefore = CrashGame::where('status', 0)->first();
         $gameBefore->profit = $request->profit;
         $gameBefore->save();
-        
-        return response()->json();
+
+        return response()->json($gameBefore);
     }
 
     // Выводит список пользователей
