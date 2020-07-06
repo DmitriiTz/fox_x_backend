@@ -107,7 +107,6 @@ class JackpotController extends Controller
                     $game = new HistoryGame;
                     $game->game_id = 3;
                     $game->status_id = 0;
-                    $game->game_type_id = $request->gameTypeId;
                     $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                     $game->winner_ticket_big = $random;
                     $game->hash = hash('sha224', strval($game->winner_ticket_big));
@@ -118,6 +117,7 @@ class JackpotController extends Controller
 
             $game = $gameBefore->first();
             $game->status_id = 1;
+            $game->game_type_id = $request->gameTypeId;
             $game->animation_at = now()->addYear();
             $game->save();
 
