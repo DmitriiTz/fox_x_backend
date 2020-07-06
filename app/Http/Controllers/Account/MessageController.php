@@ -49,10 +49,10 @@ class MessageController extends Controller
             $message->text = $messageText;
             $message->save();
 
-            $message = Message::whereId($message->id)->with('account')->get();
+            $find = Message::find($message->id);
             //$messageView = view('blocks.message', compact('message'))->render();
 
-            event(new SendMessage($message));
+            event(new SendMessage($find));
         }
     }
 }
