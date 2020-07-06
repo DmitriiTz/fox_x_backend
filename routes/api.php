@@ -121,6 +121,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::get('/crash', ['as' => 'crash', 'uses' => 'MainController@crash']);
     Route::get('/crash/bets', ['as' => 'crash-bet', 'uses' => 'MainController@crash_bets']);
     Route::get('/crash/stop-game', ['as' => 'crash-bet', 'uses' => 'MainController@crash_stop']);
+    Route::post('/crash/set-profit', 'MainController@setProfit');
     Route::post('/get-info-user', ['uses' => 'MainController@getInfoUser']);
     Route::post('/get-info-user-output', ['uses' => 'MainController@getInfoUserOutput']);
     Route::get('/users/next-page', ['uses' => 'MainController@usersNextPage']);

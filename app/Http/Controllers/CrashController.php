@@ -233,20 +233,35 @@ class CrashController extends Controller
 
     public function createGame()
     {
-        $i = 1;
-        $x_int = rand(1, 10);
-        $x_float = rand(10, 100);
-        $x = $x_int . '.' . $x_float;
-        $y = 1;
+        $gameBefore = CrashGame::where('status', 0)->get();
+        if($gameBefore->count() < 2)
+        {
+            while($gameBefore->count() < 2)
+            {
+                $i = 1;
+                $x_int = rand(1, 10);
+                $x_float = rand(10, 100);
+                $x = $x_int . '.' . $x_float;
+                $y = 1;
 
-        while($i <= 1000){
-            $y = $y * 1.06;
-            if($y >= $x){
-                break;
+                while($i <= 1000){
+                    $y = $y * 1.06;
+                    if($y >= $x){
+                        break;
+                    }
+                    $i++;
+                }
+
+                $newGame = new CrashGame;
+                $newGame->profit = $y;
+                $newGame->number = $i;
+                $newGame->save();
             }
-            $i++;
         }
 
+        $game = $gameBefore->first();
+        $i = $game->number;
+        $y = $game->profit;
         $time = $i + 17;
         $hash = hash('sha224', strval($y));
         $link_hash = 'http://sha224.net/?val='.$hash;

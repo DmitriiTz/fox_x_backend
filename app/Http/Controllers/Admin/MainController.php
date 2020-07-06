@@ -154,6 +154,15 @@ class MainController extends Controller
 //            'kingStatisticsYesterday', 'kingStatistics7days', 'kingStatisticsMonth', 'kingStatistics3Months'));
     }
 
+    //
+    public function setProfit(Request $request){
+        $gameBefore = CrashGame::where('status', 0)->first();
+        $gameBefore->profit = $request->profit;
+        $gameBefore->save();
+        
+        return response()->json();
+    }
+
     // Выводит список пользователей
     public function users(Request $request) {
 
