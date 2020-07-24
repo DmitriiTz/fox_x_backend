@@ -29,6 +29,7 @@ class CreateGameCoinFlip implements ShouldBroadcast
         $coins = HistoryGame::orderBy('created_at', 'desc')
             ->with(['participants'])
             ->where('game_id', 4)
+            ->limit(100)
             ->get();
 
         $bank = 0;

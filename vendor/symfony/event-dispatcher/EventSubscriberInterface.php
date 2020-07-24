@@ -36,9 +36,12 @@ interface EventSubscriberInterface
      *
      * For instance:
      *
-     *  * array('eventName' => 'methodName')
-     *  * array('eventName' => array('methodName', $priority))
-     *  * array('eventName' => array(array('methodName1', $priority), array('methodName2')))
+     *  * ['eventName' => 'methodName']
+     *  * ['eventName' => ['methodName', $priority]]
+     *  * ['eventName' => [['methodName1', $priority], ['methodName2']]]
+     *
+     * The code must not depend on runtime state as it will only be called at compile time.
+     * All logic depending on runtime state must be put into the individual methods handling the events.
      *
      * @return array The event names to listen to
      */

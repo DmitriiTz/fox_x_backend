@@ -35,8 +35,9 @@ class CoinflipController extends Controller
                 $color = 1;
             }
         }
+        
+        $gameBefore = HistoryGame::whereNull('create_account_id')->where('status_id', 0)->where('game_id', 4)->limit(100)->get();
 
-        $gameBefore = HistoryGame::whereNull('create_account_id')->where('status_id', 0)->where('game_id', 4)->get();
         if($gameBefore->count() < 10)
         {
             while($gameBefore->count() < 10)
@@ -98,12 +99,13 @@ class CoinflipController extends Controller
         ];
 
         event(new CreateGameCoinFlip($game));
-
+        dd(123);
         $userGames = HistoryGame::where('create_account_id', auth()->user()->id)->count();
         $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
                 ->where('created_at', '>', today())
                 ->where('created_at', '<', now())
                 ->where('price', '>', 0)
+                ->limit(100)
                 ->sum('price') * 10;
 
         return response()->json([

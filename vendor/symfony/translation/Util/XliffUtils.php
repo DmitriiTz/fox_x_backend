@@ -41,7 +41,7 @@ class XliffUtils
             $namespace = $xliff->attributes->getNamedItem('xmlns');
             if ($namespace) {
                 if (0 !== substr_compare('urn:oasis:names:tc:xliff:document:', $namespace->nodeValue, 0, 34)) {
-                    throw new InvalidArgumentException(sprintf('Not a valid XLIFF namespace "%s"', $namespace));
+                    throw new InvalidArgumentException(sprintf('Not a valid XLIFF namespace "%s".', $namespace));
                 }
 
                 return substr($namespace, 34);
@@ -77,7 +77,7 @@ class XliffUtils
         libxml_clear_errors();
         libxml_use_internal_errors($internalErrors);
 
-        return array();
+        return [];
     }
 
     public static function getErrorsAsString(array $xmlErrors): string
@@ -143,16 +143,16 @@ class XliffUtils
      */
     private static function getXmlErrors(bool $internalErrors): array
     {
-        $errors = array();
+        $errors = [];
         foreach (libxml_get_errors() as $error) {
-            $errors[] = array(
+            $errors[] = [
                 'level' => LIBXML_ERR_WARNING == $error->level ? 'WARNING' : 'ERROR',
                 'code' => $error->code,
                 'message' => trim($error->message),
                 'file' => $error->file ?: 'n/a',
                 'line' => $error->line,
                 'column' => $error->column,
-            );
+            ];
         }
 
         libxml_clear_errors();

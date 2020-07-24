@@ -264,83 +264,83 @@ class MainController extends Controller
 
     public function getMessage()
     {
-        $messages = Message::with('account')->take(100)->get();
+        $messages = Message::with('account')->limit(100)->orderBy('created_at', 'desc')->get();
 
         return response()->json($messages);
     }
 
-    public function coinflip()
+  public function coinflip()
+      {
+          $pageName = 'Coinflip';
 
-    {
-        $pageName = 'Coinflip';
+          $games = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')
+              ->orderBy('created_at', 'desc')
+              ->with(['winner', 'participants.account', 'type'])
+              ->where('game_id', 4)
+              ->where('end_game_at', '<', now()->subSeconds(10))
+              ->whereNotNull('create_account_id')
+              ->limit(10)
+              ->get();
+          $activeGames = HistoryGame::orderBy('created_at', 'desc')
+              ->with(['winner', 'participants'])
+              ->where('game_id', 4)
+              ->whereNull('end_game_at')
+              ->whereNotNull('create_account_id')
+              ->get();
 
-        $games = HistoryGame::select('id', 'link_hash', 'winner_account_id', 'winner_ticket')
-            ->orderBy('created_at', 'desc')
-            ->with(['winner', 'participants.account', 'type'])
-            ->where('game_id', 4)
-            ->where('end_game_at', '<', now()->subSeconds(10))
-            ->whereNotNull('create_account_id')
-            ->limit(10)
-            ->get();
+          $animationGames = HistoryGame::orderBy('created_at', 'desc')
+              ->select('id')
+              ->with(['winner', 'participants.account'])
+              ->where('game_id', 4)
+              ->whereNotNull('end_game_at')
+              ->whereNotNull('create_account_id')
+              ->where('end_game_at', '>', now())
+              ->get();
 
-        $activeGames = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['winner', 'participants'])
-            ->where('game_id', 4)
-            ->whereNull('end_game_at')
-            ->whereNotNull('create_account_id')
-            ->get();
+          $coins = HistoryGame::orderBy('created_at', 'desc')
+              ->with(['participants','winner'])
+              ->where('game_id', 4)
+              ->limit(100)
+              ->get();
 
-        $animationGames = HistoryGame::orderBy('created_at', 'desc')
-            ->select('id')
-            ->with(['winner', 'participants.account'])
-            ->where('game_id', 4)
-            ->whereNotNull('end_game_at')
-            ->whereNotNull('create_account_id')
-            ->where('end_game_at', '>', now())
-            ->get();
+          $bank = 0;
+          foreach ($coins as $coin) {
+              $bank += $coin->participants->sum('cash');
+          }
 
-        $coins = HistoryGame::orderBy('created_at', 'desc')
-            ->with(['participants'])
-            ->where('game_id', 4)
-            ->get();
 
-        $bank = 0;
-        foreach ($coins as $coin) {
-            $bank += $coin->participants->sum('cash');
-        }
+          $userGames = false;
+          $bankUser = false;
+          if (Auth::user()) {
+              $userGames = HistoryGame::where('create_account_id', Auth::user()->id)->count();
+              $userGamesNow = HistoryGame::where('end_game_at', '=', null)->where('create_account_id', auth()->user()->id)->count();
+              $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
+                      ->where('created_at', '>', today())
+                      ->where('created_at', '<', now())
+                      ->where('price', '>', 0)
+                      ->sum('price') * 10;
+          }
 
-        $userGames = false;
-        $bankUser = false;
-        if (Auth::user()) {
-            $userGames = HistoryGame::where('create_account_id', Auth::user()->id)->count();
-            $userGamesNow = HistoryGame::where('end_game_at', '=', null)->where('create_account_id', auth()->user()->id)->count();
-            $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
-                    ->where('created_at', '>', today())
-                    ->where('created_at', '<', now())
-                    ->where('price', '>', 0)
-                    ->sum('price') * 10;
-        }
+          $gamesToday = HistoryGame::where('game_id', 4)->where('created_at', '>', Carbon::today())->where('created_at', '<',
+              Carbon::now())->count();
 
-        $gamesToday = HistoryGame::where('game_id', 4)->where('created_at', '>', Carbon::today())->where('created_at', '<',
-            Carbon::now())->count();
+  //        return view('coin-flip',
+  //            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
 
-//        return view('coin-flip',
-//            compact('games', 'activeGames', 'animationGames', 'bank', 'gamesToday', 'userGames', 'bankUser', 'pageName', 'userGamesNow'));
+          $data = [
+              'games' => $games,
+              'activeGames' => $activeGames,
+              'animationGames' => $animationGames,
+              'bank' => $bank,
+              'gamesToday' => $gamesToday,
+              'userGames' => $userGames,
+              'bankUser' => $bankUser,
+              'pageName' => $pageName,
+              'userGamesNow' => $userGamesNow,
+          ];
 
-        $data = [
-            'games' => $games,
-            'activeGames' => $activeGames,
-            'animationGames' => $animationGames,
-            'bank' => $bank,
-            'gamesToday' => $gamesToday,
-            'userGames' => $userGames,
-            'bankUser' => $bankUser,
-            'pageName' => $pageName,
-            'userGamesNow' => $userGamesNow,
-        ];
-
-        return response()->json($data);
-    }
+          return response()->json($data);
+      }
 
     public function kingOfTheHill()
     {

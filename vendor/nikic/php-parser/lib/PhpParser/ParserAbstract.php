@@ -648,7 +648,7 @@ abstract class ParserAbstract implements Parser
     }
 
     protected function handleBuiltinTypes(Name $name) {
-        $scalarTypes = [
+        $builtinTypes = [
             'bool'     => true,
             'int'      => true,
             'float'    => true,
@@ -656,6 +656,9 @@ abstract class ParserAbstract implements Parser
             'iterable' => true,
             'void'     => true,
             'object'   => true,
+            'null'     => true,
+            'false'    => true,
+            'mixed'    => true,
         ];
 
         if (!$name->isUnqualified()) {
@@ -663,7 +666,7 @@ abstract class ParserAbstract implements Parser
         }
 
         $lowerName = $name->toLowerString();
-        if (!isset($scalarTypes[$lowerName])) {
+        if (!isset($builtinTypes[$lowerName])) {
             return $name;
         }
 
@@ -837,6 +840,34 @@ abstract class ParserAbstract implements Parser
             }
             return new Encapsed($newContents, $attributes);
         }
+    }
+
+    /**
+     * Create attributes for a zero-length common-capturing nop.
+     *
+     * @param Comment[] $comments
+     * @return array
+     */
+    protected function createCommentNopAttributes(array $comments) {
+        $comment = $comments[count($comments) - 1];
+        $commentEndLine = $comment->getEndLine();
+        $commentEndFilePos = $comment->getEndFilePos();
+        $commentEndTokenPos = $comment->getEndTokenPos();
+
+        $attributes = ['comments' => $comments];
+        if (-1 !== $commentEndLine) {
+            $attributes['startLine'] = $commentEndLine;
+            $attributes['endLine'] = $commentEndLine;
+        }
+        if (-1 !== $commentEndFilePos) {
+            $attributes['startFilePos'] = $commentEndFilePos + 1;
+            $attributes['endFilePos'] = $commentEndFilePos;
+        }
+        if (-1 !== $commentEndTokenPos) {
+            $attributes['startTokenPos'] = $commentEndTokenPos + 1;
+            $attributes['endTokenPos'] = $commentEndTokenPos;
+        }
+        return $attributes;
     }
 
     protected function checkModifier($a, $b, $modifierPos) {
