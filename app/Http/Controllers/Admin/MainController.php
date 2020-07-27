@@ -505,8 +505,8 @@ class MainController extends Controller
     public function crash_stop(Request $request){
 
         Artisan::call('queue:clear', ['connection' => 'redis']);
-
-        $game = CrashGame::orderBy('id', 'desc')->first();
+        //Artisan::call('queue:work', ['--tries' => 1, '--sleep' => 0]);
+        $game = CrashGame::orderBy('id', 'desc')->limit(100)->first();
         $stop = time();
         DB::table('crashgames')->where('id', $game->id)->update([
             'stop_game' => $stop,
