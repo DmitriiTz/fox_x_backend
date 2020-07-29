@@ -29,13 +29,13 @@ class AuthController extends Controller
     }
     public function handleProviderCallback(Request $request, string $driver)
     {
-        try {
+        //try {
             $auth_user = Socialite::driver($driver)->stateless()->user();
-        }
-        catch (\Exception $exception)
-        {
-            $auth_user = null;
-        }
+        //}
+        //catch (\Exception $exception)
+        //{
+        //    $auth_user = null;
+        //}
         if(!$auth_user)
             return redirect()->to(config('app.front_url').'?error');
         if($auth_user->email)
