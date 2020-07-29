@@ -41,7 +41,7 @@ class PaymentController extends Controller
 
 
         $orderId = $payment->id;
-        $sign = md5($merchantId . ':' . $summa . ':nio9ahlh:' . $orderId);
+        $sign = md5($merchantId . ':' . $summa . ':sitszxii:' . $orderId);
 
         $html = view('payment-form.free-kassa', ['merchantId' => $merchantId, 'price' => $summa, 'orderId' => $orderId, 'sign' => $sign, 'codeCurrency' => $codeCurrency])->render();
 
