@@ -24,7 +24,6 @@ class User extends Authenticatable
     protected $appends = [
         'balance',
         'level',
-        'image',
     ];
     /**
      * The attributes that should be hidden for arrays.
