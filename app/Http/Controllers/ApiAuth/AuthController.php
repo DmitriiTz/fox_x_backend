@@ -45,7 +45,7 @@ class AuthController extends Controller
         if(!$user)
         {
             $user = new User();
-            $user->login = $auth_user->name;
+            $user->name = $auth_user->name;
             $user->email = $auth_user->email;
             $user->image = $auth_user->avatar;
         }

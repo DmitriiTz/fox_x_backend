@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function getImageAttribute($value) {
 
-        if(!$value) {
+        if(!$this->image) {
             return asset('img/fox.png');
         }
 
