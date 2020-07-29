@@ -38,14 +38,14 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'referral_account_id');
     }
 
-    public function getImageAttribute($value) {
-
-        if(!$this->image) {
-            return asset('img/fox.png');
-        }
-
-        return $this->image;
-    }
+//    public function getImageAttribute($value) {
+//
+//        if(!$this->image) {
+//            return asset('img/fox.png');
+//        }
+//
+//        return $this->image;
+//    }
 
     public function getBalanceAttribute() {
         $value = getBalance($this);
