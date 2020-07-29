@@ -37,7 +37,7 @@ class AuthController extends Controller
             $auth_user = null;
         }
         if(!$auth_user)
-            return redirect()->to(config('app.front_url'));
+            return redirect()->to(config('app.front_url').'?error');
         if($auth_user->email)
             $user = User::query()->where('email',$auth_user->email)->first();
         else
