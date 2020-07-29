@@ -45,7 +45,7 @@ class User extends Authenticatable
             return asset('img/fox.png');
         }
 
-        return $value;
+        return $this->image;
     }
 
     public function getBalanceAttribute() {
