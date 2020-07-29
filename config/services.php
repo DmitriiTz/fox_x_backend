@@ -51,5 +51,10 @@ return [
         'client_secret' =>env('VKONTAKTE_CLIENT_SECRET'),
         'redirect' => env('APP_URL') . '/api/social/vkontakte/callback',
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' =>env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_URL') . '/api/social/google/callback',
+    ],
 
 ];
