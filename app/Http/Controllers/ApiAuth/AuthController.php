@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,38 @@ class AuthController extends Controller
             'name' => $user->name,
         ]);
     }
-
+    public function redirectToProvider(Request $request, string $driver)
+    {
+        return Socialite::driver($driver)->stateless()->redirect();
+    }
+    public function handleProviderCallback(Request $request, string $driver)
+    {
+        try {
+            $auth_user = Socialite::driver($driver)->stateless()->user();
+        }
+        catch (\Exception $exception)
+        {
+            $auth_user = null;
+        }
+        if(!$auth_user)
+            return redirect()->to(config('app.front_url'));
+        if($auth_user->email)
+            $user = User::query()->where('email',$auth_user->email)->first();
+        else
+            $user = User::query()->where('provider',$driver)->where('provider_id',$auth_user->id)->first();
+        if(!$user)
+        {
+            $user = new User();
+            $user->login = $auth_user->name;
+            $user->email = $auth_user->email;
+            $user->image = $auth_user->avatar;
+        }
+        $user->provider = $driver;
+        $user->provider_id = $auth_user->id;
+        $user->save();
+        $token = $user->createToken('social')->accessToken;
+        return redirect()->to(config('app.front_url') .'?token='.$token);
+    }
     public function login(Request $request)
     {
         Auth::logout();

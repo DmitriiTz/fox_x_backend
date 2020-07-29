@@ -229,4 +229,5 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
     ],
 
+    'front_url' => env('FRONT_URL','http://localhost:8000')
 ];

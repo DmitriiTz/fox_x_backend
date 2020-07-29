@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'namespace' => 'ApiAuth'
 ], function () {
+    Route::get('social/{driver}', 'AuthController@redirectToProvider');
+    Route::get('social/{driver}/callback', 'AuthController@handleProviderCallback');
     Route::post('register', 'AuthController@register')->name('user.register');
     Route::post('login', 'AuthController@login')->name('user.login');
     Route::get('logout', 'AuthController@logout')->name('user.logout')->middleware('auth:api');
