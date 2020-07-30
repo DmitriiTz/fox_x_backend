@@ -105,67 +105,71 @@ class PaymentController extends Controller
 
     public function successPayment(Request $request)
     {
+        try {
 
-        $data = $request->all();
-        info(json_encode($data));
+            $data = $request->all();
+            info(json_encode($data));
 
-        if (isset($data['MERCHANT_ORDER_ID'])) {
-            $order = Order::findOrFail($data['MERCHANT_ORDER_ID']);
+            if (isset($data['MERCHANT_ORDER_ID'])) {
+                $order = Order::findOrFail($data['MERCHANT_ORDER_ID']);
 
-            if ($order->status_id == 1) {
-                return redirect('/');
-            }
+                if ($order->status_id == 1) {
+                    return redirect('/');
+                }
 
-            $order->status_id = 1;
-            $order->save();
-            $experience = $order->price * 10 / 2;
-            $user = User::find($order->account_id);
+                $order->status_id = 1;
+                $order->save();
+                $experience = $order->price * 10 / 2;
+                $user = User::find($order->account_id);
 
-            if ($user->experience < 80000) {
-                $experience = $user->experience + $experience;
-            } else {
-                $experience = 80000;
-            }
+                if ($user->experience < 80000) {
+                    $experience = $user->experience + $experience;
+                } else {
+                    $experience = 80000;
+                }
 
 
-            $payment = new Payment;
-            $payment->account_id = $order->account_id;
-            $payment->price = $order->price;
-            $payment->payment_system_id = $order->payment_system_id;
-            $payment->payment_type_id = 1;
-            $payment->save();
+                $payment = new Payment;
+                $payment->account_id = $order->account_id;
+                $payment->price = $order->price;
+                $payment->payment_system_id = $order->payment_system_id;
+                $payment->payment_type_id = 1;
+                $payment->save();
 
-            if ($user->referral_account_id) {
-                $referralAccount = User::find($user->referral_account_id);
+                if ($user->referral_account_id) {
+                    $referralAccount = User::find($user->referral_account_id);
 
-                if ($referralAccount->is_referral_power) {
-                    $lvl = getLevel($referralAccount);
-                    $percent = $lvl * 0.1;
-                    $referralSum = ($order->price * $percent) / 100;
+                    if ($referralAccount->is_referral_power) {
+                        $lvl = getLevel($referralAccount);
+                        $percent = $lvl * 0.1;
+                        $referralSum = ($order->price * $percent) / 100;
 
-                    $payment = new Payment;
-                    $payment->account_id = $referralAccount->id;
-                    $payment->referral_account_id = $user->id;
-                    $payment->price = $referralSum;
-                    $payment->payment_type_id = 3;
-                    $payment->save();
+                        $payment = new Payment;
+                        $payment->account_id = $referralAccount->id;
+                        $payment->referral_account_id = $user->id;
+                        $payment->price = $referralSum;
+                        $payment->payment_type_id = 3;
+                        $payment->save();
+
+                    }
 
                 }
 
+                $user->experience = $experience;
+
+                if ($user->experience >= 80000) {
+                    $user->experience = 80000;
+                }
+
+                $user->save();
+
+
+                return redirect('/');
             }
-
-            $user->experience = $experience;
-
-            if ($user->experience >= 80000) {
-                $user->experience = 80000;
-            }
-
-            $user->save();
-
-
+        }catch (\Exception $exception)
+        {
             return redirect('/');
         }
-
     }
 
 
