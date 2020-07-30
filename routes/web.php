@@ -292,3 +292,5 @@ Route::get('/', function ()
 {
     return redirect(config('app.front_url'));
 });
+
+Route::post('/success-payment0707', ['uses' => 'PaymentController@successPayment']);
