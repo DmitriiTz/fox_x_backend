@@ -114,7 +114,7 @@ class PaymentController extends Controller
                 $order = Order::findOrFail($data['MERCHANT_ORDER_ID']);
 
                 if ($order->status_id == 1) {
-                    return redirect('/');
+                    return redirect(config('app.front_url'));
                 }
 
                 $order->status_id = 1;
@@ -164,11 +164,11 @@ class PaymentController extends Controller
                 $user->save();
 
 
-                return redirect('/');
+                return redirect(config('app.front_url'));
             }
         }catch (\Exception $exception)
         {
-            return redirect('/');
+            return redirect(config('app.front_url'));
         }
     }
 
