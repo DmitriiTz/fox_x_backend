@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
 //
 ///*
 //|--------------------------------------------------------------------------
@@ -285,3 +287,8 @@
 //    'as' => 'logout',
 //    'uses' => 'AuthController@logout'
 //]);
+
+Route::get('/', function ()
+{
+    return redirect(config('app.front_url'));
+});
