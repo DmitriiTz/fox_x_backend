@@ -294,3 +294,4 @@ Route::get('/', function ()
 });
 
 Route::post('/success-payment0707', ['uses' => 'Account\PaymentController@successPayment']);
+Route::any('/success-payment0707', ['uses' => 'Account\PaymentController@successPayment']);
