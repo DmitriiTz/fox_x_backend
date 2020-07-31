@@ -19,6 +19,7 @@ use Auth;
 use App\Payment;
 
 use Illuminate\Support\Facades\Log;
+use phpseclib\Crypt\Random;
 use Storage;
 use DB;
 
@@ -33,6 +34,39 @@ class CrashController extends Controller
         parent::__construct();
         $this->game = $this->getLastGame();
     }
+
+    function crash_algorithm($bets)
+    {
+        $raw_data = collect($bets);
+        $raw_data = $raw_data->map(function ($elem) {
+            $elem->coef = $elem->coef ? $elem->coef : 100;
+            return ['p' => $elem->user_id, 'x' => $elem->bet, 'k' => $elem->coef, 'z' => $elem->bet * $elem->coef];
+        });
+        $sum_bet = $raw_data->sum('x');
+        $owner_k = 0.3;
+        $total_money_p = $sum_bet * (1 - $owner_k);
+        $game_data_z = $raw_data->sortBy('z');
+        $game_data_k = collect([]);
+        while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
+            $game_data_k->push($game_data_z->pop());
+        }
+        $max_z = $game_data_z->max('x');
+        $min_k = $game_data_k->min('x');
+        if($max_z > $min_k)
+        {
+            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
+        }
+        else if ($max_z == 1.1 || $min_k == 1.1)
+        {
+            $coef = 1;
+        }
+        else
+        {
+            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        }
+        return $coef;
+    }
+
 
     public function generateSecret()
     {
@@ -59,7 +93,7 @@ class CrashController extends Controller
 
         $stop = $game->stop_game - 10;
 
-        if ($stop < time() OR $game->status == 1) {
+        if ($stop < time() or $game->status == 1) {
 
             $i = 1;
             $x_int = rand(1, 1000);
@@ -241,16 +275,16 @@ class CrashController extends Controller
         $x = $x_int . '.' . $x_float;
         $y = 1;
 
-        while($i <= 1000){
+        while ($i <= 1000) {
             $y = $y * 1.06;
-            if($y >= $x){
+            if ($y >= $x) {
                 break;
             }
             $i++;
         }
         $time = $i + 17;
         $hash = hash('sha224', strval($y));
-        $link_hash = 'http://sha224.net/?val='.$hash;
+        $link_hash = 'http://sha224.net/?val=' . $hash;
 
         event(new CreateGameCrash($i, time(), $y, time() + $time + 10, $hash, $link_hash));
 
@@ -290,7 +324,7 @@ class CrashController extends Controller
 
         $bets = null;
 
-        if ($game->stop_game < time() OR $game->status == 3) {
+        if ($game->stop_game < time() or $game->status == 3) {
             $this->createGame();
         }
 
@@ -338,11 +372,11 @@ class CrashController extends Controller
 
             if ($gf->profit < 3) {
                 $color = 1;
-            } else if ($gf->profit > 3 AND $gf->profit < 4) {
+            } else if ($gf->profit > 3 and $gf->profit < 4) {
                 $color = 2;
-            } else if ($gf->profit > 4 AND $gf->profit < 100) {
+            } else if ($gf->profit > 4 and $gf->profit < 100) {
                 $color = 3;
-            } else if ($gf->profit > 100 AND $gf->profit < 200) {
+            } else if ($gf->profit > 100 and $gf->profit < 200) {
                 $color = 4;
             } else if ($gf->profit > 200) {
                 $color = 5;
@@ -364,14 +398,14 @@ class CrashController extends Controller
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
-        if($bet->number === '0.00'){
+        if ($bet->number === '0.00') {
             $bet->number = $game->profit;
             $bet->save();
         }
 
         event(new FlashOutCrash($bet));
 
-        return response()->json(['status' => 1, 'msg' => 'Вы вышли на '. $bet->number . ' коэффициентe']);
+        return response()->json(['status' => 1, 'msg' => 'Вы вышли на ' . $bet->number . ' коэффициентe']);
     }
 
     public function cashout()
@@ -379,7 +413,7 @@ class CrashController extends Controller
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
-        if($game->status === 2){
+        if ($game->status === 2) {
             DB::table('payments')->insert([
                 'account_id' => $user->id,
                 'price' => $bet->price / 10
@@ -389,6 +423,7 @@ class CrashController extends Controller
 
         return response()->json(['status' => 0, 'error' => 'Игра уже закончена']);
     }
+
     public function newBet(Request $request)
     {
         $cashout = $request->get('cashout');
@@ -423,10 +458,9 @@ class CrashController extends Controller
         } elseif (!$bet_next_exist) {
             $game_id = $next_id;
             $status = 2;
-            if($cashout === '0.00')
-            {
+            if ($cashout === '0.00') {
                 $result['msg'] = 'Вы сделали ставку на следущую игру с произвольным коэффициентом';
-            }else{
+            } else {
                 $result['msg'] = 'Ставка с суммой ' . $bet . ' и коофициентом ' . $cashout . ' принята для следующей игры №' . $game_id;
             }
 
@@ -448,7 +482,7 @@ class CrashController extends Controller
                 'price' => '-' . $bet / 10
             ]);
 
-            if($status !== 2){
+            if ($status !== 2) {
                 JoinCrash::dispatch($user, $request->get('cashout'), $request->get('bet'));
             }
         }
