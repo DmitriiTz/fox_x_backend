@@ -39,8 +39,8 @@ class CrashController extends Controller
     {
         $raw_data = collect($bets);
         $raw_data = $raw_data->map(function ($elem) {
-            $elem->coef = $elem->coef ? $elem->coef : 100;
-            return ['p' => $elem->user_id, 'x' => $elem->bet, 'k' => $elem->coef, 'z' => $elem->bet * $elem->coef];
+            $elem['coef'] = $elem['coef'] ? $elem['coef'] : 100;
+            return ['p' => $elem['user_id'], 'x' => $elem['bet'], 'k' => $elem['coef'], 'z' => $elem['bet'] * $elem['coef']];
         });
         $sum_bet = $raw_data->sum('x');
         $owner_k = 0.3;
