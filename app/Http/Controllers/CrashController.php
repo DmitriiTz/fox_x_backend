@@ -50,8 +50,8 @@ class CrashController extends Controller
         while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
             $game_data_k->push($game_data_z->pop());
         }
-        $max_z = $game_data_z->max('x');
-        $min_k = $game_data_k->min('x');
+        $max_z = $game_data_z->max('k');
+        $min_k = $game_data_k->min('k');
         if($max_z > $min_k)
         {
             $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
