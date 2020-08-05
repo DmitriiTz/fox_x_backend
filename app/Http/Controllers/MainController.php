@@ -264,7 +264,7 @@ class MainController extends Controller
 
     public function getMessage()
     {
-        $messages = Message::with('account')->limit(100)->orderBy('created_at', 'desc')->get();
+        $messages = Message::with('account')->limit(100)->orderBy('created_at', 'asc')->get();
 
         return response()->json($messages);
     }

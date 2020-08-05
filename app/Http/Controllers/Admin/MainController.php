@@ -156,9 +156,13 @@ class MainController extends Controller
 
     //
     public function setProfit(Request $request){
-        $gameBefore = CrashGame::where('status', 0)->first();
-        $gameBefore->profit = $request->profit;
-        $gameBefore->save();
+
+        CrashGame::create(['status' => 0, 'stop_crash' => $request->profit]);
+        $game_after = CrashGame::where('status', 0)->orderBy('id', 'desc')->limit(1)->first();
+        dd($game_after);
+        //$gameBefore = CrashGame::where('status', 0)->first();
+        //$gameBefore->profit = $request->profit;
+        //$gameBefore->save();
         
         return response()->json();
     }
