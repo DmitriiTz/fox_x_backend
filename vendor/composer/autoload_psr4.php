@@ -43,6 +43,8 @@ return array(
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
     'SocialiteProviders\\VKontakte\\' => array($vendorDir . '/socialiteproviders/vkontakte'),
     'SocialiteProviders\\Manager\\' => array($vendorDir . '/socialiteproviders/manager/src'),
+    'SocialiteProviders\\Google\\' => array($vendorDir . '/socialiteproviders/google'),
+    'SocialiteProviders\\Facebook\\' => array($vendorDir . '/socialiteproviders/facebook'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),

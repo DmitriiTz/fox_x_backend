@@ -1,0 +1,1675 @@
+[1m[22m
+[1mL A R A V E L  E C H O  S E R V E R[22m
+[1m[22m
+[36mversion 1.6.2[39m
+[36m[39m
+[33m⚠ Starting server in DEV mode...[39m
+[33m[39m
+[32m✔ [39m Running at localhost on port 6001
+[32m✔ [39m Channels are ready.
+[32m✔ [39m Listening for http events...
+[32m✔ [39m Listening for redis events...
+[36m[39m
+[36mServer ready![39m
+[36m[39m
+[36m[1:00:59 PM] - rPav5DEd9tLTRulPAAAA joined channel: crash-stop[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-coef[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: bet[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-stop[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: flash-out[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: bet-adm[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-timer[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: end-crash-timer[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: online-users[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-coef[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: bet[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-stop[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: flash-out[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: bet-adm[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: crash-timer[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: end-crash-timer[39m
+[36m[1:00:59 PM] - VYUeGOdL_zI03O0YAAAB joined channel: online-users[39m
+[36m[1:01:00 PM] - AODueXYogTYuKqrsAAAC joined channel: online-users[39m
+[36m[1:01:00 PM] - AODueXYogTYuKqrsAAAC joined channel: jackpot-classic[39m
+[36m[1:01:00 PM] - uNpsiEOovs66wwCAAAAD joined channel: king[39m
+[36m[1:01:00 PM] - rPav5DEd9tLTRulPAAAA joined channel: flash-out[39m
+[36m[1:01:00 PM] - rPav5DEd9tLTRulPAAAA joined channel: online-users[39m
+[36m[1:01:00 PM] - rPav5DEd9tLTRulPAAAA joined channel: king[39m
+[36m[1:01:00 PM] - uNpsiEOovs66wwCAAAAD joined channel: online-users[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: crash-coef[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: crash[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: bet[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: crash-stop[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: flash-out[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: bet-adm[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: crash-timer[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: end-crash-timer[39m
+[36m[1:01:02 PM] - o2Q-a8928pH-aElVAAAE joined channel: online-users[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC left channel: online-users (unsubscribed)[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: online-users[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: crash-coef[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: crash[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: bet[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: crash-stop[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: flash-out[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: bet-adm[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: crash-timer[39m
+[36m[1:01:03 PM] - AODueXYogTYuKqrsAAAC joined channel: end-crash-timer[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF joined channel: online-users[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF joined channel: coin-flip[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF left channel: online-users (unsubscribed)[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF joined channel: online-users[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF left channel: coin-flip (unsubscribed)[39m
+[36m[1:01:10 PM] - L0HKlfH72Mg-qbyTAAAF left channel: online-users (unsubscribed)[39m
+[36m[1:01:30 PM] - rPav5DEd9tLTRulPAAAA left channel: crash-stop (ping timeout)[39m
+[36m[1:01:30 PM] - rPav5DEd9tLTRulPAAAA left channel: flash-out (ping timeout)[39m
+[36m[1:01:30 PM] - rPav5DEd9tLTRulPAAAA left channel: online-users (ping timeout)[39m
+[36m[1:01:30 PM] - rPav5DEd9tLTRulPAAAA left channel: king (ping timeout)[39m
+[36m[1:01:32 PM] - uNpsiEOovs66wwCAAAAD left channel: king (transport close)[39m
+[36m[1:01:32 PM] - uNpsiEOovs66wwCAAAAD left channel: online-users (transport close)[39m
+[36m[1:01:34 PM] - carLhnAwuYGOLaJEAAAG joined channel: crash-stop[39m
+[36m[1:01:35 PM] - carLhnAwuYGOLaJEAAAG joined channel: flash-out[39m
+[36m[1:01:35 PM] - carLhnAwuYGOLaJEAAAG joined channel: online-users[39m
+[36m[1:01:35 PM] - carLhnAwuYGOLaJEAAAG joined channel: king[39m
+[36m[1:01:36 PM] - 55fX6HQvqxVbt536AAAH joined channel: king[39m
+[36m[1:01:38 PM] - 55fX6HQvqxVbt536AAAH joined channel: online-users[39m
+[36m[1:01:50 PM] - cY4WdWpzTCgf6QBUAAAI joined channel: online-users[39m
+[36m[1:01:51 PM] - cY4WdWpzTCgf6QBUAAAI joined channel: jackpot-classic[39m
+[36m[1:02:00 PM] - 55fX6HQvqxVbt536AAAH left channel: king (transport close)[39m
+[36m[1:02:00 PM] - 55fX6HQvqxVbt536AAAH left channel: online-users (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: online-users (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: crash-coef (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: crash (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: bet (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: crash-stop (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: flash-out (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: bet-adm (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: crash-timer (transport close)[39m
+[36m[1:02:02 PM] - AODueXYogTYuKqrsAAAC left channel: end-crash-timer (transport close)[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: crash-coef[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: crash[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: bet[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: crash-stop[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: flash-out[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: bet-adm[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: crash-timer[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: end-crash-timer[39m
+[36m[1:02:02 PM] - nkRrMIRPsnyY4Wo_AAAJ joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:02:07 PM] - vFOjl-VznhWw8Er4AAAK joined channel: king[39m
+[36m[1:02:07 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: crash-coef (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: crash (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: bet (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: crash-stop (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: flash-out (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: bet-adm (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: crash-timer (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: end-crash-timer (transport close)[39m
+[36m[1:02:17 PM] - nkRrMIRPsnyY4Wo_AAAJ left channel: online-users (transport close)[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: crash-coef[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: crash[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: bet[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: crash-stop[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: flash-out[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: bet-adm[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: crash-timer[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: end-crash-timer[39m
+[36m[1:02:17 PM] - fwNPLo3hl-6dMU6UAAAL joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: crash-coef[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: crash[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: bet[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: crash-stop[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: flash-out[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: bet-adm[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: crash-timer[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: end-crash-timer[39m
+[36m[1:02:23 PM] - WagL9MB_FMEvhzuLAAAM joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:24 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:24 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:02:24 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:24 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: online-users[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:02:25 PM] - dXLywlidiA4ugtIZAAAN joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: crash-coef (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: crash (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: bet (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: crash-stop (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: flash-out (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: bet-adm (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: crash-timer (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: end-crash-timer (transport close)[39m
+[36m[1:02:27 PM] - WagL9MB_FMEvhzuLAAAM left channel: online-users (transport close)[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: crash-coef[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: crash[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: bet[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: crash-stop[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: flash-out[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: bet-adm[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: crash-timer[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: end-crash-timer[39m
+[36m[1:02:27 PM] - RdKxP6UAG_OyKm13AAAO joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:29 PM] - dXLywlidiA4ugtIZAAAN left channel: jackpot-classic (unsubscribed)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN left channel: online-users (unsubscribed)[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: online-users[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: crash-coef[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: crash[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: bet[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: crash-stop[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: flash-out[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: bet-adm[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: crash-timer[39m
+[36m[1:02:30 PM] - dXLywlidiA4ugtIZAAAN joined channel: end-crash-timer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: online-users (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: crash-coef (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: crash (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: bet (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: crash-stop (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: flash-out (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: bet-adm (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: crash-timer (transport close)[39m
+[36m[1:02:33 PM] - dXLywlidiA4ugtIZAAAN left channel: end-crash-timer (transport close)[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: crash-coef[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: crash[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: bet[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: crash-stop[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: flash-out[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: bet-adm[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: crash-timer[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: end-crash-timer[39m
+[36m[1:02:33 PM] - _dIgRje7jgqu37dUAAAP joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: crash-coef (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: crash (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: bet (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: crash-stop (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: flash-out (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: bet-adm (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: crash-timer (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: end-crash-timer (transport close)[39m
+[36m[1:02:35 PM] - _dIgRje7jgqu37dUAAAP left channel: online-users (transport close)[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: crash-coef[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: crash[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: bet[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: crash-stop[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: flash-out[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: bet-adm[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: crash-timer[39m
+[36m[1:02:35 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: end-crash-timer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:36 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash-coef[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: bet[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash-stop[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: flash-out[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: bet-adm[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash-timer[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: end-crash-timer[39m
+[36m[1:02:38 PM] - rOXJY66wKimPnXbjAAAR joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: crash-coef (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: crash (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: bet (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: bet-adm (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: crash-timer (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: end-crash-timer (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR left channel: online-users (unsubscribed)[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR joined channel: online-users[39m
+[36m[1:02:41 PM] - rOXJY66wKimPnXbjAAAR joined channel: coin-flip[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:49 PM] - rOXJY66wKimPnXbjAAAR left channel: coin-flip (unsubscribed)[39m
+[36m[1:02:49 PM] - rOXJY66wKimPnXbjAAAR left channel: online-users (unsubscribed)[39m
+[36m[1:02:49 PM] - rOXJY66wKimPnXbjAAAR joined channel: online-users[39m
+[36m[1:02:49 PM] - rOXJY66wKimPnXbjAAAR joined channel: king[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR left channel: king (unsubscribed)[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR left channel: online-users (unsubscribed)[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: online-users[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash-coef[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: bet[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: bet-adm[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: crash-timer[39m
+[36m[1:02:51 PM] - rOXJY66wKimPnXbjAAAR joined channel: end-crash-timer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: crash-stop (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: flash-out (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: online-users (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: crash-coef (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: crash (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: bet (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: bet-adm (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: crash-timer (transport close)[39m
+[36m[1:03:52 PM] - rOXJY66wKimPnXbjAAAR left channel: end-crash-timer (transport close)[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: crash-coef[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: crash[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: bet[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: crash-stop[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: flash-out[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: bet-adm[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: crash-timer[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: end-crash-timer[39m
+[36m[1:03:52 PM] - Rbktw8znvsLhza8KAAAS joined channel: online-users[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK left channel: king (unsubscribed)[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: crash-coef[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: crash[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: bet[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: crash-stop[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: flash-out[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: bet-adm[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: crash-timer[39m
+[36m[1:03:55 PM] - vFOjl-VznhWw8Er4AAAK joined channel: end-crash-timer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: crash-coef (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: crash (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: bet (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: bet-adm (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: crash-timer (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: end-crash-timer (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:03:57 PM] - vFOjl-VznhWw8Er4AAAK joined channel: king[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: crash-coef (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: crash (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: bet (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: bet-adm (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: crash-timer (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: end-crash-timer (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: online-users (unsubscribed)[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: online-users[39m
+[36m[1:03:57 PM] - T4Nd71P3u0-K5AA0AAAQ joined channel: king[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:04:01 PM] - vFOjl-VznhWw8Er4AAAK left channel: king (unsubscribed)[39m
+[36m[1:04:01 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:04:01 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:04:01 PM] - vFOjl-VznhWw8Er4AAAK joined channel: coin-flip[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:04:02 PM] - vFOjl-VznhWw8Er4AAAK left channel: coin-flip (unsubscribed)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:03 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:04:03 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:04:03 PM] - vFOjl-VznhWw8Er4AAAK joined channel: king[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:07 PM] - vFOjl-VznhWw8Er4AAAK left channel: king (unsubscribed)[39m
+[36m[1:04:07 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:04:07 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:04:07 PM] - vFOjl-VznhWw8Er4AAAK joined channel: coin-flip[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK left channel: coin-flip (unsubscribed)[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK joined channel: jackpot-classic[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:04:08 PM] - vFOjl-VznhWw8Er4AAAK joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK joined channel: jackpot-classic[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK joined channel: jackpot-classic[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:04:09 PM] - vFOjl-VznhWw8Er4AAAK joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:10 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: crash-stop (transport close)[39m
+[36m[1:04:10 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: flash-out (transport close)[39m
+[36m[1:04:10 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: online-users (transport close)[39m
+[36m[1:04:10 PM] - T4Nd71P3u0-K5AA0AAAQ left channel: king (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:12 PM] - B7_C5Xczbm9yDhnQAAAT joined channel: king[39m
+[36m[1:04:12 PM] - B7_C5Xczbm9yDhnQAAAT joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:16 PM] - vFOjl-VznhWw8Er4AAAK left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:04:16 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (unsubscribed)[39m
+[36m[1:04:16 PM] - vFOjl-VznhWw8Er4AAAK joined channel: online-users[39m
+[36m[1:04:16 PM] - vFOjl-VznhWw8Er4AAAK joined channel: king[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:04:33 PM] - vFOjl-VznhWw8Er4AAAK left channel: crash-stop (transport close)[39m
+[36m[1:04:33 PM] - vFOjl-VznhWw8Er4AAAK left channel: flash-out (transport close)[39m
+[36m[1:04:33 PM] - vFOjl-VznhWw8Er4AAAK left channel: online-users (transport close)[39m
+[36m[1:04:33 PM] - vFOjl-VznhWw8Er4AAAK left channel: king (transport close)[39m
+[36m[1:04:38 PM] - cN19qXYLNJppnPcKAAAU joined channel: king[39m
+[36m[1:04:38 PM] - cN19qXYLNJppnPcKAAAU joined channel: online-users[39m
+[36m[1:04:45 PM] - B7_C5Xczbm9yDhnQAAAT left channel: king (transport close)[39m
+[36m[1:04:45 PM] - B7_C5Xczbm9yDhnQAAAT left channel: online-users (transport close)[39m
+[36m[1:04:46 PM] - mQ_iu03KBgneOy9EAAAV joined channel: king[39m
+[36m[1:04:46 PM] - mQ_iu03KBgneOy9EAAAV joined channel: online-users[39m
+[36m[1:04:55 PM] - mQ_iu03KBgneOy9EAAAV left channel: king (unsubscribed)[39m
+[36m[1:04:55 PM] - mQ_iu03KBgneOy9EAAAV left channel: online-users (unsubscribed)[39m
+[36m[1:04:55 PM] - mQ_iu03KBgneOy9EAAAV joined channel: online-users[39m
+[36m[1:04:55 PM] - mQ_iu03KBgneOy9EAAAV joined channel: coin-flip[39m
+[36m[1:05:03 PM] - mQ_iu03KBgneOy9EAAAV left channel: coin-flip (unsubscribed)[39m
+[36m[1:05:03 PM] - mQ_iu03KBgneOy9EAAAV left channel: online-users (unsubscribed)[39m
+[36m[1:05:03 PM] - mQ_iu03KBgneOy9EAAAV joined channel: online-users[39m
+[36m[1:05:03 PM] - mQ_iu03KBgneOy9EAAAV joined channel: king[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV left channel: king (unsubscribed)[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV left channel: online-users (unsubscribed)[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: online-users[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: crash-coef[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: crash[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: bet[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: crash-stop[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: flash-out[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: bet-adm[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: crash-timer[39m
+[36m[1:05:04 PM] - mQ_iu03KBgneOy9EAAAV joined channel: end-crash-timer[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: crash-coef (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: crash (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: bet (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: crash-stop (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: flash-out (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: bet-adm (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: crash-timer (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: end-crash-timer (transport close)[39m
+[36m[1:05:18 PM] - Rbktw8znvsLhza8KAAAS left channel: online-users (transport close)[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: crash-coef[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: crash[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: bet[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: crash-stop[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: flash-out[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: bet-adm[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: crash-timer[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: end-crash-timer[39m
+[36m[1:05:18 PM] - etmpseRGDlg4jSb5AAAW joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: crash-coef (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: crash (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: bet (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: crash-stop (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: flash-out (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: bet-adm (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: crash-timer (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: end-crash-timer (transport close)[39m
+[36m[1:05:20 PM] - etmpseRGDlg4jSb5AAAW left channel: online-users (transport close)[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: crash-coef[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: crash[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: bet[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: crash-stop[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: flash-out[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: bet-adm[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: crash-timer[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: end-crash-timer[39m
+[36m[1:05:20 PM] - bny2MISJ7uEUWGewAAAX joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: crash-coef (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: crash (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: bet (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: crash-stop (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: flash-out (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: bet-adm (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: crash-timer (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: end-crash-timer (transport close)[39m
+[36m[1:05:24 PM] - bny2MISJ7uEUWGewAAAX left channel: online-users (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: crash-coef[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: crash[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: bet[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: crash-stop[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: flash-out[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: bet-adm[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: crash-timer[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: end-crash-timer[39m
+[36m[1:05:25 PM] - ah0Xl0AD1qPehtRTAAAY joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: online-users (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: crash-coef (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: crash (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: bet (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: crash-stop (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: flash-out (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: bet-adm (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: crash-timer (transport close)[39m
+[36m[1:05:28 PM] - mQ_iu03KBgneOy9EAAAV left channel: end-crash-timer (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: crash-coef[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: crash[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: bet[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: crash-stop[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: flash-out[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: bet-adm[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: crash-timer[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: end-crash-timer[39m
+[36m[1:05:30 PM] - tsr_SShkukvcgm0tAAAZ joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:36 PM] - cN19qXYLNJppnPcKAAAU left channel: king (transport close)[39m
+[36m[1:05:36 PM] - cN19qXYLNJppnPcKAAAU left channel: online-users (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:40 PM] - 0nvlG9d8cBHLMKdMAAAa joined channel: king[39m
+[36m[1:05:40 PM] - 0nvlG9d8cBHLMKdMAAAa joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: crash-coef (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: crash (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: bet (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: bet-adm (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: crash-timer (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: end-crash-timer (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ left channel: online-users (unsubscribed)[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ joined channel: online-users[39m
+[36m[1:05:42 PM] - tsr_SShkukvcgm0tAAAZ joined channel: king[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: crash-coef (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: crash (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: bet (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: crash-stop (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: flash-out (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: bet-adm (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: crash-timer (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: end-crash-timer (transport close)[39m
+[36m[1:05:45 PM] - ah0Xl0AD1qPehtRTAAAY left channel: online-users (transport close)[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: crash-coef[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: crash[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: bet[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: crash-stop[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: flash-out[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: bet-adm[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: crash-timer[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: end-crash-timer[39m
+[36m[1:05:45 PM] - eCrG5c2XirXikFFUAAAb joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\EndGameKing[39m
+[36m[1:06:28 PM] - tsr_SShkukvcgm0tAAAZ left channel: king (unsubscribed)[39m
+[36m[1:06:28 PM] - tsr_SShkukvcgm0tAAAZ left channel: online-users (unsubscribed)[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\AddParticipantKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\StartGameKing[39m
+[36mChannel: king[39m
+[36mEvent: App\Events\EndGameKing[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: crash-coef (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: crash (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: bet (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: crash-stop (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: flash-out (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: bet-adm (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: crash-timer (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: end-crash-timer (transport close)[39m
+[36m[1:08:15 PM] - VYUeGOdL_zI03O0YAAAB left channel: online-users (transport close)[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: crash-coef[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: crash[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: bet[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: crash-stop[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: flash-out[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: bet-adm[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: crash-timer[39m
+[36m[1:08:15 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: end-crash-timer[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:08:16 PM] - l51_4Pn3cOtlfJ2dAAAc joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:26 PM] - cY4WdWpzTCgf6QBUAAAI left channel: online-users (transport close)[39m
+[36m[1:08:26 PM] - cY4WdWpzTCgf6QBUAAAI left channel: jackpot-classic (transport close)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: online-users[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:27 PM] - Wgj-BBi0KZMNpqs8AAAd joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:33 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: online-users (transport close)[39m
+[36m[1:08:33 PM] - Wgj-BBi0KZMNpqs8AAAd left channel: jackpot-classic (transport close)[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: online-users[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:33 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:34 PM] - ZygLDf6L6KFLdJXBAAAe joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:38 PM] - ZygLDf6L6KFLdJXBAAAe left channel: online-users (transport close)[39m
+[36m[1:08:38 PM] - ZygLDf6L6KFLdJXBAAAe left channel: jackpot-classic (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:40 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:40 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:40 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:40 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: online-users[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:41 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:46 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:46 PM] - nZsefVCSmK5xxW_CAAAf left channel: online-users (unsubscribed)[39m
+[36m[1:08:46 PM] - nZsefVCSmK5xxW_CAAAf joined channel: online-users[39m
+[36m[1:08:46 PM] - nZsefVCSmK5xxW_CAAAf joined channel: coin-flip[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:49 PM] - nZsefVCSmK5xxW_CAAAf left channel: coin-flip (unsubscribed)[39m
+[36m[1:08:49 PM] - nZsefVCSmK5xxW_CAAAf left channel: online-users (unsubscribed)[39m
+[36m[1:08:49 PM] - nZsefVCSmK5xxW_CAAAf joined channel: online-users[39m
+[36m[1:08:49 PM] - nZsefVCSmK5xxW_CAAAf joined channel: king[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: king (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: online-users (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: online-users[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:08:53 PM] - nZsefVCSmK5xxW_CAAAf joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: crash-coef (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: crash (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: bet (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: crash-stop (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: flash-out (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: bet-adm (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: crash-timer (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: end-crash-timer (ping timeout)[39m
+[36m[1:09:10 PM] - eCrG5c2XirXikFFUAAAb left channel: online-users (ping timeout)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:09:13 PM] - -xLn5UobhFFoUP7DAAAg joined channel: crash-coef[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: crash-coef (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: crash (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: bet (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: crash-stop (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: flash-out (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: bet-adm (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: crash-timer (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: end-crash-timer (transport close)[39m
+[36m[1:09:13 PM] - l51_4Pn3cOtlfJ2dAAAc left channel: online-users (transport close)[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: crash-coef[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: crash[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: bet[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: crash-stop[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: flash-out[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: bet-adm[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: crash-timer[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: end-crash-timer[39m
+[36m[1:09:13 PM] - hAPgVbzXcmP56uGtAAAh joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: crash[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: bet[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: crash-stop[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: flash-out[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: bet-adm[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: crash-timer[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: end-crash-timer[39m
+[36m[1:09:21 PM] - -xLn5UobhFFoUP7DAAAg joined channel: online-users[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: crash-coef (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: crash (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: bet (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: crash-stop (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: flash-out (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: bet-adm (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: crash-timer (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: end-crash-timer (transport close)[39m
+[36m[1:09:22 PM] - hAPgVbzXcmP56uGtAAAh left channel: online-users (transport close)[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: crash-coef[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: crash[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: bet[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: crash-stop[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: flash-out[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: bet-adm[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: crash-timer[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: end-crash-timer[39m
+[36m[1:09:22 PM] - ToCadQWrMZHsVQ_TAAAi joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:09:26 PM] - carLhnAwuYGOLaJEAAAG left channel: crash-stop (ping timeout)[39m
+[36m[1:09:26 PM] - carLhnAwuYGOLaJEAAAG left channel: flash-out (ping timeout)[39m
+[36m[1:09:26 PM] - carLhnAwuYGOLaJEAAAG left channel: online-users (ping timeout)[39m
+[36m[1:09:26 PM] - carLhnAwuYGOLaJEAAAG left channel: king (ping timeout)[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:09:29 PM] - 3NcnIrTDF7oqG9KyAAAj joined channel: crash-stop[39m
+[36m[1:09:29 PM] - 3NcnIrTDF7oqG9KyAAAj joined channel: flash-out[39m
+[36m[1:09:29 PM] - 3NcnIrTDF7oqG9KyAAAj joined channel: online-users[39m
+[36m[1:09:29 PM] - 3NcnIrTDF7oqG9KyAAAj joined channel: king[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:09:38 PM] - nZsefVCSmK5xxW_CAAAf left channel: online-users (transport close)[39m
+[36m[1:09:38 PM] - nZsefVCSmK5xxW_CAAAf left channel: jackpot-classic (transport close)[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk joined channel: online-users[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:38 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:09:39 PM] - _WDo_jidDxXN5WOQAAAk joined channel: jackpot-classic[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:10:18 PM] - _WDo_jidDxXN5WOQAAAk left channel: online-users (transport close)[39m
+[36m[1:10:18 PM] - _WDo_jidDxXN5WOQAAAk left channel: jackpot-classic (transport close)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: online-users[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:10:19 PM] - h_yeTPLMY95A7EwNAAAl joined channel: jackpot-classic[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: crash-coef (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: crash (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: bet (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: crash-stop (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: flash-out (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: bet-adm (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: crash-timer (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: end-crash-timer (ping timeout)[39m
+[36m[1:10:34 PM] - -xLn5UobhFFoUP7DAAAg left channel: online-users (ping timeout)[39m
+[36m[1:10:45 PM] - SECiIZBXAlDan6N4AAAm joined channel: crash-coef[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: crash[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: bet[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: crash-stop[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: flash-out[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: bet-adm[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: crash-timer[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: end-crash-timer[39m
+[36m[1:10:55 PM] - SECiIZBXAlDan6N4AAAm joined channel: online-users[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: crash-coef (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: crash (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: bet (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: crash-stop (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: flash-out (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: bet-adm (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: crash-timer (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: end-crash-timer (transport close)[39m
+[36m[1:11:37 PM] - SECiIZBXAlDan6N4AAAm left channel: online-users (transport close)[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: crash-coef[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: crash[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: bet[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: crash-stop[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: flash-out[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: bet-adm[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: crash-timer[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: end-crash-timer[39m
+[36m[1:11:38 PM] - IiMxgsPjMOIy3brhAAAn joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: crash-coef (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: crash (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: bet (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: crash-stop (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: flash-out (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: bet-adm (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: crash-timer (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: end-crash-timer (transport close)[39m
+[36m[1:11:42 PM] - ToCadQWrMZHsVQ_TAAAi left channel: online-users (transport close)[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: crash-coef[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: crash[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: bet[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: crash-stop[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: flash-out[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: bet-adm[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: crash-timer[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: end-crash-timer[39m
+[36m[1:11:42 PM] - ETZqaPxWUWas-c0YAAAo joined channel: online-users[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: crash-coef (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: crash (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: bet (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: crash-stop (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: flash-out (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: bet-adm (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: crash-timer (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: end-crash-timer (transport close)[39m
+[36m[1:12:33 PM] - ETZqaPxWUWas-c0YAAAo left channel: online-users (transport close)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp joined channel: online-users[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:03 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: jackpot-classic[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp left channel: jackpot-classic (unsubscribed)[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp left channel: online-users (unsubscribed)[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: online-users[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: crash-coef[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: crash[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: bet[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: crash-stop[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: flash-out[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: bet-adm[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: crash-timer[39m
+[36m[1:13:04 PM] - _V3XHleNiilmm6LJAAAp joined channel: end-crash-timer[39m
+[36mChannel: crash[39m
+[36mEvent: App\Events\CreateGameCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: bet[39m
+[36mEvent: App\Events\JoinCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: end-crash-timer[39m
+[36mEvent: App\Events\EndGameTimerCrash[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: crash-coef (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: crash (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: bet (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: crash-stop (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: flash-out (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: bet-adm (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: crash-timer (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: end-crash-timer (ping timeout)[39m
+[36m[1:13:23 PM] - IiMxgsPjMOIy3brhAAAn left channel: online-users (ping timeout)[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:13:26 PM] - OnhIcQJleplkHzD3AAAq joined channel: crash-coef[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: crash[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: bet[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: crash-stop[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: flash-out[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: bet-adm[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: crash-timer[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: end-crash-timer[39m
+[36m[1:13:32 PM] - OnhIcQJleplkHzD3AAAq joined channel: online-users[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36mChannel: crash-timer[39m
+[36mEvent: App\Events\CrashTimer[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: crash-coef (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: crash (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: bet (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: crash-stop (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: flash-out (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: bet-adm (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: crash-timer (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: end-crash-timer (ping timeout)[39m
+[36m[1:14:21 PM] - OnhIcQJleplkHzD3AAAq left channel: online-users (ping timeout)[39m
+[36mChannel: flash-out[39m
+[36mEvent: App\Events\FlashOutCrash[39m
+[36m[1:14:28 PM] - QCEV4c24t2xku4kaAAAr joined channel: crash-coef[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: crash[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: bet[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: crash-stop[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: flash-out[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: bet-adm[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: crash-timer[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: end-crash-timer[39m
+[36m[1:14:35 PM] - QCEV4c24t2xku4kaAAAr joined channel: online-users[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: online-users (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: crash-coef (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: crash (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: bet (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: crash-stop (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: flash-out (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: bet-adm (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: crash-timer (transport close)[39m
+[36m[1:14:35 PM] - _V3XHleNiilmm6LJAAAp left channel: end-crash-timer (transport close)[39m

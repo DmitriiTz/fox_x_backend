@@ -5,6 +5,7 @@ namespace App\Events;
 use App\CrashBet;
 use App\CrashGame;
 use App\HistoryGame;
+use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\CrashController;
 use App\Jobs\EndCrashTimerJob;
 use Illuminate\Broadcasting\Channel;
@@ -12,6 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class CrashTimer implements ShouldBroadcast
@@ -39,7 +41,14 @@ class CrashTimer implements ShouldBroadcast
         $game = CrashGame::find($this->gameId);
         $game->profit = 1.06 ** $this->coef;
         $game->save();
+
+        if($game->profit >= $game->stop_game){
+            $main = new MainController;
+            $main->crash_stop();
+        }
+
         if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
+            Artisan::call('queue:clear', ['connection' => 'redis']);
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
             foreach ($bets as $bet) {
                 if($bet->number < $game->profit){

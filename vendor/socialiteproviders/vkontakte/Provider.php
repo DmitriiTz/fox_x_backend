@@ -3,18 +3,23 @@
 namespace SocialiteProviders\VKontakte;
 
 use Illuminate\Support\Arr;
-use Laravel\Socialite\Two\ProviderInterface;
+use Laravel\Socialite\Two\InvalidStateException;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
 
-class Provider extends AbstractProvider implements ProviderInterface
+class Provider extends AbstractProvider
 {
-    protected $fields = ['uid', 'email', 'first_name', 'last_name', 'screen_name', 'photo'];
+    protected $fields = ['id', 'email', 'first_name', 'last_name', 'screen_name', 'photo_200'];
 
     /**
      * Unique Provider Identifier.
      */
     const IDENTIFIER = 'VKONTAKTE';
+
+     /**
+     * {@inheritdoc}
+     */
+    protected $stateless = true;
 
     /**
      * {@inheritdoc}
@@ -22,11 +27,9 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected $scopes = ['email'];
 
     /**
-     * {@inheritdoc}
+     * Last API version.
      */
-    protected $parameters = [
-         'v' => '5.69',
-    ];
+    const VERSION = '5.92';
 
     /**
      * {@inheritdoc}
@@ -51,14 +54,26 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $lang = $this->getConfig('lang');
-        $lang = $lang ? '&language='.$lang : '';
-        $response = $this->getHttpClient()->get(
-            'https://api.vk.com/method/users.get?access_token='.$token.'&fields='.implode(',', $this->fields).$lang.'&v=3.0'
-        );
+        $from_token = [];
+        if (is_array($token)) {
+            $from_token["email"] = isset($token["email"]) ? $token["email"] : null;
+            
+            $token = $token["access_token"];
+        }
+
+        $params = http_build_query([
+            'access_token' => $token,
+            'fields'       => implode(',', $this->fields),
+            'lang'     => $this->getConfig('lang', 'en'),
+            'v'            => self::VERSION,
+        ]);
+
+        $response = $this->getHttpClient()->get('https://api.vk.com/method/users.get?' . $params);
 
         $contents = $response->getBody()->getContents();
+
         $response = json_decode($contents, true);
+
         if (!is_array($response) || !isset($response['response'][0])) {
             throw new \RuntimeException(sprintf(
                 'Invalid JSON response from VK: %s',
@@ -66,7 +81,29 @@ class Provider extends AbstractProvider implements ProviderInterface
             ));
         }
 
-        return $response['response'][0];
+        return array_merge($from_token, $response['response'][0]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function user() {
+        if ($this->hasInvalidState()) {
+            throw new InvalidStateException;
+        }
+
+        $response = $this->getAccessTokenResponse($this->getCode());
+
+        $user = $this->mapUserToObject($this->getUserByToken($response));
+
+        $this->credentialsResponseBody = $response;
+
+        if ($user instanceof User) {
+            $user->setAccessTokenResponseBody($this->credentialsResponseBody);
+        }
+
+        return $user->setToken($this->parseAccessToken($response))
+            ->setExpiresIn($this->parseExpiresIn($response));
     }
 
     /**
@@ -75,11 +112,11 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => Arr::get($user, 'uid'),
+            'id'       => Arr::get($user, 'id'),
             'nickname' => Arr::get($user, 'screen_name'),
             'name'     => trim(Arr::get($user, 'first_name').' '.Arr::get($user, 'last_name')),
             'email'    => Arr::get($user, 'email'),
-            'avatar'   => Arr::get($user, 'photo'),
+            'avatar'   => Arr::get($user, 'photo_200'),
         ]);
     }
 

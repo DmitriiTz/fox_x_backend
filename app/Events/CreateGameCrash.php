@@ -27,6 +27,8 @@ class CreateGameCrash implements ShouldBroadcast
     public $ubets;
     public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
     {
+        //$game_after = CrashGame::where('status', 0)->orderBy('id', 'desc')->limit(1)->first();
+
         $this->game = CrashGame::create([
             'number' => $number,
             'create_game' => $create_game,
@@ -36,6 +38,7 @@ class CreateGameCrash implements ShouldBroadcast
             'hash' => $hash,
             'link_hash' => $link_hash
         ]);
+        
         $bets = DB::table('crashbets')->where('crash_game_id', $this->game->id)->get();
         $this->ubets = array();
         foreach ($bets as $key) {
