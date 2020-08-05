@@ -39,7 +39,7 @@ class CrashTimer implements ShouldBroadcast
         $game = CrashGame::find($this->gameId);
         $game->profit = 1.06 ** $this->coef;
         $game->save();
-        if ($game->status !== 3 && $this->endGameAt === $this->endTimer) {
+        if ($game->status != 3 && $this->endGameAt == $this->endTimer) {
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
             foreach ($bets as $bet) {
                 if($bet->number < $game->profit){
