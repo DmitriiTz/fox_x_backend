@@ -46,7 +46,7 @@ class CrashTimer implements ShouldBroadcast
         }
 
         if ($game->status != 3 && $this->endGameAt == $this->endTimer) {
-            Artisan::call('queue:clear', ['connection' => 'redis']);
+            //Artisan::call('queue:clear', ['connection' => 'redis']);
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
             foreach ($bets as $bet) {
                 if($bet->number < $game->profit){
