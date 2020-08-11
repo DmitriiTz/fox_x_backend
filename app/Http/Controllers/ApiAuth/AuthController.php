@@ -49,6 +49,10 @@ class AuthController extends Controller
             $user->email = $auth_user->email;
             $user->image = $auth_user->avatar;
         }
+        if($driver == 'vkontakte')
+        {
+            $user->link_vk = 'https://vk.com/id'.$auth_user->id;
+        }
         $user->provider = $driver;
         $user->provider_id = $auth_user->id;
         $user->save();
