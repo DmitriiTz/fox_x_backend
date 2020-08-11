@@ -174,7 +174,7 @@ class MainController extends Controller
         $max_cash_number = Participant::max('max_cash_number');
         $biggestBank = Participant::where('max_cash_number', '=', $max_cash_number)->first();
 
-
+dd($biggestBank);
         $tempGame = HistoryGame::with([
             'participants' => function ($query) {
                 $query->with('account');

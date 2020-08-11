@@ -167,14 +167,14 @@ class JackpotController extends Controller
                     if ($countParticipants == 2) {
                         $timer = now();
                         $timer2 = now();
-                        $end_game_at = $timer->addSeconds(34);
+                        $end_game_at = $timer->addSeconds(39);
                         unset($game->participants);
                         $game->end_game_at = $end_game_at;
-                        $animationAt = $timer2->addSeconds(50);
+                        $animationAt = $timer2->addSeconds(55);
                         $game->animation_at = $animationAt; //33
                         $game->save();
 
-                        for ($i = 34, $j = 0; $i >= 0, $j <= 34; $i--, $j++) {
+                        for ($i = 39, $j = 0; $i >= 0, $j <= 39; $i--, $j++) {
                             $job = (new StartGameJob($game->id, $end_game_at, $gameType->name, $i))->delay($j);
                             $this->dispatch($job);
                         }
