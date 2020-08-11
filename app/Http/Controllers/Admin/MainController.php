@@ -18,6 +18,7 @@ use App\Events\StopCrash;
 use App\CrashGame;
 use DB;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 
 class MainController extends Controller
 {
@@ -97,6 +98,11 @@ class MainController extends Controller
         $kingStatisticsMonth = Commission::where('created_at', '>', Carbon::today()->subMonth())->where('created_at', '<', Carbon::now())->where('game_id', 2)->sum('price');
         $kingStatistics3Months = Commission::where('created_at', '>', Carbon::today()->subMonths(3))->where('created_at', '<', Carbon::now())->where('game_id', 2)->sum('price');
 
+        $crashStatisticsToday = Commission::where('created_at', '>', Carbon::today())->where('created_at', '<', Carbon::now())->where('game_id', 9)->sum('price');
+        $crashStatisticsYesterday = Commission::where('created_at', '>', Carbon::yesterday())->where('created_at', '<', Carbon::today())->where('game_id', 9)->sum('price');
+        $crashStatistics7days = Commission::where('created_at', '>', Carbon::today()->subDays(7))->where('created_at', '<', Carbon::now())->where('game_id', 9)->sum('price');
+        $crashStatisticsMonth = Commission::where('created_at', '>', Carbon::today()->subMonth())->where('created_at', '<', Carbon::now())->where('game_id', 9)->sum('price');
+        $crashStatistics3Months = Commission::where('created_at', '>', Carbon::today()->subMonths(3))->where('created_at', '<', Carbon::now())->where('game_id', 9)->sum('price');
 
 
 
@@ -127,21 +133,30 @@ class MainController extends Controller
             'paymentsReferral7days' => $paymentsReferral7days,
             'paymentsReferralMonth' => $paymentsReferralMonth,
             'paymentsReferral3Months' => $paymentsReferral3Months,
+
             'jackpotStatisticsToday' => $jackpotStatisticsToday,
             'jackpotStatisticsYesterday' => $jackpotStatisticsYesterday,
             'jackpotStatistics7days' => $jackpotStatistics7days,
             'jackpotStatisticsMonth' => $jackpotStatisticsMonth,
             'jackpotStatistics3Months' => $jackpotStatistics3Months,
+
             'coinflipStatisticsToday' => $coinflipStatisticsToday,
             'coinflipStatisticsYesterday' => $coinflipStatisticsYesterday,
             'coinflipStatistics7days' => $coinflipStatistics7days,
             'coinflipStatisticsMonth' => $coinflipStatisticsMonth,
             'coinflipStatistics3Months' => $coinflipStatistics3Months,
+
             'kingStatisticsToday' => $kingStatisticsToday,
             'kingStatisticsYesterday' => $kingStatisticsYesterday,
             'kingStatistics7days' => $kingStatistics7days,
             'kingStatisticsMonth' => $kingStatisticsMonth,
-            'kingStatistics3Months' => $kingStatistics3Months];
+            'kingStatistics3Months' => $kingStatistics3Months,
+
+            'crashStatisticsToday' => $crashStatisticsToday,
+            'crashStatisticsYesterday' => $crashStatisticsYesterday,
+            'crashStatistics7days' => $crashStatistics7days,
+            'crashStatisticsMonth' => $crashStatisticsMonth,
+            'crashStatistics3Months' => $crashStatistics3Months];
 
         return response()->json($data);
 
@@ -157,9 +172,12 @@ class MainController extends Controller
     //
     public function setProfit(Request $request){
 
-        CrashGame::create(['status' => 0, 'stop_crash' => $request->profit]);
-        $game_after = CrashGame::where('status', 0)->orderBy('id', 'desc')->limit(1)->first();
-        dd($game_after);
+        $profit = $request->profit;
+        Cache::put('next_crash_coefficient', $profit, 60);
+
+//        CrashGame::create(['status' => 0, 'stop_crash' => $request->profit]);
+//        $game_after = CrashGame::where('status', 0)->orderBy('id', 'desc')->limit(1)->first();
+
         //$gameBefore = CrashGame::where('status', 0)->first();
         //$gameBefore->profit = $request->profit;
         //$gameBefore->save();
@@ -412,9 +430,15 @@ class MainController extends Controller
             ->take(10) // количество
             ->get(); // вывод игр по игре coinflip
 
+        $crash_games = CrashGame::orderBy('id', 'asc')
+            ->where('status', 3)
+            ->take(5)
+            ->get(); // вывод игр по игре jackpot
+
         $data = [
             'jackpotGames' => $jackpotGames,
             'coinflipGames' => $coinflipGames,
+            'crashGames' => $crash_games,
             'page' => $page,
         ];
 
@@ -534,7 +558,7 @@ class MainController extends Controller
             'total_price_input' => $total_price_input,
             'total_price_referal' => $total_price_referal,
             'user' => $user,
-            'payments' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->get(),
+            'payments' => $user->payments()->where('payment_type_id', 1)->orWhere('payment_type_id', 2)->where('account_id', $user->id)->get(),
         ];
 
         return response()->json($data);

@@ -40,16 +40,22 @@ class CrashTimer implements ShouldBroadcast
         $game->profit = 1.06 ** $this->coef;
         $game->save();
 
-        if($game->profit >= $game->stop_game){
-            $main = new MainController;
-            $main->crash_stop();
-        }
+//        if ($game->profit >= $game->stop_game) {
+//            $main = new MainController;
+//            $main->crash_stop();
+//        }
 
         if ($game->status != 3 && $this->endGameAt == $this->endTimer) {
             //Artisan::call('queue:clear', ['connection' => 'redis']);
             $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
             foreach ($bets as $bet) {
-                if($bet->number < $game->profit){
+
+                $commission = new \App\Commission;
+                $commission->game_id = 9;
+                $commission->price = ($bet->price / 10) * 10 / 100;
+                $commission->save();
+
+                if ($bet->number < $game->profit) {
                     DB::table('payments')->insert([
                         'account_id' => $bet->user_id,
                         'price' => $bet->price * $bet->number / 10

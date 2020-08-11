@@ -10,7 +10,7 @@ use App\User;
 use App\CrashGame;
 use App\CrashBet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Cache;
+use Illuminate\Support\Facades\Cache;
 use App\Events\JoinCrash;
 use App\Events\AdmCrash;
 use App\Events\CrashCoef;
@@ -131,15 +131,19 @@ class CrashController extends Controller
 
     public function setProfit(Request $request)
     {
-//        $game_id = $request->game;
         $profit = $request->profit;
-        if ($profit >= 1000) $profit = 1000;
-//    	$game = CrashGame::find($game_id);
-        $game = CrashGame::orderBy('id', 'desc')->first();
-        if ($profit <= $game->rand_number) return false;
+        Cache::put('next_crash_coefficient', $profit, 60);
 
-        $game->profit = $profit;
-        $game->save();
+        dd($y_cache = Cache::get('next_crash_coefficient'));
+        return true;
+
+//        $profit = $request->profit;
+//        if ($profit >= 1000) $profit = 1000;
+//        $game = CrashGame::orderBy('id', 'desc')->first();
+//        if ($profit <= $game->rand_number) return false;
+//
+//        $game->profit = $profit;
+//        $game->save();
 //        Log::warning('profit ' . print_r($profit,1));
 //        Log::warning('req ' . print_r($request,1));
 //
@@ -269,19 +273,36 @@ class CrashController extends Controller
     {
         //$gameBefore = CrashGame::where('status', 0)->limit(100)->get();
 
-        $i = 1;
-        $x_int = rand(1, 10);
-        $x_float = rand(10, 10);
-        $x = $x_int . '.' . $x_float;
-        $y = 1;
-        $x = floor((mt_rand()/mt_getrandmax())*10)/10+1;
-        while ($i <= 1000) {
-            $y = $y * 1.06;
-            if ($y >= $x) {
-                break;
+        if (Cache::has('next_crash_coefficient')) {
+            $y_cache = Cache::get('next_crash_coefficient');
+            Cache::forget('next_crash_coefficient');
+
+            $i = 1;
+            $y = 1;
+            while ($i <= 1000) {
+                $y = $y * 1.06;
+                if ($y >= $y_cache) {
+                    break;
+                }
+                $i++;
             }
-            $i++;
+        } else {
+            $x_int = rand(1, 10);
+            $x_float = rand(10, 10);
+            $x = $x_int . '.' . $x_float;
+            //$x = floor((mt_rand() / mt_getrandmax()) * 10) / 10 + 1;
+
+            $i = 1;
+            $y = 1;
+            while ($i <= 1000) {
+                $y = $y * 1.06;
+                if ($y >= $x) {
+                    break;
+                }
+                $i++;
+            }
         }
+
         $time = $i + 17;
         $hash = hash('sha224', strval($y));
         $link_hash = 'http://sha224.net/?val=' . $hash;
@@ -490,6 +511,45 @@ class CrashController extends Controller
         $result['bet'] = $bet;
         $result['status'] = $status;
         return response()->json($result);
+    }
+
+    //исправленный алгоритм
+    public function check_algorithm(){
+        $game = CrashGame::orderBy('id', 'desc')->first();
+        $bets = \Illuminate\Support\Facades\DB::table('crashbets')->where('crash_game_id', $game->id)->get();
+
+        $raw_data = $bets;
+        $raw_data = $raw_data->map(function ($elem) {
+            $elem->number = $elem->number ? $elem->number : 100;
+            return ['p' => $elem->user_id, 'x' => $elem->price, 'k' => $elem->number, 'z' => $elem->price * $elem->number];
+        });
+        $sum_bet = $raw_data->sum('x');
+        $owner_k = 0.3;
+        $total_money_p = $sum_bet * (1 - $owner_k);
+        $game_data_z = $raw_data->sortBy('z');
+        $game_data_k = collect([]);
+        while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
+            $game_data_k->push($game_data_z->pop());
+        }
+        $max_z = $game_data_z->max('k');
+        $min_k = $game_data_k->min('k');
+        if($max_z > $min_k)
+        {
+            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
+        }
+        else if ($max_z == 1.1 || $min_k == 1.1)
+        {
+            $coef = 1;
+        }
+        else
+        {
+            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        }
+        $response = [
+            'coef' => $coef,
+            'bets' => $bets
+        ];
+        return response()->json($response);
     }
 
     public function algorithm()
