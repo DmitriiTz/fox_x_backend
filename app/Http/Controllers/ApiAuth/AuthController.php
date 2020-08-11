@@ -52,6 +52,7 @@ class AuthController extends Controller
         if($driver == 'vkontakte')
         {
             $user->link_vk = 'https://vk.com/id'.$auth_user->id;
+            $user->vkontakte_id = $auth_user->id;
         }
         $user->provider = $driver;
         $user->provider_id = $auth_user->id;
