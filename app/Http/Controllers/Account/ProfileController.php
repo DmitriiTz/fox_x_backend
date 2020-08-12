@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\HistoryGame;
 use App\Payment;
+use App\UsesPromocode;
 use App\Promocode;
 use App\User;
 use Carbon\Carbon;
@@ -152,22 +153,40 @@ class ProfileController extends Controller
         $user = auth()->user();
         $allSumma = Payment::where('account_id', auth()->user()->id)->sum('price') * 10;
 
-        if ($user->bad_time_promocode > now()) {
-            return ['error' => 1, 'sum' => $allSumma, 'text' => 'Активировать промокод можно раз в 24 часа!'];
-        }
 
-        $isPromocode = Promocode::where('code', $request->code)->first();
-        if ($isPromocode == false) {
+//        if ($user->bad_time_promocode > now()) {
+//            return ['error' => 1, 'sum' => $allSumma, 'text' => 'Активировать промокод можно раз в 24 часа!'];
+//        }
+
+        $isPromocode = Promocode::where('code', $request->promo)->first();
+        if (!$isPromocode) {
             return ['error' => 1, 'sum' => $allSumma, 'text' => 'Промокод не найден!'];
         } else {
-            #whereNull('account_id')->where('accrual', 0)
-            if ($isPromocode->accrual != 0) {
-                return ['error' => 1, 'sum' => $allSumma, 'text' => 'Данный промокод активировал кто-то другой'];
+
+            $count_uses = UsesPromocode::where(['code_id' => $isPromocode->id])->count();
+            if($count_uses === $isPromocode->uses){
+                return ['error' => 1, 'sum' => $allSumma, 'text' => 'Промокод закончился'];
             }
 
-            $isPromocode->account_id = $user->id;
-            $isPromocode->accrual = 1;
+            $uses_promocode = UsesPromocode::where(['user_id' => $user->id, 'code_id' => $isPromocode->id])->first();
+            
+            if($uses_promocode){
+                return ['error' => 1, 'sum' => $allSumma, 'text' => 'Вы уже активировали этот промокод'];
+            }
+
+            #whereNull('account_id')->where('accrual', 0)
+//            if ($isPromocode->accrual != 0) {
+//                return ['error' => 1, 'sum' => $allSumma, 'text' => 'Данный промокод активировал кто-то другой'];
+//            }
+
+            //$isPromocode->account_id = $user->id;
+            //$isPromocode->accrual = 1;
             $isPromocode->save();
+
+            $uses_promocode = new UsesPromocode;
+            $uses_promocode->user_id = $user->id;
+            $uses_promocode->code_id = $isPromocode->id;
+            $uses_promocode->save();
 
             $payment = new Payment;
             $payment->account_id = $user->id;

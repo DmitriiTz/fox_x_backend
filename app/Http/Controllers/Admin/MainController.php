@@ -351,16 +351,17 @@ class MainController extends Controller
         if($request->isMethod('post')) { // создание промокодов
             $data = $request->all();
             if(isset($data['promocode-value']) && isset($data['promocode-sum'])) {
-
-                for($i=0; $i < $data['promocode-value']; $i++) {
+                $j = 1;
+                for($i=0; $i < $j; $i++) {
                     $promocode = str_random(10); //имя промокода
                     $isPromocode = Promocode::where('code', $promocode)->first(); // проверка на существование такого промокода в базе
                     if($isPromocode) {
-                        $data['promocode-value'] = $data['promocode-value'] + 1;
+                        $j++;
                     }
                     else {
                         $newPromocode = new Promocode; // создание промокода
                         $newPromocode->code = $promocode;
+                        $newPromocode->uses = $data['promocode-value'];
                         $newPromocode->price = $data['promocode-sum'];
                         $newPromocode->save();
                     }
@@ -430,7 +431,7 @@ class MainController extends Controller
             ->take(10) // количество
             ->get(); // вывод игр по игре coinflip
 
-        $crash_games = CrashGame::orderBy('id', 'asc')
+        $crash_games = CrashGame::orderBy('id', 'desc')
             ->where('status', 3)
             ->take(5)
             ->get(); // вывод игр по игре jackpot

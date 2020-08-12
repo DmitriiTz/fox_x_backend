@@ -290,8 +290,8 @@ class CrashController extends Controller
             $x_int = rand(1, 10);
             $x_float = rand(10, 10);
             $x = $x_int . '.' . $x_float;
-            //$x = floor((mt_rand() / mt_getrandmax()) * 10) / 10 + 1;
-
+            //$x = floor((mt_srand(time())/mt_getrandmax())*10)/10+1;
+            
             $i = 1;
             $y = 1;
             while ($i <= 1000) {
