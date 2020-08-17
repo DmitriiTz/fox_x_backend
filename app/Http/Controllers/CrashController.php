@@ -310,7 +310,7 @@ class CrashController extends Controller
         event(new CreateGameCrash($i, time(), $y, time() + $time + 10, $hash, $link_hash));
 
         for ($z = 0; $z <= 10; $z++) {
-            $job = (new EndCrashTimerJob($z))->delay($z);
+            $job = (new EndCrashTimerJob($z))->delay($z + 2);
             $this->dispatch($job);
         }
 
@@ -318,7 +318,7 @@ class CrashController extends Controller
 
         for ($j = 0; $j <= $time; $j++) {
             $coef = $i * ($j / ($time));
-            $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j + 10);
+            $job = (new CrashTimerJob($game->id, $j, $coef, $time))->delay($j + 10 + 2);
             $this->dispatch($job);
         }
 
@@ -419,7 +419,7 @@ class CrashController extends Controller
         $user = Auth::user();
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
-        if ($bet->number === '0.00') {
+        if ($bet->number == '0.00' or $bet->number == '0' or $bet->number == 0) {
             $bet->number = $game->profit;
             $bet->save();
         }

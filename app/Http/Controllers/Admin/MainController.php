@@ -543,7 +543,8 @@ class MainController extends Controller
             'profit' => $request->get('r')
         ]);
 
-        StopCrash::dispatch('true');
+        event(new StopCrash($game));
+        //StopCrash::dispatch('true');
     }
 
     // Метод возвращающий информацию по определенному пользователю

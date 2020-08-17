@@ -25,7 +25,8 @@ class ProfileController extends Controller
         $pageName = 'Профиль';
         $user = auth()->user();
         $getHistoryBalance = Payment::where('account_id', $user->id)
-            ->with(['payment_system', 'game.nameGame'])
+            ->with(['payment_system'])
+            ->whereIn('payment_type_id', [1,2,3])
             ->where('is_admin', 0)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -80,7 +81,7 @@ class ProfileController extends Controller
 
 
     public $rulesRegistration = [
-        'email' => 'required||email'
+        'email' => 'required|email'
     ];
 
 
@@ -90,15 +91,11 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), $this->rulesRegistration);
 
         if ($validator->fails()) {
-//            $view = view('account.blocks.registration', ['errors' => $validator->errors(), 'request' => $request])->render();
-//            return ['error' => 1, 'view' => $view];
-
             $data = [
                 'errors' => $validator->errors(),
                 'request' => $request,
                 'error' => 1,
             ];
-
             return response()->json($data);
         }
 

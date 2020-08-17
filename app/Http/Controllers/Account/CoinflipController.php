@@ -6,6 +6,7 @@ use App\Events\CreateGameCoinFlip;
 use App\Events\StartGameCoinflip;
 use App\HistoryGame;
 use App\Jobs\EndGameCoinflip;
+use App\Jobs\StartGameCoinFlipTimerJob;
 use App\Participant;
 use App\Payment;
 use Illuminate\Http\Request;
@@ -99,7 +100,7 @@ class CoinflipController extends Controller
         ];
 
         event(new CreateGameCoinFlip($game));
-        dd(123);
+
         $userGames = HistoryGame::where('create_account_id', auth()->user()->id)->count();
         $bankUser = Payment::where('game_id', 4)->where('account_id', auth()->user()->id)
                 ->where('created_at', '>', today())
@@ -222,7 +223,13 @@ class CoinflipController extends Controller
                 ->where('price', '>', 0)
                 ->sum('price') * 10;
 
-        $job = (new EndGameCoinflip($game->id, $bankUser))->delay(23);
+
+        for ($z = 0; $z <= 10; $z++) {
+            $job = (new StartGameCoinFlipTimerJob($game->id, $z))->delay($z);
+            $this->dispatch($job);
+        }
+
+        $job = (new EndGameCoinflip($game->id, $bankUser))->delay(13 + 10);
         $this->dispatch($job);
 
         $hashGame =  hash('sha224', $game->id);
