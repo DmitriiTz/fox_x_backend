@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\CrashGame;
 use App\Events\EndGameTimerCrash;
+use App\Events\StartGameCoinFlipTimer;
 use App\HistoryGame;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -31,6 +32,6 @@ class StartGameCoinFlipTimerJob implements ShouldQueue
      */
     public function handle()
     {
-        event(new \App\Events\StartGameCoinFlipTimer($this->game_id, $this->timer));
+        event(new StartGameCoinFlipTimer($this->game_id, $this->timer));
     }
 }
