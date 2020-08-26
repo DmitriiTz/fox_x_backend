@@ -2,11 +2,7 @@
 
 namespace App\Events;
 
-use App\CrashBet;
-use App\CrashGame;
 use App\HistoryGame;
-use App\Http\Controllers\CrashController;
-use App\Jobs\EndCrashTimerJob;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -24,6 +20,11 @@ class StartGameCoinFlipTimer implements ShouldBroadcast
     public function __construct($game_id, $timer)
     {
         $this->game_id = $game_id;
+
+        $game = HistoryGame::find($game_id);
+        $game->duration = $timer;
+        $game->save();
+
         $this->timer = $timer;
     }
 

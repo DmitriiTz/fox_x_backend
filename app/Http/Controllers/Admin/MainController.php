@@ -801,18 +801,20 @@ class MainController extends Controller
 
         $application = WithdrawMoneyAccountApplication::where('id', $applicationId)->where('status_id', '!=', 4)->first(); // находит заявку
 
+        //qiwi мин 100 руб
         if($application->payment_system_id == 1) { // проверяет тип платежки и дает определенный код
             $codeCurrency = 63;
         }
 
+        //сбербанк онлайн (нет такого способа)
         if($application->payment_system_id == 2) {
             $codeCurrency = 1;
         }
-
+        //яндекс деньги мин 10 руб
         if($application->payment_system_id == 3) {
             $codeCurrency = 45;
         }
-
+        //visa master мин 1000 рублей
         if($application->payment_system_id == 4) {
             $codeCurrency = 94;
         }

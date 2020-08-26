@@ -14,14 +14,9 @@ use Illuminate\Support\Facades\Cache;
 use App\Events\JoinCrash;
 use App\Events\AdmCrash;
 use App\Events\CrashCoef;
-use Illuminate\Support\Collection;
 use Auth;
-use App\Payment;
-
-use Illuminate\Support\Facades\Log;
-use phpseclib\Crypt\Random;
 use Storage;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CrashController extends Controller
 {
@@ -67,6 +62,51 @@ class CrashController extends Controller
         return $coef;
     }
 
+    public function test()
+    {
+        $game = CrashGame::orderBy('id', 'desc')->first();
+        $bets = DB::table('crashbets')->where('crash_game_id', $game->id)->get();
+        $currentCoef = $game->profit;
+
+        if ($bets) {
+            $currentCoef = $this->crash_algorithm($bets);
+            $game->profit = $currentCoef;
+            $game->save();
+        }
+
+        for ($i = 1, $j = 0; $i <= $currentCoef; $i += $speed, $j++) {
+            if ($i >= 1) $speed = 0.2;
+            if ($i > 2) $speed = 0.5;
+            if ($i > 5) $speed = 1;
+            if ($i > 10) $speed = 1.5;
+            if ($i > 15) $speed = 2;
+            if ($i > 20) $speed = 3;
+            if ($i > 30) $speed = 3.5;
+            if ($i > 40) $speed = 4;
+            if ($i > 50) $speed = 4.5;
+            if ($i > 60) $speed = 5;
+            if ($i > 70) $speed = 6;
+            if ($i > 80) $speed = 8;
+            if ($i > 100) $speed = 10;
+            if ($i > 150) $speed = 15;
+            if ($i > 200) $speed = 20;
+            if ($i > 250) $speed = 25;
+            if ($i > 300) $speed = 30;
+            if ($i > 350) $speed = 35;
+            if ($i > 400) $speed = 40;
+            if ($i > 500) $speed = 50;
+            if ($i > 600) $speed = 60;
+            if ($i > 700) $speed = 70;
+            if ($i > 800) $speed = 80;
+            if ($i > 900) $speed = 80;
+
+            $job = (new CrashTimerJob($game->id, $i, $currentCoef, $speed))->delay($j);
+            $this->dispatch($job);
+
+            $game = CrashGame::where('status', 1)->first();
+            $game->update(['status' => 2]);
+        }
+    }
 
     public function generateSecret()
     {
@@ -134,7 +174,7 @@ class CrashController extends Controller
         $profit = $request->profit;
         Cache::put('next_crash_coefficient', $profit, 60);
 
-        dd($y_cache = Cache::get('next_crash_coefficient'));
+        //dd($y_cache = Cache::get('next_crash_coefficient'));
         return true;
 
 //        $profit = $request->profit;
@@ -271,6 +311,7 @@ class CrashController extends Controller
 
     public function createGame()
     {
+        return true;
         //$gameBefore = CrashGame::where('status', 0)->limit(100)->get();
 
         if (Cache::has('next_crash_coefficient')) {
@@ -287,8 +328,8 @@ class CrashController extends Controller
                 $i++;
             }
         } else {
-            $x_int = rand(1, 10);
-            $x_float = rand(10, 10);
+            $x_int = rand(1, 9);
+            $x_float = rand(1, 100);
             $x = $x_int . '.' . $x_float;
             //$x = floor((mt_srand(time())/mt_getrandmax())*10)/10+1;
             
@@ -310,7 +351,7 @@ class CrashController extends Controller
         event(new CreateGameCrash($i, time(), $y, time() + $time + 10, $hash, $link_hash));
 
         for ($z = 0; $z <= 10; $z++) {
-            $job = (new EndCrashTimerJob($z))->delay($z + 2);
+            $job = (new EndCrashTimerJob($z, $time, $i))->delay($z + 2);
             $this->dispatch($job);
         }
 
