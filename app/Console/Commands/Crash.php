@@ -58,7 +58,7 @@ class Crash extends Command
         sleep(2);
 
         for ($z = 0; $z <= 10; $z++) {
-            time_nanosleep(0, (int)1e8);
+            sleep(1);
             $this->info($z);
             event(new EndGameTimerCrash($z));
         }
@@ -118,7 +118,7 @@ class Crash extends Command
             'create_game' => time(),
             'rand_number' => '0',
             'profit' => $x,
-            'stop_game' => time() + $i
+            'stop_game' => time() + $i/10
         ]);
         event($event = new CreateGameCrash($this->current_game->id));
         $hash = hash('sha224', strval($x));
@@ -130,7 +130,7 @@ class Crash extends Command
         $this->info('starting game...');
 
         for ($timer = 0; $timer <= $this->current_end_time-1; $timer++) {
-            sleep(1);
+            time_nanosleep(0, (int)1e8);
             $coef = pow(2,$timer/$this->current_alpha);
             $this->info($timer . ' - ' . $this->current_end_time.' coef:'.$coef);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha,$coef));
