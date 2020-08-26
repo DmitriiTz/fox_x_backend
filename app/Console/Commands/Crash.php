@@ -12,9 +12,11 @@ use App\Events\EndGameTimerCrash;
 
 use App\Game;
 use App\Http\Controllers\CrashController;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use function random_int;
 
 class Crash extends Command
@@ -179,14 +181,21 @@ class Crash extends Command
      */
     public function handle()
     {
+        if (Cache::has('crash_started'))
+        {
+            die("Game already started");
+        }
         $this->info('Starting crash game');
         $this->current_game = CrashGame::query()->orderBy('id', 'desc')->first();
         $this->current_game->update(['status' => 3]);
         while (true) {
+            Cache::put('crash_started', true,Carbon::create(0,0,0,0,0,10));
             $this->createGame();
             $this->timer();
             $this->game();
             $this->endGame();
         }
+        Cache::forget('crash_started');
+        return 0;
     }
 }
