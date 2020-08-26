@@ -64,12 +64,15 @@ class Crash extends Command
         }
     }
 
-    private function crashAlgorithm($bets)
+    private function crashAlgorithm()
     {
-        $raw_data = collect($bets);
+        $game = CrashGame::orderBy('id', 'desc')->first();
+        $bets = \Illuminate\Support\Facades\DB::table('crashbets')->where('crash_game_id', $game->id)->get();
+
+        $raw_data = $bets;
         $raw_data = $raw_data->map(function ($elem) {
-            $elem['number'] = $elem['number'] ? $elem['number'] : 100;
-            return ['p' => $elem['user_id'], 'x' => $elem['price'], 'k' => $elem['number'], 'z' => $elem['price'] * $elem['number']];
+            $elem->number = $elem->number ? $elem->number : 100;
+            return ['p' => $elem->user_id, 'x' => $elem->price, 'k' => $elem->number, 'z' => $elem->price * $elem->number];
         });
         $sum_bet = $raw_data->sum('x');
         $owner_k = 0.3;
@@ -81,14 +84,23 @@ class Crash extends Command
         }
         $max_z = $game_data_z->max('k');
         $min_k = $game_data_k->min('k');
-        if ($max_z > $min_k) {
-            $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
-        } else if ($max_z <= 1.1 || $min_k <= 1.1) {
-            $coef = 1;
-        } else {
-            $coef = $min_k - 0.01 - ((double)rand()) / (getrandmax());
+        if($max_z > $min_k)
+        {
+            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
         }
-        return max($coef, 1);
+        else if ($max_z == 1.1 || $min_k == 1.1)
+        {
+            $coef = 1;
+        }
+        else
+        {
+            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        }
+//        $response = [
+//            'coef' => $coef,
+//            'bets' => $bets
+//        ];
+        return $coef;
     }
 
     private function createGame()
@@ -99,7 +111,7 @@ class Crash extends Command
         } else {
             $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
             if ($bets->isNotEmpty())
-                $x = $this->crashAlgorithm($bets);
+                $x = $this->crashAlgorithm();
             else
                 $x = 1 + rand() / getrandmax() * 10;
         }
