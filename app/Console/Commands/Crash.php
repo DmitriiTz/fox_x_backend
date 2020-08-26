@@ -57,8 +57,8 @@ class Crash extends Command
         //задержка надписи crashed
         sleep(2);
 
-        for ($z = 0; $z <= 10; $z++) {
-            sleep(1);
+        for ($z = 10; $z >= 0; $z--) {
+            time_nanosleep(0, 10e8);
             $this->info($z);
             event(new EndGameTimerCrash($z));
         }
@@ -106,7 +106,7 @@ class Crash extends Command
             $x = 1+rand()/getrandmax()*10;
         }
         try {
-            $i = random_int(2, 10);
+            $i = random_int(50, 200);
         } catch (\Exception $e) {
             $i = 3;
         }
