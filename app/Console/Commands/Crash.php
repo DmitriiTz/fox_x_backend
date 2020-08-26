@@ -154,7 +154,7 @@ class Crash extends Command
                 ]);
             }
         }
-        $this->info('Game crashed ', $this->current_game->profit);
+        $this->info('Game crashed '. $this->current_game->profit);
     }
 
     /**
