@@ -134,7 +134,8 @@ class Crash extends Command
             $this->info($timer . ' - ' . $this->current_end_time.' coef:'.$coef);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha,$coef));
         }
-        $this->current_game->update(['status' => 3]);
+        if($this->current_game)
+            $this->current_game->update(['status' => 3]);
     }
 
     private function endGame()
