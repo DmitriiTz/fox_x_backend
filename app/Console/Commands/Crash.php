@@ -58,7 +58,7 @@ class Crash extends Command
         sleep(2);
 
         for ($z = 0; $z <= 10; $z++) {
-            time_nanosleep(0, (int)10e7);
+            time_nanosleep(0, (int)1e8);
             $this->info($z);
             event(new EndGameTimerCrash($z));
         }
