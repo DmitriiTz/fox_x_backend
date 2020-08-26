@@ -112,6 +112,7 @@ class Crash extends Command
         }
         $this->current_alpha = $i/log($x, 2);
         $this->current_profit = $x;
+        $this->current_end_time = $i;
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
             'create_game' => time(),
