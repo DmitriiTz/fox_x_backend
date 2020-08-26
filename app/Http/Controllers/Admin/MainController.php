@@ -181,7 +181,7 @@ class MainController extends Controller
         //$gameBefore = CrashGame::where('status', 0)->first();
         //$gameBefore->profit = $request->profit;
         //$gameBefore->save();
-        
+
         return response()->json();
     }
 
@@ -532,18 +532,19 @@ class MainController extends Controller
 
     // Метод останавливает график Crash
     public function crash_stop(Request $request){
-
-        Artisan::call('queue:clear', ['connection' => 'redis']);
-        //Artisan::call('queue:work', ['--tries' => 1, '--sleep' => 0]);
-        $game = CrashGame::orderBy('id', 'desc')->limit(100)->first();
-        $stop = time();
-        DB::table('crashgames')->where('id', $game->id)->update([
-            'stop_game' => $stop,
-            'status' => 3,
-            'profit' => $request->get('r')
-        ]);
-
-        event(new StopCrash($game));
+        Cache::forever('end_game_crash', true);
+        //
+//        Artisan::call('queue:clear', ['connection' => 'redis']);
+//        //Artisan::call('queue:work', ['--tries' => 1, '--sleep' => 0]);
+//        $game = CrashGame::orderBy('id', 'desc')->limit(100)->first();
+//        $stop = time();
+//        DB::table('crashgames')->where('id', $game->id)->update([
+//            'stop_game' => $stop,
+//            'status' => 3,
+//            'profit' => $request->get('r')
+//        ]);
+//
+//        event(new StopCrash($game));
         //StopCrash::dispatch('true');
     }
 
@@ -628,7 +629,7 @@ class MainController extends Controller
         $user->is_referral_power = $data['is_referral_power'];
         $user->is_blocked = $data['is_blocked'];
 
-        if($request->balance > 0) 
+        if($request->balance > 0)
 		{
 
             $currentBalance = getBalance($user) / 10; // Получаем баланс игрока до сохранения
@@ -639,7 +640,7 @@ class MainController extends Controller
             }
 
             if($request->balance < $currentBalance) { // Если баланс меньше настоящего балансва
-                $isAppBal= false; 
+                $isAppBal= false;
                 $difference = -($currentBalance - $request->balance);
             }
 
@@ -844,7 +845,7 @@ class MainController extends Controller
         $c_errors = curl_error($ch);
         curl_close($ch);
         if($result['status'] != 'error') { // проверка статус оплаты
-          
+
           /*
             $payment = new Payment;
             $payment->account_id = $application->account_id;

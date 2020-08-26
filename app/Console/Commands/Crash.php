@@ -81,17 +81,12 @@ class Crash extends Command
         }
         $max_z = $game_data_z->max('k');
         $min_k = $game_data_k->min('k');
-        if($max_z > $min_k)
-        {
-            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
-        }
-        else if ($max_z <= 1.1 || $min_k <= 1.1)
-        {
+        if ($max_z > $min_k) {
+            $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
+        } else if ($max_z <= 1.1 || $min_k <= 1.1) {
             $coef = 1;
-        }
-        else
-        {
-            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        } else {
+            $coef = $min_k - 0.01 - ((double)rand()) / (getrandmax());
         }
         return max($coef, 1);
     }
@@ -102,15 +97,15 @@ class Crash extends Command
             $x = Cache::get('next_crash_coefficient');
             Cache::forget('next_crash_coefficient');
         } else {
-            $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id+1])->get();
-            $x = 1+rand()/getrandmax()*10;
+            $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
+            $x = 1 + rand() / getrandmax() * 10;
         }
         try {
             $i = random_int(50, 100);
         } catch (\Exception $e) {
             $i = 3;
         }
-        $this->current_alpha = $i/log($x, 2);
+        $this->current_alpha = $i / log($x, 2);
         $this->current_profit = $x;
         $this->current_end_time = $i;
         $this->current_game = CrashGame::query()->create([
@@ -118,7 +113,7 @@ class Crash extends Command
             'create_game' => time(),
             'rand_number' => '0',
             'profit' => $x,
-            'stop_game' => time() + $i/10
+            'stop_game' => time() + $i / 10
         ]);
         event($event = new CreateGameCrash($this->current_game->id));
         $hash = hash('sha224', strval($x));
@@ -129,13 +124,17 @@ class Crash extends Command
     {
         $this->info('starting game...');
 
-        for ($timer = 0; $timer <= $this->current_end_time-1; $timer++) {
+        for ($timer = 0; !Cache::has('end_game_crash') && $timer <= $this->current_end_time - 1; $timer++) {
             time_nanosleep(0, (int)1e8);
-            $coef = pow(2,$timer/$this->current_alpha);
-            $this->info($timer . ' - ' . $this->current_end_time.' coef:'.$coef);
-            event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha,$coef));
+            $coef = pow(2, $timer / $this->current_alpha);
+            $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
+            event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef));
         }
-        if($this->current_game)
+        if (Cache::has('end_game_crash')) {
+            Cache::forget('end_game_crash');
+            $this->current_game->update(['profit' => $coef]);
+        }
+        if ($this->current_game)
             $this->current_game->update(['status' => 3]);
     }
 
@@ -155,7 +154,7 @@ class Crash extends Command
                 ]);
             }
         }
-        $this->info('Game crashed');
+        $this->info('Game crashed ', $this->current_game->profit);
     }
 
     /**
@@ -165,8 +164,8 @@ class Crash extends Command
      */
     public function handle()
     {
-        $this->current_game = CrashGame::query()->orderBy('id','desc')->first();
-        $this->current_game->update(['status'=>3]);
+        $this->current_game = CrashGame::query()->orderBy('id', 'desc')->first();
+        $this->current_game->update(['status' => 3]);
         while (true) {
             $this->createGame();
             $this->timer();
