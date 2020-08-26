@@ -179,6 +179,7 @@ class Crash extends Command
      */
     public function handle()
     {
+        $this->info('Starting crash game');
         $this->current_game = CrashGame::query()->orderBy('id', 'desc')->first();
         $this->current_game->update(['status' => 3]);
         while (true) {
