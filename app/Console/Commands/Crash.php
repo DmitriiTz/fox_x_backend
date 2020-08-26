@@ -106,9 +106,9 @@ class Crash extends Command
             $x = 1+rand()/getrandmax()*10;
         }
         try {
-            $i = random_int(60, 120);
+            $i = random_int(2, 10);
         } catch (\Exception $e) {
-            $i = 30;
+            $i = 3;
         }
         $this->current_alpha = $i/log($x, 2);
         $this->current_profit = $x;
