@@ -22,34 +22,11 @@ class CreateGameCrash implements ShouldBroadcast
      *
      * @return void
      */
+    public $game_id;
 
-    public $game;
-    public $ubets;
-    public function __construct($number, $create_game, $profit, $stop_game, $hash, $link_hash)
+    public function __construct($game_id)
     {
-        //$game_after = CrashGame::where('status', 0)->orderBy('id', 'desc')->limit(1)->first();
-
-        $this->game = CrashGame::create([
-            'number' => $number,
-            'create_game' => $create_game,
-            'status' => 1,
-            'profit' => $profit,
-            'stop_game' => $stop_game,
-            'hash' => $hash,
-            'link_hash' => $link_hash
-        ]);
-        
-        $bets = DB::table('crashbets')->where('crash_game_id', $this->game->id)->get();
-        $this->ubets = array();
-        foreach ($bets as $key) {
-            $this->ubets[] = [
-                'bet' => $key,
-                'user' => User::Where('id', $key->user_id)->first()
-            ];
-        }
-
-//        $adm = time() - $this->create_game;
-//        AdmCrash::dispatch($adm);
+        $this->game_id = $game_id;
     }
 
     /**

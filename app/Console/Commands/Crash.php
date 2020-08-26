@@ -2,16 +2,20 @@
 
 namespace App\Console\Commands;
 
+use App\CrashBet;
 use App\CrashGame;
 use App\Events\CrashTimer;
+use App\Events\CreateGame;
 use App\Events\CreateGameCrash;
+use App\Events\EndGameCrash;
 use App\Events\EndGameTimerCrash;
+
+use App\Game;
 use App\Http\Controllers\CrashController;
-use App\Http\Controllers\MainController;
-use App\Jobs\CrashTimerJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use function random_int;
 
 class Crash extends Command
 {
@@ -29,6 +33,11 @@ class Crash extends Command
      */
     protected $description = 'Start crash game';
 
+    private $current_game;
+    private $current_alpha;
+    private $current_profit;
+    private $current_end_time;
+
     /**
      * Create a new command instance.
      *
@@ -39,10 +48,11 @@ class Crash extends Command
         parent::__construct();
     }
 
+
     private function timer()
     {
-        $crash = new CrashController();
-        $crash->index();
+        //$crash = new CrashController();
+        // $crash->index();
 
         //задержка надписи crashed
         sleep(2);
@@ -50,69 +60,100 @@ class Crash extends Command
         for ($z = 0; $z <= 10; $z++) {
             sleep(1);
             $this->info($z);
-
             event(new EndGameTimerCrash($z));
         }
+    }
+
+    private function crashAlgorithm($bets)
+    {
+        $raw_data = collect($bets);
+        $raw_data = $raw_data->map(function ($elem) {
+            $elem['number'] = $elem['number'] ? $elem['number'] : 100;
+            return ['p' => $elem['user_id'], 'x' => $elem['price'], 'k' => $elem['number'], 'z' => $elem['price'] * $elem['number']];
+        });
+        $sum_bet = $raw_data->sum('x');
+        $owner_k = 0.3;
+        $total_money_p = $sum_bet * (1 - $owner_k);
+        $game_data_z = $raw_data->sortBy('z');
+        $game_data_k = collect([]);
+        while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
+            $game_data_k->push($game_data_z->pop());
+        }
+        $max_z = $game_data_z->max('k');
+        $min_k = $game_data_k->min('k');
+        if($max_z > $min_k)
+        {
+            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
+        }
+        else if ($max_z <= 1.1 || $min_k <= 1.1)
+        {
+            $coef = 1;
+        }
+        else
+        {
+            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        }
+        return max($coef, 1);
+    }
+
+    private function createGame()
+    {
+        if (Cache::has('next_crash_coefficient')) {
+            $x = Cache::get('next_crash_coefficient');
+            Cache::forget('next_crash_coefficient');
+        } else {
+            $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id+1])->get();
+            $x = $this->crashAlgorithm($bets);
+        }
+        try {
+            $i = random_int(60, 120);
+        } catch (\Exception $e) {
+            $i = 30;
+        }
+        $this->current_alpha = $i/log($x, 2);
+        $this->current_profit = $x;
+        $this->current_game = CrashGame::create([
+            'number' => $i,
+            'create_game' => time(),
+            'rand_number' => '0',
+            'profit' => $x,
+            'stop_game' => time() + $i
+        ]);
+        event($event = new CreateGameCrash($this->current_game->id));
+        $hash = hash('sha224', strval($x));
+        $link_hash = 'http://sha224.net/?val=' . $hash;
     }
 
     private function game()
     {
         $this->info('starting game...');
 
-        if (Cache::has('next_crash_coefficient')) {
-            $y_cache = Cache::get('next_crash_coefficient');
-            Cache::forget('next_crash_coefficient');
-
-            $i = 1;
-            $y = 1;
-            while ($i <= 1000) {
-                $y = $y * 1.06;
-                if ($y >= $y_cache) {
-                    break;
-                }
-                $i++;
-            }
-        } else {
-            $x_int = rand(1, 9);
-            $x_float = rand(1, 100);
-            $x = $x_int . '.' . $x_float;
-            //$x = floor((mt_srand(time())/mt_getrandmax())*10)/10+1;
-
-            $i = 1;
-            $y = 1;
-            while ($i <= 1000) {
-                $y = $y * 1.06;
-                if ($y >= $x) {
-                    break;
-                }
-                $i++;
-            }
-        }
-
-        $time = $i + 17;
-        $hash = hash('sha224', strval($y));
-        $link_hash = 'http://sha224.net/?val=' . $hash;
-
-        event(new CreateGameCrash($i, time(), $y, time() + $time + 10, $hash, $link_hash));
-
-        $game = CrashGame::orderBy('id', 'desc')->first();
-        //$game->update(['status' => 2]);
-
-        for ($j = 0; $j <= $time; $j++) {
+        for ($timer = 0; $timer <= $this->current_end_time-1; $timer++) {
             sleep(1);
-            $this->info($j .' - '. $time);
-
-            $coef = $i * ($j / ($time));
-            event(new CrashTimer($game->id, $j, $coef, $time));
+            $coef = pow(2,$timer/$this->current_alpha);
+            $this->info($timer . ' - ' . $this->current_end_time.' coef:'.$coef);
+            event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha,$coef));
         }
-
-        $game->update(['status' => 3]);
+        $this->current_game->update(['status' => 3]);
     }
-    
+
     private function endGame()
     {
+        event(new EndGameCrash($this->current_game));
+        $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id])->get();
+        foreach ($bets as $bet) {
+            $commission = new \App\Commission;
+            $commission->game_id = 9;
+            $commission->price = ($bet->price / 10) * 10 / 100;
+            $commission->save();
+            if ($bet->number < $this->current_game->profit) {
+                DB::table('payments')->insert([
+                    'account_id' => $bet->user_id,
+                    'price' => $bet->price * $bet->number / 10
+                ]);
+            }
+        }
         $this->info('Game crashed');
-        //event()
     }
 
     /**
@@ -122,8 +163,7 @@ class Crash extends Command
      */
     public function handle()
     {
-        while(true)
-        {
+        while (true) {
             $this->timer();
             $this->game();
             $this->endGame();

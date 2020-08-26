@@ -19,55 +19,20 @@ class CrashTimer implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $gameId;
-    public $endGameAt;
+    public $timer;
+    public $alpha;
     public $coef;
-    public $endTimer;
-    public $payments;
 
-    public function __construct($gameId, $end_game_at, $coef, $endTimer)
+    public function __construct($gameId, $timer, $alpha, $coef)
     {
-
         $this->gameId = $gameId;
-        $this->endGameAt = $end_game_at;
+        $this->timer = $timer;
+        $this->alpha = $alpha;
         $this->coef = $coef;
-        $this->endTimer = $endTimer;
-        $this->payments;
     }
 
     public function broadcastOn()
     {
-        $game = CrashGame::find($this->gameId);
-        $game->profit = 1.06 ** $this->coef;
-        $game->save();
-
-//        if ($game->profit >= $game->stop_game) {
-//            $main = new MainController;
-//            $main->crash_stop();
-//        }
-
-        if ($game->status != 3 && $this->endGameAt == $this->endTimer) {
-            //Artisan::call('queue:clear', ['connection' => 'redis']);
-            $bets = CrashBet::where(['crash_game_id' => $game->id])->get();
-            foreach ($bets as $bet) {
-
-                $commission = new \App\Commission;
-                $commission->game_id = 9;
-                $commission->price = ($bet->price / 10) * 10 / 100;
-                $commission->save();
-
-                if ($bet->number < $game->profit) {
-                    DB::table('payments')->insert([
-                        'account_id' => $bet->user_id,
-                        'price' => $bet->price * $bet->number / 10
-                    ]);
-                }
-            }
-
-//            $create_game = new CrashController();
-//            $create_game->createGame();
-
-            //$game->update(['status' => 3]);
-        }
         return new Channel('crash-timer');
     }
 }
