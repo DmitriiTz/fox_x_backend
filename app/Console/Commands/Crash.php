@@ -103,7 +103,7 @@ class Crash extends Command
             Cache::forget('next_crash_coefficient');
         } else {
             $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id+1])->get();
-            $x = 1+rand()/getrandmax()*2;
+            $x = 1+rand()/getrandmax()*10;
         }
         try {
             $i = random_int(60, 120);
