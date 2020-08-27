@@ -106,8 +106,12 @@ class Crash extends Command
             //$bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
 
             $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id+1)->get();
-            if ($bets->isNotEmpty())
+            if ($bets->count() >= 2)
                 $x = $this->crashAlgorithm($bets);
+            elseif ($bets->count() == 1)
+            {
+                $x = max(1, $bets->first()->number - rand() / 2 /getrandmax());
+            }
             else
                 $x = 1 + rand() / getrandmax() * 10;
         }
