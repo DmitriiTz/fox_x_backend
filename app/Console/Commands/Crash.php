@@ -76,7 +76,7 @@ class Crash extends Command
         $sum_bet = $raw_data->sum('x');
         $owner_k = 0.3;
         $total_money_p = $sum_bet * (1 - $owner_k);
-        $game_data_z = collect([])
+        $game_data_z = collect([]);
         $game_data_k = $raw_data->sortBy('z');
         while ($game_data_z->isNotEmpty() && $game_data_k->sum('z') >= $total_money_p) {
             $game_data_z->push($game_data_k->pop());
