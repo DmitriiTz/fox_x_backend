@@ -142,7 +142,7 @@ class Crash extends Command
     {
         $this->info('starting game...');
         $coef = 1;
-        for ($timer = 0; !Cache::has('end_game_crash') && $timer <= $this->current_end_time - 1; $timer++) {
+        for ($timer = 0; !Cache::has('end_game_crash') && $timer <= $this->current_end_time - 1; $timer+=0.1) {
             time_nanosleep(0, (int)1e8);
             $coef = pow(2, $timer / $this->current_alpha);
             $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
