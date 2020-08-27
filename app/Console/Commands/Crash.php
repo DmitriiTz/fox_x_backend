@@ -117,13 +117,13 @@ class Crash extends Command
         }
         $this->current_profit = $x;
         if ($x != 1) {
-            $this->current_alpha = 20;
+            $this->current_alpha = 10;
             $i = $this->current_end_time = $this->current_alpha * log($x, 2);
         }
         else
         {
             $i = 0;
-            $this->current_alpha = 20;
+            $this->current_alpha = 10;
         }
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
@@ -143,7 +143,7 @@ class Crash extends Command
         $this->info('starting game...');
         $coef = 1;
         for ($timer = 0; !Cache::has('end_game_crash') && $timer <= $this->current_end_time - 1; $timer+=0.1) {
-            time_nanosleep(0, (int)1e8);
+            time_nanosleep(0, (int)5e7);
             $coef = pow(2, $timer / $this->current_alpha);
             $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef));
