@@ -62,7 +62,7 @@ class Crash extends Command
         for ($z = 0; $z <= 10; $z++) {
             sleep(1);
             $this->info($z);
-            $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id + 1)->get();
+            $bets = CrashBet::query()->with('user')->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id + 1)->get();
             event(new EndGameTimerCrash($z, $bets));
         }
     }
@@ -117,14 +117,13 @@ class Crash extends Command
         }
         $this->current_profit = $x;
         if ($x != 1) {
-
-            $this->current_alpha = $i / log($x, 2);
-            $this->current_end_time = $i;
+            $this->current_alpha = 200;
+            $i = $this->current_end_time = $this->current_alpha * log($x, 2);
         }
         else
         {
             $i = 0;
-            $this->current_alpha = 1;
+            $this->current_alpha = 200;
         }
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
