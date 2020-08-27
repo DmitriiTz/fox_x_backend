@@ -62,7 +62,8 @@ class Crash extends Command
         for ($z = 0; $z <= 10; $z++) {
             sleep(1);
             $this->info($z);
-            event(new EndGameTimerCrash($z));
+            $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id + 1)->get();
+            event(new EndGameTimerCrash($z, $bets));
         }
     }
 
