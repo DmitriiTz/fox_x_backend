@@ -66,7 +66,7 @@ class Crash extends Command
         }
     }
 
-    private function crashAlgorithm()
+    public function crashAlgorithm()
     {
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bets = \Illuminate\Support\Facades\DB::table('crashbets')->where('crash_game_id', $game->id)->get();
