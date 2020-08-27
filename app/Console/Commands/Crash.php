@@ -90,10 +90,8 @@ class Crash extends Command
         } else {
             $coef = 1 + ($min_k-1)*((double)rand()) / (getrandmax());
         }
-//        $response = [
-//            'coef' => $coef,
-//            'bets' => $bets
-//        ];
+        if($coef<=1.1)
+            $coef = 1;
         return max($coef, 1);
     }
 
