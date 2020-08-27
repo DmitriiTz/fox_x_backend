@@ -76,22 +76,23 @@ class Crash extends Command
         $sum_bet = $raw_data->sum('x');
         $owner_k = 0.3;
         $total_money_p = $sum_bet * (1 - $owner_k);
-        $game_data_z = $raw_data->sortByDesc('z');
+        $game_data_z = $raw_data->sortBy('k');
         $game_data_k = collect([]);
         while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
             $game_data_k->push($game_data_z->pop());
         }
-        $max_z = $game_data_z->max('k');
+        $max_z = max(1, $game_data_z->max('k'));
         $min_k = $game_data_k->min('k');
         if ($min_k > $max_z) {
-            $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
-        } else if (($max_z && $max_z <= 1.1) || ($min_k && $min_k<= 1.1)) {
+            $coef = $max_z + ((double)rand()) / (getrandmax()) * ($min_k - $max_z);
+        } else if (($max_z && $max_z <= 1.1) || ($min_k && $min_k <= 1.1)) {
             $coef = 1;
         } else {
-            $coef = 1 + ($min_k-1)*((double)rand()) / (getrandmax());
+            $coef = 1.1 + ($min_k - 1.1) * ((double)rand()) / (getrandmax());
         }
-        if($coef<=1.1)
+        if ($coef < 1.1) {
             $coef = 1;
+        }
         return max($coef, 1);
     }
 
@@ -103,14 +104,12 @@ class Crash extends Command
         } else {
             //$bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
 
-            $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id+1)->get();
+            $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id + 1)->get();
             if ($bets->count() >= 2)
                 $x = $this->crashAlgorithm($bets);
-            elseif ($bets->count() == 1)
-            {
-                $x = max(1, $bets->first()->number - rand() / 2 /getrandmax());
-            }
-            else
+            elseif ($bets->count() == 1) {
+                $x = max(1, $bets->first()->number - rand() / 2 / getrandmax());
+            } else
                 $x = 1 + rand() / getrandmax() * 10;
         }
         try {
