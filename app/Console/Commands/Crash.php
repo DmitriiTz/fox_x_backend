@@ -185,8 +185,8 @@ class Crash extends Command
         $this->current_game = CrashGame::query()->orderBy('id', 'desc')->first();
         $this->current_game->update(['status' => 3]);
         while (true) {
-            $this->createGame();
             $this->timer();
+            $this->createGame();
             $this->game();
             $this->endGame();
         }
