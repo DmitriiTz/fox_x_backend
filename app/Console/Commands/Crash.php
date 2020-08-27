@@ -66,11 +66,8 @@ class Crash extends Command
         }
     }
 
-    public function crashAlgorithm()
+    public function crashAlgorithm($bets)
     {
-        $game = CrashGame::orderBy('id', 'desc')->first();
-        $bets = \Illuminate\Support\Facades\DB::table('crashbets')->where('crash_game_id', $game->id)->get();
-
         $raw_data = $bets;
         $raw_data = $raw_data->map(function ($elem) {
             $elem->number = $elem->number ? $elem->number : 100;
@@ -86,23 +83,18 @@ class Crash extends Command
         }
         $max_z = $game_data_z->max('k');
         $min_k = $game_data_k->min('k');
-        if($max_z > $min_k)
-        {
-            $coef = $max_z + 0.01 + ((double)rand())/(getrandmax())*($min_k - $max_z - 0.01);
-        }
-        else if ($max_z == 1.1 || $min_k == 1.1)
-        {
+        if ($max_z > $min_k) {
+            $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
+        } else if ($max_z <= 1.1 || $min_k <= 1.1) {
             $coef = 1;
-        }
-        else
-        {
-            $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
+        } else {
+            $coef = $min_k - 0.01 - ((double)rand()) / (getrandmax());
         }
 //        $response = [
 //            'coef' => $coef,
 //            'bets' => $bets
 //        ];
-        return $coef;
+        return max($coef, 1);
     }
 
     private function createGame()
@@ -111,9 +103,11 @@ class Crash extends Command
             $x = Cache::get('next_crash_coefficient');
             Cache::forget('next_crash_coefficient');
         } else {
-            $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
+            //$bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id + 1])->get();
+
+            $bets = CrashBet::query()->where('crash_game_id', CrashGame::query()->orderByDesc('id')->first()->id+1)->get();
             if ($bets->isNotEmpty())
-                $x = $this->crashAlgorithm();
+                $x = $this->crashAlgorithm($bets);
             else
                 $x = 1 + rand() / getrandmax() * 10;
         }
@@ -171,7 +165,7 @@ class Crash extends Command
                 ]);
             }
         }
-        $this->info('Game crashed '. $this->current_game->profit);
+        $this->info('Game crashed ' . $this->current_game->profit);
     }
 
     /**
