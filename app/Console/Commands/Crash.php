@@ -111,9 +111,9 @@ class Crash extends Command
             $x = $this->crashAlgorithm($bets);
         }
         try {
-            $i = random_int(80, 150);
+            $i = random_int(100, 250);
         } catch (\Exception $e) {
-            $i = 80;
+            $i = 150;
         }
         $this->current_profit = $x;
         if ($x != 1) {
