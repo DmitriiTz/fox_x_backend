@@ -28,6 +28,7 @@ class EndGameTimerCrash implements ShouldBroadcast
      */
 
     public $timer;
+    public $bets;
 
     public function __construct($timer, $bets)
     {
