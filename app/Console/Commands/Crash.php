@@ -114,9 +114,17 @@ class Crash extends Command
         } catch (\Exception $e) {
             $i = 80;
         }
-        $this->current_alpha = $i / log($x, 2);
         $this->current_profit = $x;
-        $this->current_end_time = $i;
+        if ($x != 1) {
+
+            $this->current_alpha = $i / log($x, 2);
+            $this->current_end_time = $i;
+        }
+        else
+        {
+            $i = 0;
+            $this->current_alpha = 1;
+        }
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
             'create_game' => time(),
@@ -129,7 +137,8 @@ class Crash extends Command
         $link_hash = 'http://sha224.net/?val=' . $hash;
     }
 
-    private function game()
+    private
+    function game()
     {
         $this->info('starting game...');
         $coef = 1;
@@ -147,7 +156,8 @@ class Crash extends Command
             $this->current_game->update(['status' => 3]);
     }
 
-    private function endGame()
+    private
+    function endGame()
     {
         event(new EndGameCrash($this->current_game));
         $bets = CrashBet::query()->where(['crash_game_id' => $this->current_game->id])->get();
@@ -171,7 +181,8 @@ class Crash extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public
+    function handle()
     {
         $this->info('Starting crash game');
         $this->current_game = CrashGame::query()->orderBy('id', 'desc')->first();
