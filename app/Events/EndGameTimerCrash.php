@@ -32,7 +32,7 @@ class EndGameTimerCrash implements ShouldBroadcast
     public function __construct($timer, $bets)
     {
         $this->timer = $timer;
-        $this->bets = $bets;
+        $this->bets = collect($bets)->toArray();
     }
 
     /**
