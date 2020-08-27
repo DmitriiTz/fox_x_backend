@@ -117,13 +117,13 @@ class Crash extends Command
         }
         $this->current_profit = $x;
         if ($x != 1) {
-            $this->current_alpha = 200;
+            $this->current_alpha = 20;
             $i = $this->current_end_time = $this->current_alpha * log($x, 2);
         }
         else
         {
             $i = 0;
-            $this->current_alpha = 200;
+            $this->current_alpha = 20;
         }
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
