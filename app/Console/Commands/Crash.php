@@ -88,7 +88,7 @@ class Crash extends Command
         } else if (($max_z && $max_z <= 1.1) || ($min_k && $min_k<= 1.1)) {
             $coef = 1;
         } else {
-            $coef = $min_k - 0.01 - ((double)rand()) / (getrandmax());
+            $coef = 1 + ($min_k-1)*((double)rand()) / (getrandmax());
         }
 //        $response = [
 //            'coef' => $coef,
