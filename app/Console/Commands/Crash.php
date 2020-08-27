@@ -85,7 +85,7 @@ class Crash extends Command
         $min_k = $game_data_k->min('k');
         if ($max_z > $min_k) {
             $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
-        } else if ($max_z <= 1.1 || $min_k <= 1.1) {
+        } else if (($max_z && $max_z <= 1.1) || ($min_k && $min_k<= 1.1)) {
             $coef = 1;
         } else {
             $coef = $min_k - 0.01 - ((double)rand()) / (getrandmax());
