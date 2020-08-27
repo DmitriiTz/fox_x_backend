@@ -76,14 +76,14 @@ class Crash extends Command
         $sum_bet = $raw_data->sum('x');
         $owner_k = 0.3;
         $total_money_p = $sum_bet * (1 - $owner_k);
-        $game_data_z = collect([]);
-        $game_data_k = $raw_data->sortBy('z');
-        while ($game_data_z->isNotEmpty() && $game_data_k->sum('z') >= $total_money_p) {
-            $game_data_z->push($game_data_k->pop());
+        $game_data_z = $raw_data->sortByDesc('z');
+        $game_data_k = collect([]);
+        while ($game_data_z->isNotEmpty() && $game_data_z->sum('z') >= $total_money_p) {
+            $game_data_k->push($game_data_z->pop());
         }
         $max_z = $game_data_z->max('k');
         $min_k = $game_data_k->min('k');
-        if ($max_z > $min_k) {
+        if ($min_k > $max_z) {
             $coef = $max_z + 0.01 + ((double)rand()) / (getrandmax()) * ($min_k - $max_z - 0.01);
         } else if (($max_z && $max_z <= 1.1) || ($min_k && $min_k<= 1.1)) {
             $coef = 1;
