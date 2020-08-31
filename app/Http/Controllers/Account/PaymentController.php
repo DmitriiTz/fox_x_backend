@@ -164,11 +164,11 @@ class PaymentController extends Controller
                 $user->save();
 
 
-                return redirect(config('app.front_url'));
+                return redirect(config('app.front_url').'?failed=0');
             }
         }catch (\Exception $exception)
         {
-            return redirect(config('app.front_url'));
+            return redirect(config('app.front_url').'?failed=1');
         }
     }
 
