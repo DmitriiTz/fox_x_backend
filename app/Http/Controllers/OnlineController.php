@@ -16,7 +16,7 @@ class OnlineController extends Controller
 {
     public function online()
     {
-        return User::all()->where('is_online', '=', true);
+        return ['count_users'=>User::all()->where('is_online', '=', true)->count(),'users'=>User::all()->where('is_online', '=', true)];
     }
 
 }
