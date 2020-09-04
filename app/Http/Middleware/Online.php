@@ -1,10 +1,11 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Filesystem\Cache;
 
-class DummyClass
+class Online
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,10 @@ class DummyClass
      */
     public function handle($request, Closure $next)
     {
+        if(auth()->check() && auth()->user()->id != 4) {
+           \Illuminate\Support\Facades\Cache::put('users.'.auth()->user()->id, true, 1);
+        }
+
         return $next($request);
     }
 }
