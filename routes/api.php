@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => \App\Http\Middleware\Online::class], function () {
+Route::group([], function () {
     /** Auth api register */
     Route::get('/online','OnlineController@online');
     Route::group([
@@ -145,4 +145,4 @@ Route::group(['middleware' => \App\Http\Middleware\Online::class], function () {
 //Route::match(['get', 'post'], '/oauth/{driver}/callback', 'AuthController@handleProviderCallback');
 
 
-});
+})->middleware(\App\Http\Middleware\Online::class);
