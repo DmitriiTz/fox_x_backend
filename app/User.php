@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Notifications\Notifiable;
 //use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,6 +25,7 @@ class User extends Authenticatable
     protected $appends = [
         'balance',
         'level',
+        'is_online'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -50,6 +52,11 @@ class User extends Authenticatable
     public function getBalanceAttribute() {
         $value = getBalance($this);
         return $value;
+    }
+
+    public function getIsOnlineAttribute()
+    {
+        return Cache::has('users.'.$this->id);
     }
 
     public function getLevelAttribute() {
