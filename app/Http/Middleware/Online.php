@@ -18,7 +18,7 @@ class Online
     public function handle($request, Closure $next)
     {
         if(Auth::check() && Auth::user()->id != 4) {
-           \Illuminate\Support\Facades\Cache::put('users.'.auth()->user()->id, true, 1);
+           \Illuminate\Support\Facades\Cache::put(Auth::user()->id, true, 1);
         }
 
         return $next($request);
