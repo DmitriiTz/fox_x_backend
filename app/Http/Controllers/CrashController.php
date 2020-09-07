@@ -462,7 +462,7 @@ class CrashController extends Controller
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
         $number = $this->redis->get('crash');
-        if ($bet->number >= $number) {
+        if ($bet->number < 1 || $bet->number >= $number) {
             $bet->number = $number;
             $bet->save();
         }
