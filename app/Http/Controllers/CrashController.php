@@ -15,6 +15,7 @@ use App\Events\JoinCrash;
 use App\Events\AdmCrash;
 use App\Events\CrashCoef;
 use Auth;
+use Illuminate\Support\Facades\Redis;
 use Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -332,7 +333,7 @@ class CrashController extends Controller
             $x_float = rand(1, 100);
             $x = $x_int . '.' . $x_float;
             //$x = floor((mt_srand(time())/mt_getrandmax())*10)/10+1;
-            
+
             $i = 1;
             $y = 1;
             while ($i <= 1000) {
@@ -461,7 +462,7 @@ class CrashController extends Controller
         $game = CrashGame::orderBy('id', 'desc')->first();
         $bet = CrashBet::where(['user_id' => $user->id, 'crash_game_id' => $game->id])->first();
         if ($bet->number == '0.00' or $bet->number == '0' or $bet->number == 0) {
-            $bet->number = $game->profit;
+            $bet->number = Redis::connection('crash_flash')->get('crash');
             $bet->save();
         }
 
@@ -586,11 +587,11 @@ class CrashController extends Controller
         {
             $coef = $min_k - 0.01 - ((double)rand())/(getrandmax());
         }
-        $response = [
-            'coef' => $coef,
-            'bets' => $bets
-        ];
-        return response()->json($response);
+//        $response = [
+//            'coef' => $coef,
+//            'bets' => $bets
+//        ];
+        return $coef;
     }
 
     public function algorithm()

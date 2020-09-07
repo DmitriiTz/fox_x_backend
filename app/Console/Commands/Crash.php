@@ -146,12 +146,14 @@ class Crash extends Command
             time_nanosleep(0, (int)5e7);
             $coef = pow(2, $timer / $this->current_alpha);
             $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
+            Redis::connection('console')->set('crash',$timer);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef));
         }
         if (Cache::has('end_game_crash')) {
             Cache::forget('end_game_crash');
             $this->current_game->update(['profit' => $coef]);
         }
+        Redis::connection('crash_console')->set('crash',0);
         if ($this->current_game)
             $this->current_game->update(['status' => 3]);
     }
