@@ -121,8 +121,8 @@ class KingOfTheHillController extends Controller
     public function createParticipant($user, $game, $cash, $type)
     {
         if ($type == 3) {
-            if (!$this->redis->get('block_king_of_the_hill.classic')) {
-                $this->redis->setex('block_king_of_the_hill.classic', 1, true);
+            if (!$this->redis->get('block_king_of_the_hill.classic.'.$user->id)) {
+                $this->redis->setex('block_king_of_the_hill.classic.'.$user->id, 2, true);
                 $this->redis->set('step.classic', $cash);
             } else {
                 $listParticipants = $game->participants()->get();
@@ -131,8 +131,8 @@ class KingOfTheHillController extends Controller
                 return $bank;
             }
         } else {
-            if (!$this->redis->get('block_king_of_the_hill.senyor')) {
-                $this->redis->setex('block_king_of_the_hill.senyor', 1, true);
+            if (!$this->redis->get('block_king_of_the_hill.senyor.'.$user->id)) {
+                $this->redis->setex('block_king_of_the_hill.senyor.'.$user->id, 2, true);
                 $this->redis->set('step.senyor', $cash);
             } else {
                 $listParticipants = $game->participants()->get();
