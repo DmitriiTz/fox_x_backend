@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateGame;
 use App\GameType;
 use App\HistoryGame;
 use App\Message;
@@ -40,7 +41,27 @@ class MainController extends Controller
             ->first();
 
         $result = [];
-
+        if (!$game) {
+            $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->limit(100)->get();
+            if ($gameBefore->count() < 10) {
+                while ($gameBefore->count() < 10) {
+                    $game = new HistoryGame;
+                    $game->game_id = 3;
+                    $game->status_id = 0;
+                    $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                    $game->winner_ticket_big = $random;
+                    $game->hash = hash('sha224', strval($game->winner_ticket_big));
+                    $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
+                    $game->save();
+                }
+            }
+            $game = $gameBefore->first();
+            $game->status_id = 1;
+            $game->game_type_id = $request->gameTypeId;
+            $game->animation_at = now()->addYear();
+            $game->save();
+            event(new CreateGame($game));
+        }
         if ($game && $game->end_game_at && strtotime($game->end_game_at) < strtotime($time) && $game->winner_account_id) {
             $bank = $game->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $game->id)->where('account_id', $game->winner_account_id)->sum('cash');
@@ -63,7 +84,6 @@ class MainController extends Controller
                 'game' => $historyGame,
                 'color' => $color
             ];
-
         }
 
         $games = HistoryGame::orderBy('created_at', 'desc')
