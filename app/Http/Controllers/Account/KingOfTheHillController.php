@@ -54,6 +54,27 @@ class KingOfTheHillController extends Controller
             $type = 4;
             $cash = $request->cash;
         }
+        if (!$this->redis->get('block_king_of_the_hill.classic.'.$user->id)) {
+            $this->redis->setex('block_king_of_the_hill.classic.'.$user->id, 2, true);
+        }
+        else
+        {
+            $game = HistoryGame::orderBy('updated_at', 'desc')
+                ->with('winner')
+                ->where('game_id', 2)
+                ->where('game_type_id', $type)
+                ->where('end_game_at', '>', now())
+                ->first();
+            if ($game) {
+                $listParticipants = $game->participants()->get();
+                $game->participants = $listParticipants;
+                $currentBank = $listParticipants->sum('cash');
+                return ['error' => 0, 'message' => 'Ставка успешно сделана', 'balance' => $balance, 'bank' => $currentBank, 'type' => $type];
+            }
+            else{
+                return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
+            }
+        }
         if ($type) {
             $game = HistoryGame::orderBy('updated_at', 'desc')
                 ->with('winner')
@@ -121,25 +142,9 @@ class KingOfTheHillController extends Controller
     public function createParticipant($user, $game, $cash, $type)
     {
         if ($type == 3) {
-            if (!$this->redis->get('block_king_of_the_hill.classic.'.$user->id)) {
-                $this->redis->setex('block_king_of_the_hill.classic.'.$user->id, 2, true);
-                $this->redis->set('step.classic', $cash);
-            } else {
-                $listParticipants = $game->participants()->get();
-                $game->participants = $listParticipants;
-                $bank = $listParticipants->sum('cash');
-                return $bank;
-            }
+            $this->redis->set('step.classic', $cash);
         } else {
-            if (!$this->redis->get('block_king_of_the_hill.senyor.'.$user->id)) {
-                $this->redis->setex('block_king_of_the_hill.senyor.'.$user->id, 2, true);
-                $this->redis->set('step.senyor', $cash);
-            } else {
-                $listParticipants = $game->participants()->get();
-                $game->participants = $listParticipants;
-                $bank = $listParticipants->sum('cash');
-                return $bank;
-            }
+            $this->redis->set('step.senyor', $cash);
         }
         $participant = new Participant;
         $participant->account_id = $user->id;
@@ -156,8 +161,6 @@ class KingOfTheHillController extends Controller
 
         $listParticipants = $game->participants()->get();
         $game->participants = $listParticipants;
-
-
         $bank = $listParticipants->sum('cash');
 
         $step = count($listParticipants) * 10;
