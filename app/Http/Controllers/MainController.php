@@ -28,13 +28,7 @@ class MainController extends Controller
         }
 
         $gameType = GameType::find($gameTypeId);
-        $game = HistoryGame::query()
-            ->orderBy('created_at', 'desc')
-            ->where('game_id', 3)
-            ->where('animation_at', '<', Carbon::now())
-            ->where('game_type_id', $gameTypeId)
-            ->whereNotIn('status_id', [4, 0])
-            ->first();
+        $game = HistoryGame::query()->orderBy('created_at', 'desc')->where('game_id', 3)->where('animation_at', '<', Carbon::now())->where('game_type_id', 1)->whereNotIn('status_id', [4, 0])->first();
 
         $result = [];
         if (!$game) {
@@ -46,6 +40,7 @@ class MainController extends Controller
                     $game->status_id = 0;
                     $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                     $game->winner_ticket_big = $random;
+                    $game->animation_at = now()->addYear();
                     $game->hash = hash('sha224', strval($game->winner_ticket_big));
                     $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
                     $game->save();
