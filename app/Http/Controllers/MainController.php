@@ -28,11 +28,7 @@ class MainController extends Controller
         }
 
         $gameType = GameType::find($gameTypeId);
-        $game = HistoryGame::with([
-            'participants' => function ($query) {
-                $query->with('account');
-            }
-        ])
+        $game = HistoryGame::query()
             ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
             ->where('animation_at', '>', Carbon::now())
