@@ -31,7 +31,7 @@ class MainController extends Controller
         $game = HistoryGame::query()
             ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
-            ->where('animation_at', '>', Carbon::now())
+            ->where('animation_at', '<', Carbon::now())
             ->where('game_type_id', $gameTypeId)
             ->whereNotIn('status_id', [4, 0])
             ->first();
@@ -63,11 +63,7 @@ class MainController extends Controller
             $cashInBank = Participant::where('history_game_id', $game->id)->where('account_id', $game->winner_account_id)->sum('cash');
             $color = Participant::where('history_game_id', $game->id)->where('account_id', $game->winner_account_id)->first()->color;
             $percent = round($cashInBank * 100 / $bank, 2);
-            $historyGame = HistoryGame::with([
-                'participants' => function ($query) {
-                    $query->with('account');
-                }
-            ])->where('id', $game->id)->first();
+            $historyGame = HistoryGame::query()->where('id', $game->id)->first();
             $listParticipants = $historyGame->participants;
             $result = [
                 'winnerTicket' => $game->winner_ticket,
