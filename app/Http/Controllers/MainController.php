@@ -32,6 +32,7 @@ class MainController extends Controller
         $game = HistoryGame::query()->with(['participants'])
             ->orderBy('created_at', 'desc')
             ->where('game_id', 3)
+            ->where('animation_at', '>', now())
             ->where('game_type_id', $gameTypeId)
             ->whereNotIn('status_id', [4, 0])
             ->first();
