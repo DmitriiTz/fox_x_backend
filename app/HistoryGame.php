@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HistoryGame extends Model
 {
+    protected $guarded = ['id'];
     protected $appends = [
         'looser',
         'bank',
