@@ -419,13 +419,12 @@ class MainController extends Controller
 //            ->limit(100)
 //            ->get(); // вывод игр по игре jackpot
 
-        $jackpotGames = HistoryGame::orderBy('id', 'asc')
+        $jackpotGames = HistoryGame::query()->orderBy('id', 'asc')
             ->where('game_id', 3)
-            ->where('status_id', 0)
-            ->take(10)
+            ->whereIn('status_id', [0,1])
             ->get(); // вывод игр по игре jackpot
 
-        $coinflipGames = HistoryGame::orderBy('id', 'asc') // сортировка по id
+        $coinflipGames = HistoryGame::query()->orderBy('id', 'asc') // сортировка по id
             ->where('game_id', 4) // тип игры
             ->where('status_id', 0)
             ->take(10) // количество
