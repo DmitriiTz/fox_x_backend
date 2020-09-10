@@ -36,7 +36,7 @@ class CoinflipController extends Controller
                 $color = 1;
             }
         }
-        
+
         $gameBefore = HistoryGame::whereNull('create_account_id')->where('status_id', 0)->where('game_id', 4)->limit(100)->get();
 
         if($gameBefore->count() < 10)
@@ -52,6 +52,7 @@ class CoinflipController extends Controller
                 $newGame->hash = hash('sha224', strval($newGame->winner_ticket_big));
                 $newGame->link_hash = 'http://sha224.net/?val='.$newGame->winner_ticket_big;
                 $newGame->save();
+                $gameBefore = HistoryGame::whereNull('create_account_id')->where('status_id', 0)->where('game_id', 4)->limit(100)->get();
             }
         }
         //$game = HistoryGame::whereNull('create_account_id')->where('game_id', 4)->first();
