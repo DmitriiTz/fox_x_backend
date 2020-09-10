@@ -59,7 +59,7 @@ class MainController extends Controller
                 ->where('game_id', 3)
                 ->first();
             $game->status_id = 1;
-            $game->game_type_id = $request->gameTypeId;
+            $game->game_type_id = $gameTypeId;
             $game->animation_at = now()->addYear();
             $game->save();
             event(new CreateGame($game));
