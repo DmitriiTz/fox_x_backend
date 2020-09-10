@@ -53,7 +53,7 @@ class MainController extends Controller
             $game->save();
             event(new CreateGame($game));
         }
-        if ($game && $game->end_game_at && strtotime($game->end_game_at) < strtotime($time) && $game->winner_account_id) {
+        if ($game && $game->end_game_at && strtotime($game->end_game_at) < strtotime($time) && $game->winner_ant_id) {
             $bank = $game->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $game->id)->where('account_id', $game->winner_account_id)->sum('cash');
             $color = Participant::where('history_game_id', $game->id)->where('account_id', $game->winner_account_id)->first()->color;
