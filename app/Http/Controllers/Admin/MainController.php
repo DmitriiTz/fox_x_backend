@@ -426,7 +426,7 @@ class MainController extends Controller
 
         $coinflipGames = HistoryGame::query()->orderBy('id', 'asc') // сортировка по id
             ->where('game_id', 4) // тип игры
-            ->where('status_id', 0)
+            ->where('status_id', '<>',0)
             ->take(10) // количество
             ->get(); // вывод игр по игре coinflip
 
