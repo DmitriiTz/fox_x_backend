@@ -20,11 +20,10 @@ class MainController extends Controller
         $pageName = 'Jackpot';
         $timer = now();
         $time = now();
-        $gameTypeId = 1;
+        $gameTypeId = \request('typeGameId',1);
         $typeRequest = 'get';
 
         if ($request->isMethod('post')) {
-            $gameTypeId = $request->typeGameId;
             $typeRequest = 'post';
         }
 
