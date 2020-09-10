@@ -29,7 +29,13 @@ class MainController extends Controller
 
         $gameType = GameType::find($gameTypeId);
 
-        $game = HistoryGame::query()->with(['participants'])->orderBy('created_at', 'desc')->where('game_id', 3)->where('animation_at', '>', now()->toIso8601String())->where('game_type_id', $gameTypeId)->whereNotIn('status_id', [4, 0])->first();
+        $game = HistoryGame::query()->with(['participants'])
+            ->orderBy('created_at', 'desc')
+            ->where('game_id', 3)
+            ->where('animation_at', '>', now()->toIso8601String())
+            ->where('game_type_id', $gameTypeId)
+            ->whereNotIn('status_id', [4, 0])
+            ->first();
 
         $result = [];
         if (!$game) {
@@ -45,6 +51,7 @@ class MainController extends Controller
                     $game->hash = hash('sha224', strval($game->winner_ticket_big));
                     $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
                     $game->save();
+                    $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->limit(100)->get();
                 }
             }
             $game = $gameBefore->first();
