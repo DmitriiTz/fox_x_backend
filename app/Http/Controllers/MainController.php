@@ -192,7 +192,7 @@ class MainController extends Controller
         $max_cash_number = Participant::max('max_cash_number');
         $biggestBank = Participant::where('max_cash_number', '=', $max_cash_number)->first();
 
-        $tempGame = HistoryGame::with([
+        $tempGame = $biggestBank ? HistoryGame::with([
             'participants' => function ($query) {
                 $query->with('account');
             }
@@ -201,9 +201,9 @@ class MainController extends Controller
             ->where('game_id', 3)
             ->whereNotIn('status_id', [4, 0])
             ->where('winner_ticket', '!=', null)
-            ->first();
+            ->first() : null;
 
-        if (isset($tempGame)) {
+        if (!!$tempGame) {
             $bank = $tempGame->participants()->sum('cash');
             $cashInBank = Participant::where('history_game_id', $tempGame->id)->where('account_id',
                 $tempGame->winner_account_id)->sum('cash');
