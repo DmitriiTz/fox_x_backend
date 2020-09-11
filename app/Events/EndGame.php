@@ -112,7 +112,7 @@ class EndGame implements ShouldBroadcast
         $this->winners = $game;
         $gameTypeId = $game->game_type_id;
         $new_game = HistoryGame::query()->with(['participants'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'asc')
             ->where('game_id', 3)
             ->where('animation_at', '>', Carbon::now())
             ->where('game_type_id', $gameTypeId)
@@ -137,7 +137,7 @@ class EndGame implements ShouldBroadcast
                 }
             }
             $new_game = HistoryGame::query()->with(['participants'])
-                ->orderBy('created_at', 'desc')
+                ->orderBy('id', 'asc')
                 ->where('game_id', 3)
                 ->first();
             $new_game->status_id = 1;

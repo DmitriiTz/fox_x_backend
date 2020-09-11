@@ -69,41 +69,33 @@ class JackpotController extends Controller
         if (($request->cash > 300 || (int)$request->cash <= 0) && $request->gameTypeId == 2) {
             return ['error' => 1, 'message' => $request->cash > 300 ? 'Максимальная ставка 300 COINS' : 'Минимальная ставка 1 COIN'];
         }
-
         if ($request->cash < 300 && $request->gameTypeId == 1) {
             return ['error' => 1, 'message' => 'Минимальная ставка 300 COINS'];
         }
-
         if ($request->get('userid') > 0) {
             echo 'antihack';
         } else {
             $user = auth()->user();
         }
-
         $balance = getBalance($user);
-
         if ($balance < $request->cash) {
             return ['error' => 1, 'message' => 'Недостаточно на балансе'];
         }
         $gameType = GameType::where('id', $request->gameTypeId)->where('game_id', 3)->firstOrFail();
-        $game = HistoryGame::orderBy('created_at', 'desc')
+        $game = HistoryGame::query()->with(['participants'])
+            ->orderBy('id', 'asc')
             ->where('game_id', 3)
             ->where('game_type_id', $gameType->id)
             ->whereNotIn('status_id', [4, 0])
             ->where('animation_at', '>', Carbon::now())
             ->first();
-
         if ($game && $game->animation_at > Carbon::now() && $game->end_game_at < Carbon::now() && $game->winner_ticket && $game->winner_account_id) {
             return ['error' => 1, 'message' => 'Предыдущая игра еще не закончена'];
         }
-
         if (!$game) {
-
             $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->limit(100)->get();
-            if($gameBefore->count() < 10)
-            {
-                while($gameBefore->count() < 10)
-                {
+            if ($gameBefore->count() < 10) {
+                while ($gameBefore->count() < 10) {
                     $game = new HistoryGame;
                     $game->game_id = 3;
                     $game->status_id = 0;
@@ -115,12 +107,14 @@ class JackpotController extends Controller
                 }
             }
 
-            $game = $gameBefore->first();
+            $game = HistoryGame::query()->with(['participants'])
+                ->orderBy('id', 'asc')
+                ->where('game_id', 3)
+                ->first();
             $game->status_id = 1;
-            $game->game_type_id = $request->gameTypeId;
+            $game->game_type_id = $gameTypeId;
             $game->animation_at = now()->addYear();
             $game->save();
-
             event(new CreateGame($game));
 
             //srand(time() / 5 + 199526178);

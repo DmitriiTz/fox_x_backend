@@ -30,7 +30,7 @@ class MainController extends Controller
         $gameType = GameType::find($gameTypeId);
 
         $game = HistoryGame::query()->with(['participants'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'asc')
             ->where('game_id', 3)
             ->where('animation_at', '>', Carbon::now())
             ->where('game_type_id', $gameTypeId)
@@ -55,7 +55,7 @@ class MainController extends Controller
                 }
             }
             $game = HistoryGame::query()->with(['participants'])
-                ->orderBy('created_at', 'desc')
+                ->orderBy('id', 'asc')
                 ->where('game_id', 3)
                 ->first();
             $game->status_id = 1;
