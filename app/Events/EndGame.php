@@ -7,6 +7,7 @@ use App\Http\Controllers\Account\JackpotController;
 use App\Participant;
 use App\Payment;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -109,6 +110,42 @@ class EndGame implements ShouldBroadcast
 
         //$this->winners = view('blocks.choose-winner-slider', ['game' => $game])->render();
         $this->winners = $game;
+        $gameTypeId = $game->game_type_id;
+        $new_game = HistoryGame::query()->with(['participants'])
+            ->orderBy('created_at', 'desc')
+            ->where('game_id', 3)
+            ->where('animation_at', '>', Carbon::now())
+            ->where('game_type_id', $gameTypeId)
+            ->whereNotIn('status_id', [4, 0])
+            ->first();
+
+        $result = [];
+        if (!$new_game) {
+            $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->limit(100)->get();
+            if ($gameBefore->count() < 10) {
+                for ($i = 0; $i < 10; $i++)
+                {
+                    $new_game = new HistoryGame;
+                    $new_game->game_id = 3;
+                    $new_game->status_id = 0;
+                    $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
+                    $new_game->winner_ticket_big = $random;
+                    $new_game->animation_at = now()->addYear();
+                    $new_game->hash = hash('sha224', strval($new_game->winner_ticket_big));
+                    $new_game->link_hash = 'http://sha224.net/?val=' . $new_game->hash;
+                    $new_game->save();
+                }
+            }
+            $new_game = HistoryGame::query()->with(['participants'])
+                ->orderBy('created_at', 'desc')
+                ->where('game_id', 3)
+                ->first();
+            $new_game->status_id = 1;
+            $new_game->game_type_id = $gameTypeId;
+            $new_game->animation_at = now()->addYear();
+            $new_game->save();
+            event(new CreateGame($new_game));
+        }
     }
 
     /**
