@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\CrashBet;
 use App\CrashGame;
+use App\Events\AdminCrashTimer;
 use App\Events\CrashTimer;
 use App\Events\CreateGame;
 use App\Events\CreateGameCrash;
@@ -148,6 +149,7 @@ class Crash extends Command
             $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
             Redis::connection()->set('crash',$coef);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef));
+            event(new AdminCrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef, $this->current_game->profit, $this->current_game));
         }
         if (Cache::has('end_game_crash')) {
             Cache::forget('end_game_crash');
