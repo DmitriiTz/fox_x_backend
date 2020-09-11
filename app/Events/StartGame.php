@@ -34,7 +34,7 @@ class StartGame implements ShouldBroadcast
     public function __construct($gameId, $endGame, $gameTypeName, $endGameAt)
     {
         $this->gameId = $gameId;
-        $this->game = HistoryGame::find($this->gameId);
+        $this->game = HistoryGame::query()->where('id', $this->gameId)->first();
         $this->end_game_at = $endGame;
         $this->endGame = now()->diffInSeconds($endGame);
         $this->gameTypeName = $gameTypeName;
