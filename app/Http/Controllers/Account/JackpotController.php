@@ -95,7 +95,7 @@ class JackpotController extends Controller
         if (!$game) {
             $gameBefore = HistoryGame::where('status_id', 0)->where('game_id', 3)->limit(100)->get();
             if ($gameBefore->count() < 10) {
-                while ($gameBefore->count() < 10) {
+                for ($i = 0; $i < 10; $i++){
                     $game = new HistoryGame;
                     $game->game_id = 3;
                     $game->status_id = 0;
@@ -114,7 +114,7 @@ class JackpotController extends Controller
                 ->where('animation_at', '>', Carbon::now())
                 ->first();
             $game->status_id = 1;
-            $game->game_type_id = $gameTypeId;
+            $game->game_type_id = $request->gameTypeId;
             $game->animation_at = now()->addYear();
             $game->save();
             event(new CreateGame($game));
