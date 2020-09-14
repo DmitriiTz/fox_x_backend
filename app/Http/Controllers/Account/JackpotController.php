@@ -111,10 +111,10 @@ class JackpotController extends Controller
             $game = HistoryGame::query()->with(['participants'])
                 ->orderBy('id', 'asc')
                 ->where('game_id', 3)
-                ->where('animation_at', '>', Carbon::now())
+                ->whereNull('game_type_id')
                 ->first();
             $game->status_id = 1;
-            $game->game_type_id = $request->gameTypeId;
+            $game->game_type_id = $gameType->id;
             $game->animation_at = now()->addYear();
             $game->save();
             event(new CreateGame($game));
