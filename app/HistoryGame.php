@@ -10,6 +10,7 @@ class HistoryGame extends Model
     protected $appends = [
         'looser',
         'bank',
+        'winner',
     ];
 
     public function participants() {
