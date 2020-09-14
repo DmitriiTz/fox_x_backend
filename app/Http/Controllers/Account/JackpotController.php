@@ -101,6 +101,7 @@ class JackpotController extends Controller
                     $game->status_id = 0;
                     $random = 0 + mt_rand() / mt_getrandmax() * (1 - 0);
                     $game->winner_ticket_big = $random;
+                    $game->animation_at = now()->addYear();
                     $game->hash = hash('sha224', strval($game->winner_ticket_big));
                     $game->link_hash = 'http://sha224.net/?val=' . $game->hash;
                     $game->save();
@@ -110,6 +111,7 @@ class JackpotController extends Controller
             $game = HistoryGame::query()->with(['participants'])
                 ->orderBy('id', 'asc')
                 ->where('game_id', 3)
+                ->where('animation_at', '>', Carbon::now())
                 ->first();
             $game->status_id = 1;
             $game->game_type_id = $gameTypeId;

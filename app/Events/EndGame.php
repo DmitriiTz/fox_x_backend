@@ -138,6 +138,7 @@ class EndGame implements ShouldBroadcast
             }
             $new_game = HistoryGame::query()->with(['participants'])
                 ->orderBy('id', 'asc')
+                ->where('animation_at', '>', Carbon::now())
                 ->where('game_id', 3)
                 ->first();
             $new_game->status_id = 1;
