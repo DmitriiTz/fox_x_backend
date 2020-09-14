@@ -138,7 +138,7 @@ class EndGame implements ShouldBroadcast
             }
             $new_game = HistoryGame::query()->with(['participants'])
                 ->orderBy('id', 'asc')
-                ->whereNull('game_type_id')
+                ->where('game_type_id',0)
                 ->where('game_id', 3)
                 ->first();
             $new_game->status_id = 1;

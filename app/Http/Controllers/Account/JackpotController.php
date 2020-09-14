@@ -111,7 +111,7 @@ class JackpotController extends Controller
             $game = HistoryGame::query()->with(['participants'])
                 ->orderBy('id', 'asc')
                 ->where('game_id', 3)
-                ->whereNull('game_type_id')
+                ->where('game_type_id',0)
                 ->first();
             $game->status_id = 1;
             $game->game_type_id = $gameType->id;
