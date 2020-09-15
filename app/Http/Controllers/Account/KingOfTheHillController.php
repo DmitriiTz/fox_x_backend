@@ -54,27 +54,14 @@ class KingOfTheHillController extends Controller
             $type = 4;
             $cash = $request->cash;
         }
-        if (!$this->redis->get('block_king_of_the_hill.classic.'.$user->id)) {
-            $this->redis->setex('block_king_of_the_hill.classic.'.$user->id, 2, true);
-        }
-        else
-        {
-            $game = HistoryGame::orderBy('updated_at', 'desc')
-                ->with('winner')
-                ->where('game_id', 2)
-                ->where('game_type_id', $type)
-                ->where('end_game_at', '>', now())
-                ->first();
-            if ($game) {
-                $listParticipants = $game->participants()->get();
-                $game->participants = $listParticipants;
-                $currentBank = $listParticipants->sum('cash');
-                return ['error' => 0, 'message' => 'Ставка успешно сделана', 'balance' => $balance, 'bank' => $currentBank, 'type' => $type];
-            }
-            else{
-                return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
-            }
-        }
+
+//        if ($game_id && $this->redis->get('block_king_of_the_hill.'.'$game_id.'.$request->type) != $user->id) {
+//            $this->redis->set('block_king_of_the_hill.'.$request->type, $user->id);
+//        }
+//        elseif($game_id)
+//        {
+//            return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
+//        }
         if ($type) {
             $game = HistoryGame::orderBy('updated_at', 'desc')
                 ->with('winner')
@@ -105,6 +92,10 @@ class KingOfTheHillController extends Controller
             } else {
                 if ($game->end_game_at && $game->end_game_at < now()) {
                     return ['error' => 1, 'message' => 'Игра закончена'];
+                }
+                if ($game instanceof HistoryGame && $last = $game->participants()->orderBy('created_at','desc')->first() && $last->id == $user->id)
+                {
+                    return ['error' => 1, 'message' => 'Дождитесь других ставок'];
                 }
                 // $currentStepPrice = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->first();
                 if (!$currentStepPrice) {
