@@ -155,10 +155,10 @@ class JackpotController extends Controller
 
             if (!$game->end_game_at) {
                 $getCountAppication = $this->getCountApplicationAccount($user, $game);
-                if ($getCountAppication) {
+                if ($game instanceof HistoryGame && $getCountAppication) {
                     $this->createParticipant($user, $game, $request->cash, $gameType, $color);
 
-                    $countParticipants = $game->participants->groupBy('account_id')->count();
+                    $countParticipants = $game->participants()->groupBy('account_id')->count();
 
                     if ($countParticipants == 2) {
                         $timer = now();
@@ -243,3 +243,10 @@ class JackpotController extends Controller
     }
 
 }
+$game = HistoryGame::query()->with(['participants'])
+    ->orderBy('id', 'asc')
+    ->where('game_id', 3)
+    ->where('game_type_id',4)
+    ->whereNotIn('status_id', [4, 0])
+    ->where('animation_at', '>', Carbon::now())
+    ->first();
