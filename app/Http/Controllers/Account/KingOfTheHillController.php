@@ -94,7 +94,7 @@ class KingOfTheHillController extends Controller
                     return ['error' => 1, 'message' => 'Игра закончена'];
                 }
                 $last = null;
-                if ($game instanceof HistoryGame && ($last = $game->participants()->orderBy('created_at','desc')->first()) && $last->id == $user->id)
+                if ($game instanceof HistoryGame && ($last = $game->participants()->orderBy('created_at','desc')->first()) && $last->account_id == $user->id)
                 {
                     return ['error' => 1, 'message' => 'Дождитесь других ставок'];
                 }
