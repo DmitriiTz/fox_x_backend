@@ -158,7 +158,7 @@ class JackpotController extends Controller
                 if ($game instanceof HistoryGame && $getCountAppication) {
                     $this->createParticipant($user, $game, $request->cash, $gameType, $color);
 
-                    $countParticipants = $game->participants()->getQuery()->groupBy(['account_id'])->count();
+                    $countParticipants = $game->participants()->get()->groupBy(['account_id'])->count();
 
                     if ($countParticipants == 2) {
                         $timer = now();
