@@ -93,7 +93,8 @@ class KingOfTheHillController extends Controller
                 if ($game->end_game_at && $game->end_game_at < now()) {
                     return ['error' => 1, 'message' => 'Игра закончена'];
                 }
-                if ($game instanceof HistoryGame && $last = $game->participants()->orderBy('created_at','desc')->first() && $last->id == $user->id)
+                $last = null;
+                if ($game instanceof HistoryGame && ($last = $game->participants()->orderBy('created_at','desc')->first()) && $last->id == $user->id)
                 {
                     return ['error' => 1, 'message' => 'Дождитесь других ставок'];
                 }
