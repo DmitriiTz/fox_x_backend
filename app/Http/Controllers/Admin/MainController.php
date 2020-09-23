@@ -424,10 +424,9 @@ class MainController extends Controller
             ->whereIn('status_id', [0,1])
             ->get(); // вывод игр по игре jackpot
 
-        $coinflipGames = HistoryGame::query()->orderBy('id', 'asc') // сортировка по id
+        $coinflipGames = HistoryGame::query()->orderBy('id', 'desc') // сортировка по id
             ->where('game_id', 4) // тип игры
-            ->where('status_id', '<>',0)
-            ->take(10) // количество
+            ->where('status_id', '=',1)
             ->get(); // вывод игр по игре coinflip
 
         $crash_games = CrashGame::orderBy('id', 'desc')
