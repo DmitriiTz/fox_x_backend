@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redis;
 
 class KingOfTheHillController extends Controller
 {
@@ -41,7 +42,6 @@ class KingOfTheHillController extends Controller
 
     public function setParticipant(Request $request)
     {
-
         $currentStepPrice = $this->redis->get('step.' . $request->type);
         $user = auth()->user();
         $balance = getBalance($user);
@@ -54,15 +54,8 @@ class KingOfTheHillController extends Controller
             $type = 4;
             $cash = $request->cash;
         }
-
-//        if ($game_id && $this->redis->get('block_king_of_the_hill.'.'$game_id.'.$request->type) != $user->id) {
-//            $this->redis->set('block_king_of_the_hill.'.$request->type, $user->id);
-//        }
-//        elseif($game_id)
-//        {
-//            return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
-//        }
-        if ($type) {
+        if (!$this->redis->get('wait.'.$user->id.'.'.$type) && $type) {
+            $this->redis->setex('wait.'.$user->id.'.'.$type,1, true);
             $game = HistoryGame::orderBy('updated_at', 'desc')
                 ->with('winner')
                 ->where('game_id', 2)
