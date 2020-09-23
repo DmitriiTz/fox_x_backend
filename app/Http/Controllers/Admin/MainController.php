@@ -422,6 +422,7 @@ class MainController extends Controller
         $jackpotGames = HistoryGame::query()->orderBy('id', 'asc')
             ->where('game_id', 3)
             ->whereIn('status_id', [0,1])
+            ->where('animation_at', '>', Carbon::now())
             ->get(); // вывод игр по игре jackpot
 
         $coinflipGames = HistoryGame::query()->orderBy('id', 'desc') // сортировка по id
