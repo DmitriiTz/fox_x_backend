@@ -55,7 +55,7 @@ class KingOfTheHillController extends Controller
             $type = 4;
             $cash = $request->cash;
         }
-        DB::beginTransaction();
+       // DB::beginTransaction();
         if (!$this->redis->get('wait.'.$user->id.'.'.$type) && $type) {
             $this->redis->setex('wait.'.$user->id.'.'.$type,1, true);
             $game = HistoryGame::orderBy('updated_at', 'desc')
@@ -67,7 +67,7 @@ class KingOfTheHillController extends Controller
             info($game->id . '- номер игры -' . now());
             if (!$game) {
                 if ($balance < 10) {
-                    DB::rollBack();
+
                     return ['error' => 1, 'message' => 'Недостаточно на балансе'];
                 }
                 $game = new HistoryGame;
@@ -81,21 +81,21 @@ class KingOfTheHillController extends Controller
                 } elseif ($type == 4 && $cash && $balance >= $cash) {
                     $currentBank = $this->createParticipant($user, $game, $cash, $type);
                 } else {
-                    DB::rollBack();
+
                     return ['error' => 1, 'message' => 'Непредвиденная ошибка'];
                 }
                 $balance = getBalance($user);
-                DB::commit();
+
                 return ['error' => 0, 'message' => 'Ставка успешно сделана', 'balance' => $balance, 'bank' => $currentBank, 'type' => $type];
             } else {
                 if ($game->end_game_at && $game->end_game_at < now()) {
-                    DB::rollBack();
+
                     return ['error' => 1, 'message' => 'Игра закончена'];
                 }
                 $last = null;
                 if ($game instanceof HistoryGame && ($last = $game->participants()->orderBy('created_at','desc')->first()) && $last->account_id == $user->id)
                 {
-                    DB::rollBack();
+
                     return ['error' => 1, 'message' => 'Дождитесь других ставок'];
                 }
                 // $currentStepPrice = Participant::where('history_game_id', $game->id)->orderBy('created_at', 'desc')->first();
@@ -108,7 +108,7 @@ class KingOfTheHillController extends Controller
                 } elseif ($type == 4 && $cash && $balance >= $cash && $cash > $currentStepPrice) {
                     $currentBank = $this->createParticipant($user, $game, $cash, $type);
                 } else {
-                    DB::rollBack();
+
                     return ['error' => 1, 'message' => 'Неккоректная сумма'];
                 }
                 $countParticipants = $game->participants->groupBy('account_id')->count();
@@ -125,7 +125,7 @@ class KingOfTheHillController extends Controller
                     // event(new StartGameKing($game->id, 20, $type,$end_game_at));
                 }
                 $balance = getBalance($user);
-                DB::commit();
+
                 return ['error' => 0, 'message' => 'Ставка успешно сделана', 'balance' => $balance, 'bank' => $currentBank, 'type' => $type];
             }
         } else {
