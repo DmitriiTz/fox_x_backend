@@ -126,6 +126,7 @@ class Crash extends Command
             $i = 0;
             $this->current_alpha = 10;
         }
+        $x = floor($x*100)/100;
         $this->current_game = CrashGame::query()->create([
             'number' => $i,
             'create_game' => time(),
@@ -143,11 +144,12 @@ class Crash extends Command
     {
         $this->info('starting game...');
         $coef = 1;
-        for ($timer = 0; !Cache::has('end_game_crash') && $timer <= $this->current_end_time - 1; $timer+=0.05) {
+        for ($timer = 0; !Cache::has('end_game_crash') && $timer < $this->current_end_time; $timer+=0.05) {
             time_nanosleep(0, (int)5e7);
             $coef = pow(2, $timer / $this->current_alpha);
             $this->info($timer . ' - ' . $this->current_end_time . ' coef:' . $coef);
-            Redis::connection()->set('crash',$coef);
+            $coef = floor($coef*100)/100;
+            Redis::connection()->set('crash', $coef);
             event(new CrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef));
             event(new AdminCrashTimer($this->current_game->id, $timer, $this->current_alpha, $coef, $this->current_game->profit, $this->current_game));
         }
