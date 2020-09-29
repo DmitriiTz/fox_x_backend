@@ -72,7 +72,7 @@ class ProfileController extends Controller
 
             'getHistoryBalance' => $getHistoryBalance,
             'listReferrals' => $listReferrals,
-            'listGames' => collect($listGames)->map(function ($game){$game->price*=100; return $game;}),
+            'listGames' => collect($listGames)->map(function ($game){$game->price*=10; return $game;}),
             'pageName' => $pageName,
         ];
 
