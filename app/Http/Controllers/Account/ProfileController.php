@@ -72,7 +72,7 @@ class ProfileController extends Controller
 
             'getHistoryBalance' => $getHistoryBalance,
             'listReferrals' => $listReferrals,
-            'listGames' => $listGames,
+            'listGames' => collect($listGames)->map(function ($game){$game->price*=100; return $game;}),
             'pageName' => $pageName,
         ];
 
@@ -166,7 +166,7 @@ class ProfileController extends Controller
             }
 
             $uses_promocode = UsesPromocode::where(['user_id' => $user->id, 'code_id' => $isPromocode->id])->first();
-            
+
             if($uses_promocode){
                 return ['error' => 1, 'sum' => $allSumma, 'text' => 'Вы уже активировали этот промокод'];
             }
